@@ -41,16 +41,16 @@ function resetSlideInterval() {
 showSlides(slideIndex);
 resetSlideInterval();
 
-document.getElementById('menu-toggle').addEventListener('click', function () {
-    const mobileMenu = document.querySelector('.mobile-menu');
+document.getElementById('menu').addEventListener('click', function () {
+    const mobileMenu = document.querySelector('.mobilemenu');
     mobileMenu.classList.toggle('active');
 });
 
-const menuLinks = document.querySelectorAll('.mobile-menu a');
+const menuLinks = document.querySelectorAll('.mobilemenu a');
 
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenu = document.querySelector('.mobilemenu');
         mobileMenu.classList.remove('active');
     });
 });
