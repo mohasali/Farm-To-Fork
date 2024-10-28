@@ -1,1 +1,1 @@
-<li><a {{$attributes->merge(['class'=>'font-bold hover:text-secondary'])}}>{{ $slot }}</a></li>
+<a {{$attributes->merge(['class'=>'hover:text-primary'])}}>{{ $slot }}</a>

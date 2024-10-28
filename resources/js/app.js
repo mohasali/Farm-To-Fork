@@ -1,4 +1,4 @@
-document.getElementById('menu').addEventListener('click', function () {
+document.getElementById('mobile-nav-button').addEventListener('click', function () {
     const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.classList.toggle('active');
 });
@@ -11,3 +11,4 @@ menuLinks.forEach(link => {
         mobileMenu.classList.remove('active');
     });
 });
+
