@@ -12,16 +12,16 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Noto Sans','sans-serif'],
             },
             colors: {
-                'text': '#C44D58',
-                'background': '#F5DEB3',
-                'primary': '#A7C957',
-                'secondary': '#556B2F',
-                'accent1': '#D35400',
-                'accent2': '#FFD166',
-            },
+                'text': '#295b43',
+                'background': '#f7f5f5',
+                'primary': '#E57343',
+                'secondary': '#F4A261',
+                'accent1': '#ed9121',
+                'accent2': '#F2C94C',
+                },
         },
     },
     plugins: [],
