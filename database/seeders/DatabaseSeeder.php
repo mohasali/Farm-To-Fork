@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Crate;
+use App\Models\Box;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Crate::factory()->count(50)->create();
+        Box::factory()->count(50)->create();
     }
 }

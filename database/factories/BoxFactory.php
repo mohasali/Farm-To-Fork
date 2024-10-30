@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Box;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Crate>
  */
-class CrateFactory extends Factory
+class BoxFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +19,9 @@ class CrateFactory extends Factory
     {
         return [
             'title' => fake()->randomElement(['All Greens','Summer Fruits','Spanish Special','Classic Salad']),
-            'description' => fake()->text(),
+            'type' => fake()->randomElement(Box::getEnumTypes()),
+            'description' => fake()->text(500),
             'price' => fake()->randomFloat(2,10,40),
-            'expiryDate' => fake()->dateTimeBetween('+2 days','+1 week'),
             'imagePath' => '/images/crate.jpg'
 
         ];
