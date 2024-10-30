@@ -1,22 +1,22 @@
 <?php
 
-use App\Http\Controllers\CrateController;
-use App\Models\Crate;
+use App\Http\Controllers\BoxController;
+use App\Models\Box;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('crates',CrateController::class);
+Route::resource('boxes',BoxController::class);
 
-Route::controller(CrateController::class)->group(function() {
-    Route::get('/crates','index');
-    Route::get('/crates/{crate}','show');
+Route::controller(BoxController::class)->group(function() {
+    Route::get('/boxes','index');
+    Route::get('/boxes/{box}','show');
 
-    //Route::get('/crates/create','create')->middleware('auth');
-    //Route::get('/crates/{crate}/edit','edit')->middleware('auth')->can('edit','crate');
-    //Route::patch('/crates/{crate}','update')->middleware('auth')->can('edit','crate');;
-    //Route::delete('/crates.{crate}','destroy')->middleware('auth')->can('edit','crate');;
+    //Route::get('/boxes/create','create')->middleware('auth');
+    //Route::get('/boxes/{box}/edit','edit')->middleware('auth')->can('edit','box');
+    //Route::patch('/boxes/{box}','update')->middleware('auth')->can('edit','box');;
+    //Route::delete('/boxes.{box}','destroy')->middleware('auth')->can('edit','box');;
 
 });

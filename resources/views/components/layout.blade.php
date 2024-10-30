@@ -10,14 +10,14 @@
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="bg-background text-text flex flex-col min-h-screen">
-  <nav class="flex justify-between items-center bg-white px-7 desktop-nav hidden md:flex">
+  <nav class="flex justify-between items-center bg-white px-7 desktop-nav hidden md:flex border-b-4 border-accent1 p-1">
     <div>
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>
   
     <div class="flex justify-between space-x-3">
       <x-nav-link href='/'> Home </x-nav-link>
-      <x-nav-link href='/crates'> Crates </x-nav-link>
+      <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
@@ -38,7 +38,7 @@
     </div>
     <div class=" flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu">
       <x-nav-link href='/'> Home </x-nav-link>
-      <x-nav-link href='/crates'> Crates </x-nav-link>
+      <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
@@ -55,7 +55,7 @@
         <ul class="space-y-1">
           <li class="font-semibold">Pages</li>
           <li><a href="/" class="hover:underline">Home</a></li>
-          <li><a href="/crates" class="hover:underline">Crates</a></li>
+          <li><a href="/boxes" class="hover:underline">Boxes</a></li>
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
