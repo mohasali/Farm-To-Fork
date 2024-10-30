@@ -16,13 +16,14 @@ export default {
             },
             colors: {
                 'text': '#295b43',
-                'background': '#f7f5f5',
+                'background': '#fffff',
                 'primary': '#E57343',
-                'secondary': '#F4A261',
-                'accent1': '#ed9121',
-                'accent2': '#F2C94C',
+                'secondary': '#295b43',
+                'accent1': '#f88030',
+                'accent2': '#347857',
                 },
         },
     },
     plugins: [],
+    darkMode: 'class',
 };
