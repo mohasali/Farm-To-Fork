@@ -5,8 +5,8 @@
       <h1 class="text-5xl font-bold pb-4">Farm To Fork</h1>
       <h2 class="text-primary text-2xl font-semibold pb-8">Fresh Ingredients, Delivered to Your Doorstep</h2>
       <div class="flex justify-center space-x-5">
-        <a href="#" class="px-7 py-3 bg-primary text-white rounded-lg hover:brightness-95 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Collection</a>
-        <a href="products.html" class="px-7 py-3 bg-text text-white rounded-lg hover:brightness-95 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Shop Now</a>
+        <a href="/crates" class="px-7 py-3 bg-primary text-white rounded-lg hover:brightness-95 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Crates</a>
+        <a href="/recipes" class="px-7 py-3 bg-text text-white rounded-lg hover:brightness-95 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Recipes</a>
       </div>
     </div>
   </section>

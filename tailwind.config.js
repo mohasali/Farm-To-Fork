@@ -16,7 +16,7 @@ export default {
             },
             colors: {
                 'text': '#295b43',
-                'background': '#f7f5f5',
+                'background': '#f7f7f7',
                 'primary': '#E57343',
                 'secondary': '#F4A261',
                 'accent1': '#ed9121',
@@ -25,4 +25,5 @@ export default {
         },
     },
     plugins: [],
+    darkMode: 'class',
 };
