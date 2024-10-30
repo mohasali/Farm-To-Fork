@@ -10,7 +10,7 @@
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="bg-background text-text flex flex-col min-h-screen">
-  <nav class="flex justify-between items-center bg-white px-7 desktop-nav hidden md:flex">
+  <nav class="flex justify-between items-center bg-white px-7 desktop-nav hidden md:flex border-2 border-sky-500">
     <div>
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>

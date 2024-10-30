@@ -1,18 +1,18 @@
 <x-layout>
-    <div class="flex flex-col md:flex-row justify-center items-center md:items-start m-8 space-x-4 space-y-4 md:space-y-0 bg-white p-8 rounded-xl">
-        <div class="md:hidden text-4xl font-bold"> {{ $crate->title }}</div>
-        <img class=" max-w-[400px] rounded-lg" src="{{ $crate->imagePath }}" alt="Crate">
-        <div class="flex flex-col items-center space-y-8"> 
-            <div class="hidden md:block text-4xl font-bold"> {{ $crate->title }}</div>
-            <div class="space-x-2"> 
-                
-                <a class="text-white bg-primary p-1 rounded-[5px] hover:brightness-95" href="#">Tag 1</a>
-                <a class="text-white bg-primary p-1 rounded-[5px] hover:brightness-95" href="#">Tag 2</a>
-                <a class="text-white bg-primary p-1 rounded-[5px] hover:brightness-95" href="#">Tag 3</a>
-                <a class="text-white bg-primary p-1 rounded-[5px] hover:brightness-95" href="#">Tag 4</a>
+<div class="flex flex-col justify-content-start mt-8 h-[calc(100vh-200px)]">
+    <div class=" flex flex-row mx-auto space-x-6 p-8">
+        <img class=" max-w-[450px] pt-7 rounded-lg" src = "{{ $crate->imagePath }}" alt="Crate">
+        <div> 
+            <div class=" text-xl mb-2"> <a href="#"> Type </a></div>
+            <div class=" text-3xl mb-3"> {{ $crate->title }}</div>
+            <div class=" text-lg space-x-2 mb-2">
+                <a href="#"> TAG 1 </a>
+                <a href="#">TAG 2</a>
+                <a href="#">TAG 3</a>
             </div>
-            <div> {{ $crate->description }} </div>
-            <div><a class="bg-primary text-white px-6 py-3 rounded-lg hover:brightness-95" href="#">Add to cart - £{{ $crate->price }} </a></div>
+            <div class=" max-w-[500px] mb-7 ">{{ $crate->description }}</div>
+            <div class="bg-primary mx-16 text-white py-3 rounded-xl text-center text-xl font-bold"> <a href="#">Add to cart £{{ $crate->price }}</a> </div>
         </div>
-    </div>
+        </div>
+</div>
 </x-layout>
