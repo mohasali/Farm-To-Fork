@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 * text=auto eol=lf
 
 *.blade.php diff=html
@@ -9,3 +10,7 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+=======
+# Auto detect text files and perform LF normalization
+* text=auto
+>>>>>>> Stashed changes
