@@ -12,9 +12,18 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Noto Sans','sans-serif'],
             },
+            colors: {
+                'text': '#295b43',
+                'background': '#f7f7f7',
+                'primary': '#E57343',
+                'secondary': '#F4A261',
+                'accent1': '#ed9121',
+                'accent2': '#F2C94C',
+                },
         },
     },
     plugins: [],
+    darkMode: 'class',
 };

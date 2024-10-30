@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.slides img {
+    object-fit: cover;
+}
+
+.slideshow-container {
+    position: relative;
+}
+
+.slides {
+    display: none; 
+}
+
+.slide-img {
+    height: 100%;         
+    width: 100%;          
+    object-fit: cover;  
+}
+
+.dot-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+.mobile-menu {
+    display: none; 
+}
+
+.mobile-menu.active {
+    display: flex; 
+}
