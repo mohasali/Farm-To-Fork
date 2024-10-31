@@ -40,7 +40,7 @@
           </form>
         </div>
       </div>
-        <x-nav-link href='/'> Cart </x-nav-link>
+        <x-nav-link href='/cart'> Cart </x-nav-link>
       </div>
 
       
@@ -62,7 +62,7 @@
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
-      <x-nav-link href='/'>Cart</x-nav-link>
+      <x-nav-link href='/cart'>Cart</x-nav-link>
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>

@@ -16,4 +16,9 @@ class Box extends Model
     {
         return array_column(BoxType::cases(), 'value');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
