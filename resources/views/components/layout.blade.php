@@ -30,11 +30,20 @@
       @endguest
 
       @auth
-      <x-nav-link href='/'> My Account </x-nav-link>
-      <form class=" m-0 ml-3" method="POST" action="/logout">
-        @csrf
-        <button class="hover:text-primary">Log Out</button>
-      </form>
+      <div class="group flex flex-col justify-start bg-white">
+        <x-nav-link class="group-hover:text-primary"  href='/'> My Account </x-nav-link>
+        <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
+          <x-nav-link href="/">Manage</x-nav-link>
+          <form class=" m-0" method="POST" action="/logout">
+            @csrf
+            <button class="hover:text-primary">Log Out</button>
+          </form>
+        </div>
+      </div>
+        <x-nav-link href='/'> Cart </x-nav-link>
+      </div>
+
+      
       @endauth
 
     </div>
@@ -53,6 +62,7 @@
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
+      <x-nav-link href='/'>Cart</x-nav-link>
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>
