@@ -24,8 +24,8 @@
     </div>
     
     <div class="space-x-3">
-      <x-nav-link href='/register'> Register </x-nav-link>
       <x-nav-link href='/login'> Login </x-nav-link>
+      <x-nav-link href='/register'> Register </x-nav-link>
     </div>
   </nav>    
   <nav class="px-3 z-10 bg-text p-6 mobile-nav md:hidden sticky top-0" >
@@ -59,7 +59,7 @@
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
-          <li><a href="account.html" class="hover:underline">Sign Up</a></li>
+          <li><a href="account.html" class="hover:underline">Regsiter</a></li>
         </ul>
       </div>
       
