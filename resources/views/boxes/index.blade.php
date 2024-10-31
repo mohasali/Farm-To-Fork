@@ -1,14 +1,14 @@
 <x-layout>
-    <section class="relative w-full min-h-[280px] bg-cover transform" style="background-image: url('images/bg1.jpg');">
+    <section class="relative w-full bg-cover transform bg-center md:bg-top md:min-h-[280px]" style="background-image: url('images/bg1.jpg');">
     <div class="flex flex-col items-center">
         <h1 class= "m-auto text-5xl font-bold p-4 pt-8"> Boxes </h1>
-        <p class="w-[45%] text-center"> Some text here to talk about how good the creates are.
+        <p class=" w-[55%] md:w-[45%] text-center"> Some text here to talk about how good the creates are.
             Maybe Also talk about how subscriptions work?</p>
     </div>
     </section>
-    <div class="flex justify-center space-x-5 px-5 my-6">
+    <div class="flex flex-col md:flex-row justify-center text-center space-y-3 md:space-y-0 md:space-x-5 px-5 my-6">
         @foreach ($types as $t )
-            <a href="/boxes?type={{ $t }}" class="{{ $type==$t?'bg-primary hover:bg-accent1':'bg-secondary hover:bg-accent2' }} text-white px-2 py-1 rounded-lg ">{{ $t }}</a>
+            <a href="/boxes{{  $type==$t? '':'?type='.$t}}" class="{{ $type==$t?'bg-primary hover:bg-accent1':'bg-secondary hover:bg-accent2' }} text-white px-2 py-1 rounded-lg ">{{ $t }}</a>
         @endforeach
 
     </div>
