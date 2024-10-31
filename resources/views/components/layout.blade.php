@@ -23,9 +23,20 @@
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
     </div>
     
-    <div class="space-x-3">
+    <div class=" flex items-center space-x-3">
+      @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>
+      @endguest
+
+      @auth
+      <x-nav-link href='/'> My Account </x-nav-link>
+      <form class=" m-0 ml-3" method="POST" action="/logout">
+        @csrf
+        <button class="hover:text-primary">Log Out</button>
+      </form>
+      @endauth
+
     </div>
   </nav>    
   <nav class="px-3 z-10 bg-text p-6 mobile-nav md:hidden sticky top-0" >
@@ -36,12 +47,24 @@
         <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
       </button>
     </div>
-    <div class=" flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu">
+    <div class=" flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu transition-all duration-300 ease-in-out">
       <x-nav-link href='/'> Home </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
+      @guest
+      <x-nav-link href='/login'> Login </x-nav-link>
+      <x-nav-link href='/register'> Register </x-nav-link>
+      @endguest
+
+      @auth
+      <x-nav-link href='/'> My Account </x-nav-link>
+      <form class=" m-0 ml-3" method="POST" action="/logout">
+        @csrf
+        <button class="hover:text-primary">Log Out</button>
+      </form>
+      @endauth
     </div>
   </nav>
 

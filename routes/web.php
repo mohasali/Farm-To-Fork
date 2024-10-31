@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,5 +22,9 @@ Route::controller(BoxController::class)->group(function() {
 
 });
 
-Route::get('/register',[UserController::class,'create']);
-Route::post('/register',[UserController::class,'store']);
+Route::get('/register',[UserController::class,'create'])->middleware('guest');
+Route::post('/register',[UserController::class,'store'])->middleware('guest');
+
+Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');;
+Route::post('/login',[SessionController::class,'create'])->middleware('guest');
+Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
