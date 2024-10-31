@@ -8,7 +8,7 @@
     </section>
     <div class="flex justify-center space-x-5 px-5 my-6">
         @foreach ($types as $t )
-            <a href="/boxes?type={{ $t }}" class="{{ $type==$t?'bg-primary hover:bg-accent1':'bg-secondary hover:bg-accent2' }} text-white px-2 py-1 rounded-lg ">{{ $t }}</a>
+            <a href="/boxes{{  $type==$t? '':'?type='.$t}}" class="{{ $type==$t?'bg-primary hover:bg-accent1':'bg-secondary hover:bg-accent2' }} text-white px-2 py-1 rounded-lg ">{{ $t }}</a>
         @endforeach
 
     </div>

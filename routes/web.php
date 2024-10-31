@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoxController;
-use App\Models\Box;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,3 +20,6 @@ Route::controller(BoxController::class)->group(function() {
     //Route::delete('/boxes.{box}','destroy')->middleware('auth')->can('edit','box');;
 
 });
+
+Route::get('/register',[UserController::class,'create']);
+Route::post('/register',[UserController::class,'store']);
