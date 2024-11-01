@@ -1,6 +1,6 @@
 <x-layout>
     <div class="flex justify-center p-4 md:my-16">
-        <form class="flex flex-col bg-white p-16 pt-6 rounded w-[100%] max-w-[500px] border-[3px] border-primary m-auto" method="POST" action="/login">
+        <form class="flex flex-col bg-white p-16 pt-6 rounded w-[100%] max-w-[500px] border-[3px] border-primary m-auto" method="POST">
             <h3 class=" font-bold text-5xl text-center pb-9 ">Log In</h3>
             @csrf
             <label class="font-bold">Email</label>

@@ -22,7 +22,13 @@
                     <div>£{{ $box->price }}</div>
                 </div>
             </a>
-            <a href="#" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out"> Add to Cart</a>
+
+            <x-add-cart-form value="{{ $box->id }}">
+                <input class="hidden" id="increment" name="increment" value="1"> 
+                <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out"> Add to Cart</button>
+            </x-add-cart-form>
+
+            <x-success-alert :boxId="$box->id"/>
         </div>
         @endforeach
     </div>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class,'user_id')->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Box::class,'box_id')->constrained()->cascadeOnDelete();
             $table->unique(['user_id', 'box_id']);
-            $table->integer('quantity')->default(1);
+            $table->integer('quantity')->default(0);
             $table->timestamps();
         });
 
