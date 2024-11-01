@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Model;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination::tailwind');
  
         Paginator::defaultSimpleView('pagination::simple-tailwind');
+
+        Model::preventLazyLoading();
+
     }
 }
