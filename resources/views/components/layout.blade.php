@@ -92,7 +92,7 @@
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
-          <li><a href="account.html" class="hover:underline">Regsiter</a></li>
+          <li><a href="account.html" class="hover:underline">Register</a></li>
         </ul>
       </div>
       
