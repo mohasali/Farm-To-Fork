@@ -17,7 +17,7 @@
                 <div class="flex flex-col justify-between my-1">
                     <div class="flex flex-col">
                         <a href="/boxes/{{ $item->box->id }}" class="text-2xl hover:underline hover:text-accent2 transition duration-300 ease-in-out ">{{ $item->box->title }}</a>
-                        <a href="/boxes/{{ $item->box->type }}" class="text-xl font-[300] italic hover:underline hover:text-accent2 duration-300 ease-in-out">{{ $item->box->type }}</a>
+                        <a href="/boxes?type={{ $item->box->type }}" class="text-xl font-[300] italic hover:underline hover:text-accent2 duration-300 ease-in-out">{{ $item->box->type }}</a>
                     </div>
                     <form action="/cart/{{ $item->id }}" method="POST">
                         @csrf
