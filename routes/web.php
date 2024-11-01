@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,5 +23,20 @@ Route::controller(BoxController::class)->group(function() {
 
 });
 
-Route::get('/register',[UserController::class,'create']);
-Route::post('/register',[UserController::class,'store']);
+Route::controller(CartController::class)->group(function(){
+
+    Route::get('/cart',[CartController::class,'show'])->middleware('auth');
+    Route::post('/cart/add',[CartController::class,'add'])->middleware('auth');
+    Route::patch('/cart/{cart}',[CartController::class,'update'])->middleware('auth');
+    Route::delete('/cart/{cart}',[CartController::class,'delete'])->middleware('auth');
+
+    Route::get('/checkout',[CartController::class,'checkout'])->middleware('auth');
+
+});
+
+Route::get('/register',[UserController::class,'create'])->middleware('guest');
+Route::post('/register',[UserController::class,'store'])->middleware('guest');
+
+Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');;
+Route::post('/login',[SessionController::class,'create'])->middleware('guest');
+Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
