@@ -13,7 +13,16 @@
                 <a class="hover:underline hover:text-accent2" href="#">Low Fat</a>
             </div>
             <div class=" max-w-[500px] mb-7 ">{{ $box->description }}</div>
-            <div class="flex justify-center"> <a class="bg-primary px-16 text-white py-3 rounded-xl text-center text-xl font-bold hover:bg-accent1 transition duration-300 ease-in-out" href="#">Add to cart £{{ $box->price }}</a> </div>
+
+            <x-add-cart-form value="{{ $box->id }}">
+                <select class=" rounded-md border-2 border-primary mr-4 px-4 py-2 h-full" name="increment" id="increment">
+                    @for ($i=1; $i<=10 ; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select> 
+                <button class="bg-primary p-4 text-white rounded-xl text-center text-xl font-bold hover:bg-accent1 transition duration-300 ease-in-out" >Add to cart £{{ $box->price }}</button> 
+            </x-add-cart-form>
+            <x-success-alert :boxId="$box->id" />
         </div>
         </div>
 </div>
