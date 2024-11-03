@@ -24,6 +24,10 @@
         <x-form-input name="password_confirmation" id="password_confirmation" type="password"/>
         <button class="bg-primary text-white py-2 rounded hover:bg-accent1 text-lg mt-4">Register</button>
 
+        <div class="flex items-center">
+            <p>Already have an account?</p>
+            <a href="login" class="ml-2 md:ml-1 text-secondary font-bold">Log in</a>
+        </div>
     </form>
 </div>
 </x-layout>
