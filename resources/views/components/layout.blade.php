@@ -15,6 +15,7 @@
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>
   
+    <!-- Navigation bar -->
     <div class="flex justify-between space-x-3">
       <x-nav-link href='/'> Home </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
@@ -92,7 +93,7 @@
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
-          <li><a href="account.html" class="hover:underline">Regsiter</a></li>
+          <li><a href="account.html" class="hover:underline">Register</a></li>
         </ul>
       </div>
       
