@@ -12,7 +12,11 @@
             <x-form-error name="password"/>
 
             <button class="bg-primary text-white py-2 rounded hover:bg-accent1 text-lg mt-4">Log In</button>
-    
+             
+            <div class="flex items-center">
+                <p>Don't have an account?</p>
+                <a href="register" class="ml-2 md:ml-1 text-secondary font-bold">Sign up</a>
+            </div>
         </form>
     </div>
-    </x-layout>
+</x-layout>

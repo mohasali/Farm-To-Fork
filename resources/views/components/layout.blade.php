@@ -15,6 +15,7 @@
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>
   
+    <!-- Navigation bar -->
     <div class="flex justify-between space-x-3">
       <x-nav-link href='/'> Home </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
