@@ -45,6 +45,7 @@ Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
 Route::get('/account','user')->name('account.user');
+Route::get('/account/edit','edit')->name('account.edit');
 Route::get('/account/orders','orders')->name('account.orders');
 Route::get('/account/address','address')->name('account.address');
 Route::get('/account/subscription','subscription')->name('account.subscription');
