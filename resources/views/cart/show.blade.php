@@ -17,7 +17,7 @@
                 <div class="flex flex-col justify-between my-1">
                     <div class="flex flex-col">
                         <a href="/boxes/{{ $item->box->id }}" class="text-2xl hover:underline hover:text-accent2 transition duration-300 ease-in-out ">{{ $item->box->title }}</a>
-                        <a href="/boxes/{{ $item->box->type }}" class="text-xl font-[300] italic hover:underline hover:text-accent2 duration-300 ease-in-out">{{ $item->box->type }}</a>
+                        <a href="/boxes?type={{ $item->box->type }}" class="text-xl font-[300] italic hover:underline hover:text-accent2 duration-300 ease-in-out">{{ $item->box->type }}</a>
                     </div>
                     <form action="/cart/{{ $item->id }}" method="POST">
                         @csrf
@@ -29,7 +29,7 @@
                             </div>
                             <div class="flex space-x-6">
                                 <button class="bg-primary w-[22%] py-0.5 text-white rounded mt-2 hover:bg-accent1 transition duration-300 ease-in-out ">Save</button>
-                                <button form="delete-form" class="bg-red-600 w-[22%] py-0.5 text-white rounded mt-2 hover:bg-red-500 transition duration-300 ease-in-out ">Delete</button>
+                                <button form="delete-form-{{$item->id}}" class="bg-red-600 w-[22%] py-0.5 text-white rounded mt-2 hover:bg-red-500 transition duration-300 ease-in-out ">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <form action="/cart/{{$item->id}}" method="POST" id="delete-form" hidden>
+        <form action="/cart/{{$item->id}}" method="POST" id="delete-form-{{$item->id }}" hidden>
             @csrf
             @method('DELETE')
         </form>
