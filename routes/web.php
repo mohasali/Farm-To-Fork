@@ -4,6 +4,7 @@ use App\Http\Controllers\BoxController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -40,3 +41,14 @@ Route::post('/register',[UserController::class,'store'])->middleware('guest');
 Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');;
 Route::post('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
+
+Route::get('/account', function () {
+    return view('/account/user');
+})->middleware('auth');
+
+Route::get('/account/user', [AccountController::class, 'user'])->name('account.user');
+Route::get('/account/orders', [AccountController::class, 'orders'])->name('account.orders');
+Route::get('/account/address', [AccountController::class, 'address'])->name('account.address');
+Route::get('/account/subscription', [AccountController::class, 'subscription'])->name('account.subscription');
+Route::get('/account/payments', [AccountController::class, 'payments'])->name('account.payments');
+Route::get('/account/contactpref', [AccountController::class, 'contactpref'])->name('account.contactpref');
