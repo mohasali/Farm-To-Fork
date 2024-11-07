@@ -22,4 +22,11 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    public function update(){
+        $attributes = request()->validate(['name'=>['required'],
+                             'email'=>['required','email','unique:users,email'],
+                             'password'=>['confirmed','required',Password::min(8)->mixedCase()->numbers()->symbols()],
+        ]);
+    }
 }
