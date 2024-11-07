@@ -37,18 +37,17 @@ Route::middleware('auth')->controller(CartController::class)->group(function() {
 
 Route::get('/register',[UserController::class,'create'])->middleware('guest');
 Route::post('/register',[UserController::class,'store'])->middleware('guest');
+Route::patch('/user',[UserController::class,'update'])->middleware('auth');
 
-Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');;
+Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');
 Route::post('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
-Route::get('/account', function () {
-    return view('/account/user');
-})->middleware('auth');
-
-Route::get('/account/user', [AccountController::class, 'user'])->name('account.user');
-Route::get('/account/orders', [AccountController::class, 'orders'])->name('account.orders');
-Route::get('/account/address', [AccountController::class, 'address'])->name('account.address');
-Route::get('/account/subscription', [AccountController::class, 'subscription'])->name('account.subscription');
-Route::get('/account/payments', [AccountController::class, 'payments'])->name('account.payments');
-Route::get('/account/contactpref', [AccountController::class, 'contactpref'])->name('account.contactpref');
+Route::middleware('auth')->controller(AccountController::class)->group(function() {
+Route::get('/account','user')->name('account.user');
+Route::get('/account/orders','orders')->name('account.orders');
+Route::get('/account/address','address')->name('account.address');
+Route::get('/account/subscription','subscription')->name('account.subscription');
+Route::get('/account/payments', 'payments')->name('account.payments');
+Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
+});
