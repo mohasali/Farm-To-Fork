@@ -46,7 +46,9 @@ class CartController extends Controller
 
         $cart->delete();
         return redirect()->back();
+    }
 
-        
+    public function checkout(){
+        return view('cart.checkout');
     }
 }
