@@ -23,14 +23,14 @@ Route::controller(BoxController::class)->group(function() {
 
 });
 
-Route::controller(CartController::class)->group(function(){
+Route::middleware('auth')->controller(CartController::class)->group(function() {
 
-    Route::get('/cart',[CartController::class,'show'])->middleware('auth');
-    Route::post('/cart/add',[CartController::class,'add'])->middleware('auth');
-    Route::patch('/cart/{cart}',[CartController::class,'update'])->middleware('auth');
-    Route::delete('/cart/{cart}',[CartController::class,'delete'])->middleware('auth');
+    Route::get('/cart', 'show');
+    Route::post('/cart/add', 'add');
+    Route::patch('/cart/{cart}', 'update');
+    Route::delete('/cart/{cart}', 'delete');
 
-    Route::get('/checkout',[CartController::class,'checkout'])->middleware('auth');
+    Route::get('/checkout', 'checkout');
 
 });
 

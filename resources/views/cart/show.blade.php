@@ -29,7 +29,7 @@
                             </div>
                             <div class="flex space-x-6">
                                 <button class="bg-primary w-[22%] py-0.5 text-white rounded mt-2 hover:bg-accent1 transition duration-300 ease-in-out ">Save</button>
-                                <button form="delete-form" class="bg-red-600 w-[22%] py-0.5 text-white rounded mt-2 hover:bg-red-500 transition duration-300 ease-in-out ">Delete</button>
+                                <button form="delete-form-{{$item->id}}" class="bg-red-600 w-[22%] py-0.5 text-white rounded mt-2 hover:bg-red-500 transition duration-300 ease-in-out ">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <form action="/cart/{{$item->id}}" method="POST" id="delete-form" hidden>
+        <form action="/cart/{{$item->id}}" method="POST" id="delete-form-{{$item->id }}" hidden>
             @csrf
             @method('DELETE')
         </form>
