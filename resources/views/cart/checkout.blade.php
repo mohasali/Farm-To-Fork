@@ -9,7 +9,7 @@
                     <x-form-input label="Full Name" name="name" id="name"/>
                     <x-form-input label="Email" type="email" name="email" id="email" />
                     <x-form-input label="Phone Number" type="phone" name="phone" id="phone" />
-                    <x-form-input label="Address Line 1" name="address" id="address1" />
+                    <x-form-input label="Address Line 1" name="address" id="address" />
                     <x-form-input label="City" name="city" id="city" />
                     <x-form-input label="Postcode" name="postcode" id="postcode" />
                     <x-form-input label="Country" name="country" id="country"/>
@@ -75,7 +75,7 @@
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "{{ url('/order/complete') }}"
+                    return_url: "{{ url('/order/complete') }}",
                 },
             });
 

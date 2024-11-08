@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,5 +51,7 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
 });
 
-Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth');;
-Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
+
+Route::get('/order/complete',[OrderController::class,'complete'])->middleware('auth');

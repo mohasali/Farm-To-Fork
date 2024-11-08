@@ -18,14 +18,19 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class,'user_id')->constrained()->cascadeOnDelete();
             $table->string('payment_intent');
-            $table->integer('total');
+            $table->float('total');
+            $table->string('name');
+            $table->string('address');
+            $table->string('city');
+            $table->string('postcode');
+            $table->string('country');
             $table->timestamps();
         });
         Schema::create('item_order', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Order::class,'order_id')->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Box::class,'box_id')->constrained()->cascadeOnDelete();
-            $table->unique(['user_id', 'box_id']);
+            $table->unique(['order_id', 'box_id']);
             $table->integer('quantity');
             $table->timestamps();
         });
