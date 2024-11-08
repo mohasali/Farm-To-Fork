@@ -46,7 +46,5 @@ class CartController extends Controller
 
         $cart->delete();
         return redirect()->back();
-
-        
     }
 }

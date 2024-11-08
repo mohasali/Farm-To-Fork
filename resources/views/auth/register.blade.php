@@ -4,26 +4,25 @@
         <h3 class=" font-bold text-5xl text-center pb-9 ">Register</h3>
         @csrf
 
-        <label class="font-bold">Full Name</label>
-        <x-form-input name="name" id="name" type="text" :value="old('name')" required/>
+        <x-form-input name="name" id="name" type="text" :value="old('name')" label="Full Name"/>
         <x-form-error name="name"/>
 
-        <label class="font-bold">Email</label>
-        <x-form-input  name="email" id="email" type="email" :value="old('email')" required/>
+        <x-form-input  name="email" id="email" type="email" :value="old('email')" label="Email" />
         <x-form-error name="email"/>
 
-        <label class="font-bold">Confirm Email</label>
-        <x-form-input  name="email_confirmation" id="email_confirmation" type="email" :value="old('email_confirmation')" required/>
+        <x-form-input  name="email_confirmation" id="email_confirmation" type="email" :value="old('email_confirmation')" label="Confirm Email"/>
         <x-form-error name="email_confirmation"/>
 
-        <label class="font-bold">Password</label>
-        <x-form-input name="password" id="password" type="password" required/>
+        <x-form-input name="password" id="password" type="password" label="Password"/>
         <x-form-error name="password"/>
 
-        <label class="font-bold">Confirm Password</label>
-        <x-form-input name="password_confirmation" id="password_confirmation" type="password"/>
+        <x-form-input name="password_confirmation" id="password_confirmation" type="password" label="Confirm Password"/>
         <button class="bg-primary text-white py-2 rounded hover:bg-accent1 text-lg mt-4">Register</button>
 
+        <div class="flex items-center">
+            <p>Already have an account?</p>
+            <a href="login" class="ml-2 md:ml-1 text-secondary font-bold">Log in</a>
+        </div>
     </form>
 </div>
 </x-layout>

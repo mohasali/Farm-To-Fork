@@ -4,6 +4,8 @@ use App\Http\Controllers\BoxController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,7 +13,6 @@ Route::get('/', function () {
 });
 
 Route::resource('boxes',BoxController::class);
-
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
     Route::get('/boxes/{box}','show');
@@ -23,20 +24,31 @@ Route::controller(BoxController::class)->group(function() {
 
 });
 
-Route::controller(CartController::class)->group(function(){
+Route::middleware('auth')->controller(CartController::class)->group(function() {
 
-    Route::get('/cart',[CartController::class,'show'])->middleware('auth');
-    Route::post('/cart/add',[CartController::class,'add'])->middleware('auth');
-    Route::patch('/cart/{cart}',[CartController::class,'update'])->middleware('auth');
-    Route::delete('/cart/{cart}',[CartController::class,'delete'])->middleware('auth');
-
-    Route::get('/checkout',[CartController::class,'checkout'])->middleware('auth');
-
+    Route::get('/cart', 'show');
+    Route::post('/cart/add', 'add');
+    Route::patch('/cart/{cart}', 'update');
+    Route::delete('/cart/{cart}', 'delete');
 });
 
 Route::get('/register',[UserController::class,'create'])->middleware('guest');
 Route::post('/register',[UserController::class,'store'])->middleware('guest');
+Route::patch('/user',[UserController::class,'update'])->middleware('auth');
 
-Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');;
+Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');
 Route::post('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
+
+Route::middleware('auth')->controller(AccountController::class)->group(function() {
+    Route::get('/account','user')->name('account.user');
+    Route::get('/account/edit','edit')->name('account.edit');
+    Route::get('/account/orders','orders')->name('account.orders');
+    Route::get('/account/address','address')->name('account.address');
+    Route::get('/account/subscription','subscription')->name('account.subscription');
+    Route::get('/account/payments', 'payments')->name('account.payments');
+    Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
+});
+
+Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth');;
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');

@@ -15,6 +15,7 @@
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>
   
+    <!-- Navigation bar -->
     <div class="flex justify-between space-x-3">
       <x-nav-link href='/'> Home </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
@@ -33,7 +34,7 @@
       <div class="group flex flex-col justify-start bg-white">
         <x-nav-link class="group-hover:text-primary"  href='/'> My Account </x-nav-link>
         <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
-          <x-nav-link href="/">Manage</x-nav-link>
+          <x-nav-link href="{{ route('account.user') }}">Manage</x-nav-link>
           <form class=" m-0" method="POST" action="/logout">
             @csrf
             <button class="hover:text-primary">Log Out</button>
@@ -69,7 +70,7 @@
       @endguest
 
       @auth
-      <x-nav-link href='/'> My Account </x-nav-link>
+      <x-nav-link href="{{ route('account.user') }}"> My Account </x-nav-link>
       <form class=" m-0 ml-3" method="POST" action="/logout">
         @csrf
         <button class="hover:text-primary">Log Out</button>
@@ -92,7 +93,7 @@
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
-          <li><a href="account.html" class="hover:underline">Regsiter</a></li>
+          <li><a href="account.html" class="hover:underline">Register</a></li>
         </ul>
       </div>
       
