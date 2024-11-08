@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Box;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +16,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class,'user_id')->constrained()->cascadeOnDelete();
+            $table->string('payment_intent');
+            $table->integer('total');
+            $table->timestamps();
+        });
+        Schema::create('item_order', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Order::class,'order_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Box::class,'box_id')->constrained()->cascadeOnDelete();
+            $table->unique(['user_id', 'box_id']);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -23,5 +37,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('orders');
+        Schema::dropIfExists('item_order');
+
     }
 };
