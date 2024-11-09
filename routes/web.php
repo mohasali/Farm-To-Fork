@@ -54,4 +54,5 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
 
-Route::get('/order/complete',[OrderController::class,'complete'])->middleware('auth');
+Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
+Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');

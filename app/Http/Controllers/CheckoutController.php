@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 
@@ -16,10 +15,8 @@ class CheckoutController extends Controller
         return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems]);
     }
 
-    public function process(Request $request){
+    public function process(){
         $total = Cart::getTotal(Auth::user());
-        $shipping = $request->input('shipping');
-        Log::debug($shipping);
         Stripe::setApiKey(config('cashier.secret'));
 
         $paymentIntent = PaymentIntent::create([

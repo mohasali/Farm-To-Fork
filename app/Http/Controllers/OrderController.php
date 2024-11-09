@@ -8,21 +8,29 @@ use Stripe\PaymentIntent;
 use Stripe\Exception\ApiErrorException;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
 
 class OrderController extends Controller
 {
-    public function complete(Request $request)
+    public function confirmation(Request $request)
     {
+        $attributes = $request->validate(['paymentIntentId' => 'required|string']);
+        logger($attributes);
+        Stripe::setApiKey(config('cashier.secret'));
         try {
-            $paymentIntentId = $request->get('payment_intent');
-            $paymentIntent = PaymentIntent::retrieve($paymentIntentId);
-            
+            $paymentIntent = PaymentIntent::retrieve($attributes['paymentIntentId']);
             if ($paymentIntent->status === 'succeeded') {
 
                 $order = Order::create([
                     'user_id' => Auth::id(),
                     'total' => $paymentIntent->amount_received / 100,
                     'payment_intent' => $paymentIntent->id,
+                    'name' => $paymentIntent->shipping->name,
+                    'address' => $paymentIntent->shipping->address->line1,
+                    'city' => $paymentIntent->shipping->address->city,
+                    'postcode' => $paymentIntent->shipping->address->postal_code,
+                    'country' => $paymentIntent->shipping->address->country,
+
                 ]);
 
                 $items = Cart::getItems(Auth::user());
@@ -36,14 +44,27 @@ class OrderController extends Controller
             
                     $item->delete();
                 }
-            
-                return view('order.confirmation', ['order' => $order,'paymentIntent' => $paymentIntent]);
+                session(['order_confirmed'=>$order->id]);
+                return response()->json(['redirectUrl' => route('orders.confirmed')]);
 
             } else {
-                return redirect()->route('checkout')->with('error', 'Payment failed. Please try again.');
+                return response()->json(['message' => 'Payment not completed.'], 400);
             }
         } catch (ApiErrorException $e) {
-            return redirect()->route('checkout')->with('error', 'Payment failed. Please try again.');
+            return response()->json(['message' => 'Error processing payment.'], 500);
         }
+    }
+
+    public function confirmed()
+    {
+
+       $orderId = session('order_confirmed');
+        if (!$orderId) {
+            return redirect('/');
+        }
+        session()->forget('order_confirmed');
+        $order = Order::findOrFail($orderId);
+
+        return view('order.confirmed',['order'=>$order]);
     }
 }
