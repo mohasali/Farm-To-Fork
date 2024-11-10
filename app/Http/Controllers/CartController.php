@@ -11,7 +11,7 @@ class CartController extends Controller
 {
 
     public function show() {
-        $cartItems = Cart::where('user_id', Auth::id())->with('box')->get();
+        $cartItems = Cart::getItems(Auth::user());
         $total = 0;
         foreach($cartItems as $item){
            $total += $item->box->price * $item->quantity;
@@ -46,7 +46,5 @@ class CartController extends Controller
 
         $cart->delete();
         return redirect()->back();
-
-        
     }
 }

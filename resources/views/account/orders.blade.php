@@ -1,34 +1,34 @@
-<x-layout>
-    <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto p-4 md:my-16 bg-gray-50 rounded-lg shadow-lg">
-        
-        <!-- Sidebar -->
-        <aside class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-md flex flex-col items-center">            
-            <!-- User Info -->
-            <div class="text-center mb-6">
-                <h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2>
+<x-account-layout>
+    <h1 class="text-2xl font-semibold mb-4">My Orders</h1>
+    <p class="text-sm text-gray-500 mb-6">Review past orders with their details below.</p>
+    <div class="overflow-y-auto h-[428px] space-y-4">
+        @foreach ($orders as $order)
+            <div class="bg-white border rounded-lg shadow-md p-4">
+                <div class="mb-2">
+                    <span class="text-lg font-bold text-primary">Order Number: {{ $order->id }}</span>
+                    <span class="text-sm text-gray-500">({{ $order->created_at->format('j F, Y') }})</span>
+                </div>
+                <div>
+                    <h3 class=" font-[550] text-lg">Items Ordered:</h3>
+                    <ul class="list-disc list-inside ml-4">
+                        @foreach ($order->itemOrders as $item)
+                            <li class="text-gray-600">
+                                <span class="font-semibold">{{ $item->box->title }}</span>
+                                <span class="text-sm text-gray-500"> - Quantity: {{ $item->quantity }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="mt-4">
+                    <p class="text-sm text-gray-500">
+                        <span class="font-semibold">Shipping Address:</span> 
+                        {{ $order->address }}, {{ $order->city }}, {{ $order->postcode }}, {{ $order->country }}
+                    </p>
+                    <p class="text-sm text-gray-500">
+                        <span class="font-semibold">Total:</span> £{{ number_format($order->total, 2) }}
+                    </p>
+                </div>
             </div>
-
-            <!-- Navigation Links -->
-            <nav class="flex flex-col w-full">
-                <a href="{{ route('account.user') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium">Personal Information</a>
-                <a href="{{ route('account.orders') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium bg-gray-100">Orders</a>
-                <a href="{{ route('account.address') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium">Addresses</a>
-                <a href="{{ route('account.subscription') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium">Subscriptions</a>
-                <a href="{{ route('account.payments') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium">Payments</a>
-                <a href="{{ route('account.contactpref') }}" class="py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg text-left font-medium">Contact Preferences</a>
-                <form class=" m-0" method="POST" action="/logout">
-                    @csrf
-                    <button class="py-2 px-4 hover:bg-gray-200 rounded-lg text-left font-medium text-red-500">Log Out</button>
-                </form>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="w-full md:w-3/4 bg-white p-8 rounded-lg shadow-md md:ml-4">
-            <h1 class="text-2xl font-semibold mb-2">My Orders</h1>
-            <p class="text-sm text-gray-500 mb-4"></p>
-
-            
-        </main>
+        @endforeach
     </div>
-</x-layout>
+</x-account-layout>
