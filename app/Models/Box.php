@@ -26,4 +26,8 @@ class Box extends Model
     {
         return $this->hasMany(ItemOrder::class);
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
