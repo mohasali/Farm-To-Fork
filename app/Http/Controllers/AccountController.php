@@ -29,6 +29,10 @@ class AccountController extends Controller
         return view('account.subscription');
     }
 
+    public function rewards(){
+        return view('account.rewards');
+    }
+
     public function payments(){
         return view('account.payments');
     }
