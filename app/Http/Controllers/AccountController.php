@@ -9,6 +9,10 @@ class AccountController extends Controller
     public function user(){
         return view('account.user');
     }
+    
+    public function edit(){
+        return view('account.edit');
+    }
 
     public function orders(){
         return view('account.orders');
