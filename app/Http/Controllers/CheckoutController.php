@@ -17,7 +17,6 @@ class CheckoutController extends Controller
 
     public function process(){
         $total = Cart::getTotal(Auth::user());
-
         Stripe::setApiKey(config('cashier.secret'));
 
         $paymentIntent = PaymentIntent::create([
