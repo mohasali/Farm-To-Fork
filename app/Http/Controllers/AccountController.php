@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -15,7 +16,9 @@ class AccountController extends Controller
     }
 
     public function orders(){
-        return view('account.orders');
+        $orders = Auth::user()->orders()->with('itemOrders.box')->get();
+
+        return view('account.orders',['orders'=>$orders]);
     }
 
     public function address(){
@@ -24,6 +27,10 @@ class AccountController extends Controller
 
     public function subscription(){
         return view('account.subscription');
+    }
+
+    public function rewards(){
+        return view('account.rewards');
     }
 
     public function payments(){
