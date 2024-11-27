@@ -9,10 +9,12 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
+// Home / Index
 Route::get('/', function () {
     return view('home');
 });
 
+// Boxes
 Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
@@ -25,6 +27,7 @@ Route::controller(BoxController::class)->group(function() {
 
 });
 
+// Cart
 Route::middleware('auth')->controller(CartController::class)->group(function() {
 
     Route::get('/cart', 'show');
@@ -33,14 +36,17 @@ Route::middleware('auth')->controller(CartController::class)->group(function() {
     Route::delete('/cart/{cart}', 'delete');
 });
 
+// Register
 Route::get('/register',[UserController::class,'create'])->middleware('guest');
 Route::post('/register',[UserController::class,'store'])->middleware('guest');
 Route::patch('/user',[UserController::class,'update'])->middleware('auth');
 
+// Login
 Route::get('/login',[SessionController::class,'show'])->name('login')->middleware('guest');
 Route::post('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
+// Account management
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
     Route::get('/account','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
@@ -52,9 +58,11 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
 });
 
+// Checkout
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
 
+// Order
 Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
 Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
 
