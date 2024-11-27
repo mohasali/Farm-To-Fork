@@ -2,8 +2,9 @@
     <section class="relative w-full bg-cover transform bg-center md:bg-top md:min-h-[280px]" style="background-image: url('images/bg1.jpg');">
     <div class="flex flex-col items-center">
         <h1 class= "m-auto text-5xl font-bold p-4 pt-8"> Boxes </h1>
-        <p class=" w-[55%] md:w-[45%] text-center"> Some text here to talk about how good the creates are.
-            Maybe Also talk about how subscriptions work?</p>
+        <p class=" w-[55%] md:w-[45%] text-center"> Discover the ease and excellence of our curated selection of produce boxes, delivered straight to your doorstep every month!
+             Each package contains a blend of varied fruits and vegetables and our range of subscription choices allows you to tailor a plan that suits your preferences perfectly.
+             Come along with us as we explore taste, health and sustainability. Experience the best of farm-to-table produce with every delivery.</p>
     </div>
     </section>
     
