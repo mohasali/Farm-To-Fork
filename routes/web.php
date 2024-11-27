@@ -67,4 +67,4 @@ Route::post('/order/confirmation',[OrderController::class,'confirmation'])->midd
 Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
 
 //connecting address database table to the register input form
-Route::post('/user_addresses', [UserAddressesController::class, store]->name('user.addresses'))
+Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
