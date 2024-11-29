@@ -1,5 +1,5 @@
 <x-account-layout>
-    <h1 class="text-2xl font-semibold mb-4">My Orders</h1>
+    <h1 class="text-2xl font-semibold mb-4">Your Orders</h1>
     <p class="text-sm text-gray-500 mb-6">Review past orders with their details below.</p>
     <div class="overflow-y-auto h-[428px] space-y-4">
         @foreach ($orders as $order)
