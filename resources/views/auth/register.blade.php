@@ -18,19 +18,19 @@
         <x-form-error name="phone"/>
 
         <!-- Address Details !!Make Optional -->
-        <x-form-input  name="address_line_1" id="address_line_1" type="phone" :value="old('address_line_1')" label="Address Line 1" />
+        <x-form-input  name="address_line_1" id="address_line_1" type="text" :value="old('address_line_1')" label="Address Line 1" />
         <x-form-error name="address_line_1"/>
 
-        <x-form-input  name="address_line_2" id="address_line_2" type="phone" :value="old('address_line_2')" label="Address Line 2" />
+        <x-form-input  name="address_line_2" id="address_line_2" type="text" :value="old('address_line_2')" label="Address Line 2" />
         <x-form-error name="address_line_2"/>
 
-        <x-form-input  name="postcode" id="postcode" type="phone" :value="old('postcode')" label="Postcode" />
+        <x-form-input  name="postcode" id="postcode" type="text" :value="old('postcode')" label="Postcode" />
         <x-form-error name="postcode"/>
 
-        <x-form-input  name="town/city" id="town/city" type="phone" :value="old('town/city')" label="Town/ City" />
+        <x-form-input  name="town/city" id="town/city" type="text" :value="old('town/city')" label="Town/ City" />
         <x-form-error name="town/city"/>
 
-        <x-form-input  name="country" id="country" type="phone" :value="old('country')" label="Country" />
+        <x-form-input  name="country" id="country" type="text" :value="old('country')" label="Country" />
         <x-form-error name="country"/>
 
         <!-- Password Details -->
