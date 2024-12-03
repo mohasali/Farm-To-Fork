@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->enum('type',Box::getEnumTypes());
+            $table->string('type');
             $table->float('price');
             $table->string('imagePath');
             $table->timestamps();
