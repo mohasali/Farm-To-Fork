@@ -5,8 +5,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +75,8 @@ Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name(
 // Recipes
 Route::controller(RecipeController::class)->group(function() {
     Route::get('/recipes','recipes');
+});
+
+Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
+    Route::get('/admin','index')->name('admin.index');
 });
