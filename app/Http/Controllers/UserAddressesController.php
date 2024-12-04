@@ -14,12 +14,12 @@ class UserAddressesController extends Controller
             'postcode' => 'required|max:8',
             'town/city' => 'required|max:100',
             'country' => 'required|max:100',
-        ])
+        ]);
         
         //add user id + 
-        $validate['user_id']
+        // $validate['user_id']
 
         //add into database
-        Address::create($validated);
+        // Address::create($validated);
     }
 }

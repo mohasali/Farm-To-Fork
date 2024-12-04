@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Recipes
+Route::get('/about', function () {
+    return view('about');
+});
+
 // Boxes
 Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
@@ -49,7 +54,7 @@ Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
 // Account management
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
-    Route::get('/account','user')->name('account.user');
+    Route::get('/account/user','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
     Route::get('/account/orders','orders')->name('account.orders');
     Route::get('/account/address','address')->name('account.address');
