@@ -14,6 +14,8 @@ class Box extends Model
 
     protected $fillable = ['title','type','price','description','imagePath'];
 
+    // protected $casts = ['type' => BoxType::class] ;
+    
     public static function getEnumTypes(): array
     {
         return array_column(BoxType::cases(), 'value');

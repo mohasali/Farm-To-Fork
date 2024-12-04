@@ -5,6 +5,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Box;
+Use App\Enums\BoxType;
 
 class BoxSeeder extends Seeder
 {
@@ -21,10 +22,14 @@ class BoxSeeder extends Seeder
         $firstline = true;
         //reads the data
         while(($data=fgetcsv($boxCSV,5000,",")) !==False){
+            
             if(!$firstline){
+
+                $type = $this->mapType($data[1]);
+
                 Box::create([
                     'title' => $data[0],
-                    'type' => $data[1],
+                    'type' => $type ,
                     'price'=> number_format($data[2],2,'.',','),
                     'description'=> $data[3],
 
@@ -37,4 +42,16 @@ class BoxSeeder extends Seeder
     fclose($boxCSV);
     }
 
+    private function mapType(string $types): ?BoxType
+    {
+        return match ($types){
+            'Cultural Boxes'=> BoxType::C,
+            'Seasonal Boxes'=>BoxType::S,
+            'Meat/DairyBoxes'=>BoxType::M,
+            'Dynamic Pricing'=>BoxType::D,
+            'Locally Sourced Box'=>BoxType::L,
+            default => null
+        };
+    }
+    
 }

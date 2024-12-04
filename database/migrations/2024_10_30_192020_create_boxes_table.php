@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->string('type');
+            $table->enum('type',['Seasonal','Meat & Dairy','Dynamic Pricing','Locally Sourced','Cultural Recipe']);
             $table->decimal('price',6,2);
             $table->string('imagePath');
             $table->timestamps();
