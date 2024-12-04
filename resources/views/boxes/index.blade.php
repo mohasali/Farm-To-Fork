@@ -75,7 +75,7 @@
             <a href="boxes/{{ $box->id }}" class="group">
                 <div> <img class=" border-text border-2 group-hover:border-accent2 rounded-lg transition duration-300 ease-in-out" src="{{ $box->imagePath }}" alt="box" > </div>
                 <div class=" flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">
-                    <div class="font-bold text-lg " id = "product-title">{{ $box->title }}</div>
+                    <div class="font-bold text-mg " >{{ $box->title }}</div>
                     <div>£{{ $box->price }}</div>
                 </div>
             </a>
