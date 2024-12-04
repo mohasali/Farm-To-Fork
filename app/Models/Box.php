@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\BoxType;
 
 
 class Box extends Model
 {
-    /** @use HasFactory<\Database\Factories\BoxFactory> */
-    use HasFactory;
+ 
+   
+
+    protected $fillable = ['title','type','price','description','imagePath'];
 
     public static function getEnumTypes(): array
     {

@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
@@ -65,3 +66,11 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->middle
 // Order
 Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
 Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
+
+//User Addresses
+Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
+
+// Recipes
+Route::controller(RecipeController::class)->group(function() {
+    Route::get('/recipes','recipes');
+});

@@ -22,7 +22,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Box::factory(50)->create();
+        // Box::factory(50)->create();
+
+        $this->call([
+            BoxSeeder::class,  
+        ]);
 
         $tagNames = ['Summer','Green','Low Fat','High Fat','Fiber Rich','Fruit','Veggies','British'];
         foreach($tagNames as $name){
