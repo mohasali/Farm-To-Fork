@@ -25,9 +25,9 @@ class BoxSeeder extends Seeder
                 Box::create([
                     'title' => $data[0],
                     'type' => $data[1],
-                    'price'=> $data[2],
+                    'price'=> number_format($data[2],2,'.',','),
                     'description'=> $data[3],
-                    
+
                     'imagePath' => '/images/crate.jpg'
                 ]);
             }
