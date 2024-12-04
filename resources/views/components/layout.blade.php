@@ -18,23 +18,25 @@
     <!-- Navigation bar -->
     <div class="flex justify-between space-x-3">
       <x-nav-link href='/'> Home </x-nav-link>
+      <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
-      <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
     </div>
-    
+
+    <!-- Navigation bar guest access -->
     <div class=" flex items-center space-x-3">
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>
       @endguest
 
+      <!-- Navigation bar logged in user -->
       @auth
       <div class="group flex flex-col justify-start bg-white">
-        <x-nav-link class="group-hover:text-primary"  href="{{ route('account.user') }}"> My Account </x-nav-link>
+        <x-nav-link class="group-hover:text-primary"  href='/account/user'> My Account </x-nav-link>
         <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
-          <x-nav-link href="{{ route('account.user') }}">Manage</x-nav-link>
+          <x-nav-link href="/account/user">Manage</x-nav-link>
           <form class=" m-0" method="POST" action="/logout">
             @csrf
             <button class="hover:text-primary">Log Out</button>
@@ -51,15 +53,17 @@
   </nav>    
   <nav class="px-3 z-10 bg-text p-6 mobile-nav md:hidden sticky top-0" >
     <div class="flex justify-end">
-      <button id="mobile-nav-button" class="mobile-nav text-white text-4xl">
-        <i class="fa-solid fa-bars"></i>
+      <button id="mobile-nav-button" class="mobile-nav">
+        <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
+        <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
+        <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
       </button>
     </div>
     <div class=" flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu transition-all duration-300 ease-in-out">
       <x-nav-link href='/'> Home </x-nav-link>
+      <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
-      <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
       <x-nav-link href='/cart'>Cart</x-nav-link>
       @guest
@@ -68,7 +72,7 @@
       @endguest
 
       @auth
-      <x-nav-link href="{{ route('account.user') }}"> My Account </x-nav-link>
+      <x-nav-link href='/'> My Account </x-nav-link>
       <form class=" m-0 ml-3" method="POST" action="/logout">
         @csrf
         <button class="hover:text-primary">Log Out</button>
@@ -87,9 +91,9 @@
         <ul class="space-y-1">
           <li class="font-semibold">Pages</li>
           <li><a href="/" class="hover:underline">Home</a></li>
+          <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="/boxes" class="hover:underline">Boxes</a></li>
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
-          <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="account.html" class="hover:underline">Login</a></li>
           <li><a href="account.html" class="hover:underline">Register</a></li>
         </ul>
@@ -110,13 +114,13 @@
       
       <div class="w-full md:w-1/3 text-center flex flex-col items-center space-y-4">
         <div class="flex items-center space-x-3">
-          <a href="https://www.instagram.com/farm.to.forks/">
+          <a href="https://www.instagram.com/">
             <img src="/images/instagram.png" alt="Instagram" class="h-6 md:h-8 hover:opacity-75">
           </a>
-          <a href="https://x.com/FarmToForks">
+          <a href="https://x.com/?lang=en">
             <img src="/images/x.png" alt="X" class="h-6 md:h-8 hover:opacity-75">
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61568983198372">
+          <a href="https://www.facebook.com/?locale=en_GB">
             <img src="/images/facebook.png" alt="Facebook" class="h-6 md:h-8 hover:opacity-75">
           </a>
         </div>
