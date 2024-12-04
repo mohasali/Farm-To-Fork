@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
@@ -69,3 +70,8 @@ Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware(
 //User Addresses
 Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
 //Route::get('/user_addresses', [UserAddressesController::class, 'store'])->name('user.')
+
+// Recipes
+Route::middleware('auth')->controller(RecipeController::class)->group(function() {
+    Route::get('/recipes','recipes')->name('recipes.recipes');
+});
