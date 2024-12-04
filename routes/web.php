@@ -67,7 +67,7 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->middle
 Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
 Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
 
-//connecting address database table to the register input form
+//User Addresses
 Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
 
 // Recipes
