@@ -71,6 +71,6 @@ Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware(
 Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
 
 // Recipes
-Route::middleware('auth')->controller(RecipeController::class)->group(function() {
-    Route::get('/recipes','recipes')->name('recipes.recipes');
+Route::controller(RecipeController::class)->group(function() {
+    Route::get('/recipes','recipes');
 });
