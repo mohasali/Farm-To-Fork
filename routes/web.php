@@ -57,6 +57,7 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/user','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
     Route::get('/account/orders','orders')->name('account.orders');
+    Route::get('/account/paymentedit', 'paymentedit')->name('account.paymentedit');
     Route::get('/account/address','address')->name('account.address');
     Route::get('/account/subscription','subscription')->name('account.subscription');
     Route::get('/account/rewards','rewards')->name('account.rewards');

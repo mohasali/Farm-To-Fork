@@ -5,7 +5,7 @@
         </div>
     </section>
 
-    <div class="flex flex-wrap justify-center w-full py-12 sm:w-[100%] mt-6 mb-12 gap-12 items-stretch gap-1 overflow-x-auto">
+    <div class="flex flex-wrap justify-center w-full py-12 sm:w-[100%] mt-6 mb-12 gap-12 items-stretch overflow-x-auto">
         <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
             <h1>Recipe 1</h1>
             <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
