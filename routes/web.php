@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Recipes
 Route::get('/about', function () {
     return view('about');
+});
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 // Boxes
@@ -80,7 +82,6 @@ Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware(
 Route::post('/address', [UserAddressesController::class, 'store'])->name('address.save');
 Route::patch('/address/{address}', [UserAddressesController::class, 'update'])->name('address.update');
 Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])->name('address.delete');
-
 
 // Recipes
 Route::controller(RecipeController::class)->group(function(){
