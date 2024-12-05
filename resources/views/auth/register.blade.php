@@ -17,7 +17,8 @@
         <x-form-input  name="phone" id="phone" type="tel" :value="old('phone')" label="Phone" />
         <x-form-error name="phone"/>
 
-        <!-- Address Details !!Make Optional -->
+        <!-- Address Details !!Make Optional
+             
         <x-form-input  name="address_line_1" id="address_line_1" type="text" :value="old('address_line_1')" label="Address Line 1" />
         <x-form-error name="address_line_1"/>
 
@@ -32,6 +33,7 @@
 
         <x-form-input  name="country" id="country" type="text" :value="old('country')" label="Country" />
         <x-form-error name="country"/>
+        -->
 
         <!-- Password Details -->
         <x-form-input name="password" id="password" type="password" label="Password"/>
