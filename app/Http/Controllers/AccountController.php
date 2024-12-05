@@ -22,7 +22,9 @@ class AccountController extends Controller
     }
 
     public function address(){
-        return view('account.address');
+        $addresses = Auth::user()->addresses()->get();
+
+        return view('account.address',['addresses'=>$addresses]);
     }
 
     public function subscription(){
