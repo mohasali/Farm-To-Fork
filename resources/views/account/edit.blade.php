@@ -46,7 +46,7 @@
         <!-- Buttons -->
         <div class="col-span-2 flex space-x-4 mt-6">
             <button type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">Save</button>
-            <a href='/account' class="bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400">Cancel</a>
+            <a href='/account/user' class="bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400">Cancel</a>
         </div>
     </form>
 </x-account-layout>

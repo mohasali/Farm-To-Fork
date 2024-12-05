@@ -59,9 +59,10 @@ Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
 // Account management
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
-    Route::get('/account','user')->name('account.user');
+    Route::get('/account/user','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
     Route::get('/account/orders','orders')->name('account.orders');
+    Route::get('/account/paymentedit', 'paymentedit')->name('account.paymentedit');
     Route::get('/account/address','address')->name('account.address');
     Route::get('/account/subscription','subscription')->name('account.subscription');
     Route::get('/account/rewards','rewards')->name('account.rewards');
@@ -82,10 +83,9 @@ Route::post('/address', [UserAddressesController::class, 'store'])->name('addres
 Route::patch('/address/{address}', [UserAddressesController::class, 'update'])->name('address.update');
 Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])->name('address.delete');
 
-
 // Recipes
-Route::controller(RecipeController::class)->group(function() {
-    Route::get('/recipes','recipes');
+Route::controller(RecipeController::class)->group(function(){
+    Route::get('/recipes', 'recipes');
 });
 
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){

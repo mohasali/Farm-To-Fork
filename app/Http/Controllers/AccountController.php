@@ -21,6 +21,10 @@ class AccountController extends Controller
         return view('account.orders',['orders'=>$orders]);
     }
 
+    public function paymentedit(){
+        return view('account.paymentedit');
+    }
+
     public function address(){
         $addresses = Auth::user()->addresses()->get();
 
