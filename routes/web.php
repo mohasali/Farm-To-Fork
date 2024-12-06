@@ -5,15 +5,31 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\UserAddressesController;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/about', function () {
+    return view('about');
+});
+// Contact Page
+Route::get('/contact', function () {
+    return view('contact');
+});
+// Terms and Conditions
+Route::get('/tmc', function () {
+    return view('tmc');
+});
+
 
 // Boxes
 Route::resource('boxes',BoxController::class);
@@ -49,9 +65,10 @@ Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
 // Account management
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
-    Route::get('/account','user')->name('account.user');
+    Route::get('/account/user','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
     Route::get('/account/orders','orders')->name('account.orders');
+    Route::get('/account/paymentedit', 'paymentedit')->name('account.paymentedit');
     Route::get('/account/address','address')->name('account.address');
     Route::get('/account/subscription','subscription')->name('account.subscription');
     Route::get('/account/rewards','rewards')->name('account.rewards');
@@ -68,10 +85,15 @@ Route::post('/order/confirmation',[OrderController::class,'confirmation'])->midd
 Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
 
 //User Addresses
-Route::post('/user_addresses', [UserAddressesController::class, 'store'])->name('user.addresses');
-//Route::get('/user_addresses', [UserAddressesController::class, 'store'])->name('user.')
+Route::post('/address', [UserAddressesController::class, 'store'])->name('address.save');
+Route::patch('/address/{address}', [UserAddressesController::class, 'update'])->name('address.update');
+Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])->name('address.delete');
 
 // Recipes
 Route::controller(RecipeController::class)->group(function(){
     Route::get('/recipes', 'recipes');
+});
+
+Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
+    Route::get('/admin','index')->name('admin.index');
 });

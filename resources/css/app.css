@@ -1,5 +1,5 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
-
+@import 'styles.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,3 +49,4 @@
 .mobile-menu.active {
     display: flex; 
 }
+

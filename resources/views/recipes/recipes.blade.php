@@ -5,11 +5,11 @@
         </div>
     </section>
 
-    <div class="flex flex-wrap justify-center w-full mt-6 mb-12 px-5 gap-6">
+    <div class="flex flex-wrap justify-center w-full py-12 sm:w-[100%] mt-6 mb-12 gap-12 items-stretch overflow-x-auto">
         <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
             <h1>Recipe 1</h1>
             <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
-            <p>Short description about the recipe</p>
+            <p class=" px-4">Short description about the recipe Short description about the recipe Short description about the recipe </p>
             <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
         </div>
         <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
@@ -24,6 +24,35 @@
             <p>Short description about the recipe</p>
             <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
         </div>
-        
+        <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
+            <h1>Recipe 3</h1>
+            <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
+            <p>Short description about the recipe</p>
+            <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
+        </div>
+        <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
+            <h1>Recipe 3</h1>
+            <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
+            <p>Short description about the recipe</p>
+            <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
+        </div>
+        <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
+            <h1>Recipe 3</h1>
+            <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
+            <p>Short description about the recipe</p>
+            <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
+        </div>
+        <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
+            <h1>Recipe 3</h1>
+            <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
+            <p>Short description about the recipe</p>
+            <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
+        </div>
+        <div class="flex flex-col bg-gray-100 rounded-xl justify-center items-center gap-4" style="width: 20%; height: 450px;">
+            <h1>Recipe 3</h1>
+            <img class="border-solid rounded-lg border-2" src="images/Placeholder.jpeg" alt="Recipe" width="250" height="300">
+            <p>Short description about the recipe</p>
+            <a href="" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">View Recipe</a>
+        </div>
     </div>
 </x-layout>
