@@ -23,6 +23,7 @@
     </div>
   </section>
 
+  <!-- Product Gallery-->
   <section class="w-full h-[830px]">
 
     <div class="w-full h-[100px] flex flex-col items-center justify-center">
@@ -33,7 +34,7 @@
       <div class="w-[90%] h-[90%] p-5 rounded-3xl shadow-lg relative">
   
         <div class="slideshow-container h-full w-full relative">
-          <div class="slides fade h-full w-full">
+          <div class="slides fade h-full w-full" >
             <img src="images/productgallery1.jpg" alt="Slide 1" class="slide-img rounded-3xl">
           </div>
           <div class="slides fade h-full w-full">
@@ -50,7 +51,7 @@
           </div>
   
           <div class="dot-container absolute bottom-4 left-0 right-0 flex justify-center">
-            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot active" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
@@ -61,7 +62,8 @@
   
       </div>
     </div>
-    
+    <!-- to start the Product Gallery slideshow on page load -->
+    <body onload="currentSlide(1)">
   </section>
 
   <section class="w-full py-10 flex flex-col items-center">
