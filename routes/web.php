@@ -21,9 +21,15 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+// Contact Page
 Route::get('/contact', function () {
     return view('contact');
 });
+// Terms and Conditions
+Route::get('/tmc', function () {
+    return view('tmc');
+});
+
 
 // Boxes
 Route::resource('boxes',BoxController::class);
