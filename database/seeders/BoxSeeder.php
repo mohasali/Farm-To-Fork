@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Box;
 Use App\Enums\BoxType;
 
+
 class BoxSeeder extends Seeder
 {
     /**
@@ -27,13 +28,15 @@ class BoxSeeder extends Seeder
 
                 $type = $this->mapType($data[1]);
 
+                # To-Do: create an exception if type is invalid
+                
                 Box::create([
                     'title' => $data[0],
                     'type' => $type ,
                     'price'=> number_format($data[2],2,'.',','),
                     'description'=> $data[3],
 
-                    'imagePath' => '/images/crate.jpg'
+                    'imagePath' => '/images/Farm-to-ForkBox1.png'
                 ]);
             }
             $firstline = false;
@@ -47,9 +50,9 @@ class BoxSeeder extends Seeder
         return match ($types){
             'Cultural Boxes'=> BoxType::C,
             'Seasonal Boxes'=>BoxType::S,
-            'Meat/DairyBoxes'=>BoxType::M,
+            'Meat/Dairy Boxes'=>BoxType::M,
             'Dynamic Pricing'=>BoxType::D,
-            'Locally Sourced Box'=>BoxType::L,
+            'Locally Sourced Boxes'=>BoxType::L,
             default => null
         };
     }
