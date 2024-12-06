@@ -9,11 +9,10 @@ use App\Enums\BoxType;
 
 class Box extends Model
 {
- 
-   
 
     protected $fillable = ['title','type','price','description','imagePath'];
 
+    
     public static function getEnumTypes(): array
     {
         return array_column(BoxType::cases(), 'value');
