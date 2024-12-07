@@ -114,13 +114,13 @@
       
       <div class="w-full md:w-1/3 text-center flex flex-col items-center space-y-4">
         <div class="flex items-center space-x-3">
-          <a href="https://www.instagram.com/">
+          <a href="https://www.instagram.com/farm.to.forks/">
             <img src="/images/instagram.png" alt="Instagram" class="h-6 md:h-8 hover:opacity-75">
           </a>
-          <a href="https://x.com/?lang=en">
+          <a href="https://x.com/FarmToForks">
             <img src="/images/x.png" alt="X" class="h-6 md:h-8 hover:opacity-75">
           </a>
-          <a href="https://www.facebook.com/?locale=en_GB">
+          <a href="https://www.facebook.com/profile.php?id=61568983198372">
             <img src="/images/facebook.png" alt="Facebook" class="h-6 md:h-8 hover:opacity-75">
           </a>
         </div>
