@@ -46,6 +46,7 @@
         @endforeach
     </div>
     <script>
+    // Edit Address
     function editAddress(button) {
         const addressItem = button.closest('.address-item');
         const display = addressItem.querySelector('.address-display');
@@ -53,7 +54,7 @@
         display.classList.add('hidden');
         edit.classList.remove('hidden');
     }
-
+    // Cancel Edit
     function cancelEdit(button) {
         const addressItem = button.closest('.address-item');
         const display = addressItem.querySelector('.address-display');
@@ -62,7 +63,7 @@
         edit.classList.add('hidden');
     }
 
-
+    // Add Address
     function addAddress(){
         const newAddress = document.createElement('div');
         newAddress.className = 'address-item flex flex-col bg-gray-100 py-2 rounded-xl justify-start items-start w-full sm:w-[100%]';
