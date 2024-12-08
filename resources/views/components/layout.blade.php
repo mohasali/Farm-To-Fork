@@ -103,7 +103,7 @@
         <ul class="space-y-1">
           <li class="font-semibold">Legal</li>
           <li><a href="/tmc" class="hover:underline">Terms and Conditions</a></li>
-          <li><a href="/cookies" class="hover:underline">Privacy and Cookies</a></li>
+          <li><a href="/pnc" class="hover:underline">Privacy and Cookies</a></li>
           <li><a href="https://www.gov.uk/data-protection" class="hover:underline">GDPA</a></li>
           <li><a href="https://www.ifrs.org/groups/international-sustainability-standards-board/" class="hover:underline">ISSB</a></li>
           <li><a href="https://www.modernslavery.gov.uk/start" class="hover:underline">Modern Slavery Report</a></li>
