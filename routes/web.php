@@ -90,9 +90,8 @@ Route::patch('/address/{address}', [UserAddressesController::class, 'update'])->
 Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])->name('address.delete');
 
 // Recipes
-Route::controller(RecipeController::class)->group(function(){
-    Route::get('/recipes', 'recipes');
-});
+Route::get('/recipes', [RecipeController::class, 'recipes']);
+Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
