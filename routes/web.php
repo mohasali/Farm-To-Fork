@@ -29,7 +29,10 @@ Route::get('/contact', function () {
 Route::get('/tmc', function () {
     return view('tmc');
 });
-
+// Cookies
+Route::get('/pnc', function () {
+    return view('pnc');
+});
 
 // Boxes
 Route::resource('boxes',BoxController::class);
@@ -93,6 +96,7 @@ Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])-
 Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
+// Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
 });
