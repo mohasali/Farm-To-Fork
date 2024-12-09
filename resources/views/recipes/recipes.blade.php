@@ -8,12 +8,13 @@
 
     <!-- Recipes  -->
     <div class="flex flex-wrap justify-center w-full py-12 mt-16 lg:mt-32 mb-16 lg:mb-32 md:gap-8 items-stretch overflow-x-auto px-4">
+        <!-- Go through the recipes -->
         @foreach ($recipes as $recipe)
             <div class="flex flex-col bg-gray-100 rounded-xl justify-between items-center gap-4 w-full sm:w-[45%] lg:w-[20%] max-w-[300px] min-h-[450px] shadow-md mb-12">
                 <!-- Title -->
                 <h1 class="text-lg font-bold mt-4 text-center">{{ $recipe->title }}</h1>
                 <!-- Image -->
-                <img class="border-solid rounded-lg border-2 w-[90%] max-h-[200px] object-cover" src="{{ $recipe->image_path }}">
+                <img class="border-solid rounded-lg border-2 w-[90%] max-h-[200px] object-cover" src="{{ $recipe->imagePath }}">
                 <!-- Description -->
                 <p class="h-16 text-center px-4 text-sm leading-tight">{{ $recipe->description }}</p>
                 <!-- View Recipe -->

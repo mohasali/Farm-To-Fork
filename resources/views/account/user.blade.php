@@ -29,7 +29,7 @@
             if($phone!=''){ $phone = "********".substr(Auth::user()->phone, -3);};
             @endphp
             <label class="block text-gray-700 text-sm font-semibold mb-1">Phone</label>
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" value="{{$phone}}" disabled> <!-- Add Phone number -->
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ Auth::user()->phone }}" disabled>
         </div>
 
         <!-- Password -->
