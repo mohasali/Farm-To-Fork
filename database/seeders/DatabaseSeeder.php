@@ -41,6 +41,9 @@ class DatabaseSeeder extends Seeder
             $box->tags()->attach($randomTags);
         }
 
+        // Recipe Seeder
+        $this->call(RecipesSeeder::class);
+
         
     }
 }

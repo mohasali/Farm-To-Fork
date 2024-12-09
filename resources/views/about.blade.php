@@ -45,7 +45,6 @@
                       Locally sourced produce: we support local farmers while reducing the miles your food takes to get to you.
                       Customisable boxes: we give you the flexibility to change the contents of your box to suit your preferences.
                       Innovative recipes: we teach you how step by step the best ways to use our ingredients.
-
                 </p>
               </div>
             </section>
