@@ -5,9 +5,29 @@
     <div class="flex flex-wrap justify-between p-6 bg-gray-100 rounded-lg shadow-md text-black">
 
         <div class="w-full lg:w-[60%] mb-6 lg:mb-0 px-4">
+            
             <form id="payment-form" class="bg-white p-6 rounded-lg shadow-md">
                 @csrf
                 <h2 class="text-xl font-bold mb-4">Payment Details</h2>
+
+                @if (!$addresses->isEmpty())
+                    <select id="address-dropdown" class="form-control bg-gray-200 rounded px-3 py-1 mb-2 text-large">
+                        <option value="">Select an address</option>
+                        @foreach ($addresses as $address)
+                            <option 
+                                value="{{ $address->id }}" 
+                                data-name="{{ $address->name }}" 
+                                data-phone="{{ $address->phone }}" 
+                                data-address="{{ $address->address }}" 
+                                data-city="{{ $address->city }}" 
+                                data-postcode="{{ $address->postcode }}" 
+                                data-country="{{ $address->country }}">
+                                {{ $address->address }}
+                            </option>
+                        @endforeach
+                    </select>
+                @endif
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <x-form-input label="Full Name" name="name" id="name"/>
                     <x-form-input label="Phone Number" type="phone" name="phone" id="phone" />
@@ -131,6 +151,21 @@
     }
 
     initialize();
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const addressDropdown = document.getElementById('address-dropdown');
+
+        addressDropdown.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            document.getElementById('name').value = selectedOption.dataset.name || '';
+            document.getElementById('phone').value = selectedOption.dataset.phone || '';
+            document.getElementById('address').value = selectedOption.dataset.address || '';
+            document.getElementById('city').value = selectedOption.dataset.city || '';
+            document.getElementById('postcode').value = selectedOption.dataset.postcode || '';
+            document.getElementById('country').value = selectedOption.dataset.country || '';
+        });
+    });
 </script>
 
 

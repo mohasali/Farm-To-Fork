@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ class CheckoutController extends Controller
     public function index(){
         $total =Cart::getTotal(Auth::user());
         $cartItems = Cart::getItems(Auth::user());
-        return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems]);
+        $addresses = Auth::user()->addresses()->get();
+        return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems,'addresses'=>$addresses]);
     }
 
     public function process(){
