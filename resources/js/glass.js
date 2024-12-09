@@ -69,8 +69,6 @@ function magnify(imgID, zoom) {
         x = e.clientX - a.left;
         y = e.clientY - a.top;
         // Consider any page scrolling, attempted....
-        x = x - window.scrollX;
-        y = y - window.scrollY;
         return { x: x, y: y };
     }
     
