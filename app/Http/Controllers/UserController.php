@@ -16,6 +16,7 @@ class UserController extends Controller
     public function store(){
         $attributes = request()->validate(['name'=>['required'],
                              'email'=>['required','email','unique:users,email','confirmed'],
+                             'phone' => ['required', 'string', 'min:10', 'max:15'],
                              'password'=>['confirmed','required',Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
         $user = User::create($attributes);
@@ -28,7 +29,7 @@ class UserController extends Controller
     $attributes = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'email', 'unique:users,email,' . Auth::id()],
-        'phone' => ['nullable', 'string', 'min:10', 'max:15'],
+        'phone' => ['required', 'string', 'min:10', 'max:15'],
         'password' => ['nullable', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
     ]);
 
@@ -36,11 +37,8 @@ class UserController extends Controller
 
     $user->name = $attributes['name'];
     $user->email = $attributes['email'];
-
-    if (!empty($attributes['phone'])) {
-        $user->phone = $attributes['phone']; 
-    }
-
+    $user->phone = $attributes['phone']; 
+    
     if (!empty($attributes['password'])) {
         $user->password = bcrypt($attributes['password']);
     }
