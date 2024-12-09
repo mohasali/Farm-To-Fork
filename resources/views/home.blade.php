@@ -16,7 +16,7 @@
       <p class="m-auto text-2xl font-semibold text-center ">Free shipping on orders<br> over £40!</p>
     </div>
     <div class="flex bg-gray-200 rounded-xl justify-center items-center w-[90%] h-[300px]">
-      <p class="text-2xl font-semibold text-center">Get money off boxes through ourreduced section!</p>
+      <p class="text-2xl font-semibold text-center">Get money off boxes through our reduced section!</p>
     </div>
     <div class="flex bg-gray-200 rounded-xl justify-center items-center w-[90%] h-[300px]">
       <p class="text-2xl font-semibold text-center">Sign up to our rewards scheme for<br> great deals!</p>
