@@ -18,7 +18,7 @@ class BoxController extends Controller
     
         $q = $request->input('q');
         $tags = $request->input('tags');
-        $type = $request->input('type');
+        $type = urldecode($request->input('type'));
     
         $query = Box::query();
     
@@ -49,7 +49,7 @@ class BoxController extends Controller
     
 
     public function show(Box $box) {
-        
-        return view('boxes.show',['box'=>$box]);
+        $tags = $box->tags()->get();
+        return view('boxes.show',['box'=>$box,'tags'=>$tags]);
     }
 }

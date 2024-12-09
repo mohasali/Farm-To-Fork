@@ -20,7 +20,7 @@
                     <h3 class="font-bold text-lg text-gray-800">Categories</h3>
 
                     @foreach ($types as $t)
-                        <a href="/boxes{{ $type == $t ? '' : '?type='.$t }}" 
+                        <a href="/boxes{{ $type == $t ? '' : '?type='.urlencode($t) }}" 
                            class="{{ $type == $t ? 'bg-primary hover:bg-accent1' : 'bg-secondary hover:bg-accent2' }} text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
                             {{ $t }}
                         </a>
@@ -76,7 +76,7 @@
                 <div> <img class=" border-text border-2 group-hover:border-accent2 rounded-lg transition duration-300 ease-in-out" src="{{ $box->imagePath }}" alt="box" > </div>
                 <div class=" flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">
                     <div class="font-bold text-mg " >{{ $box->title }}</div>
-                    <div>{{ $box->price }}</div>
+                    <div>£{{ $box->price }}</div>
                 </div>
             </a>
 
