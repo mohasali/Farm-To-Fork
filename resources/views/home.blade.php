@@ -13,13 +13,13 @@
 
   <section class="flex flex-col m-3 space-y-6 items-center md:flex-row md:space-x-6 md:space-y-0 md:justify-between">
     <div class="flex bg-gray-200 rounded-xl justify-center items-center w-[90%] h-[300px]">
-      <p class="m-auto">Place Holder Text</p>
+      <p class="m-auto text-2xl font-semibold text-center ">Free shipping on orders<br> over £40!</p>
     </div>
     <div class="flex bg-gray-200 rounded-xl justify-center items-center w-[90%] h-[300px]">
-      <p class="m-auto">Place Holder Text</p>
+      <p class="text-2xl font-semibold text-center">Get money off boxes through ourreduced section!</p>
     </div>
     <div class="flex bg-gray-200 rounded-xl justify-center items-center w-[90%] h-[300px]">
-      <p class="m-auto">Place Holder Text</p>
+      <p class="text-2xl font-semibold text-center">Sign up to our rewards scheme for<br> great deals!</p>
     </div>
   </section>
 
