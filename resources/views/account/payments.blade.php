@@ -12,26 +12,25 @@
             <!-- Name -->
             <div class="mx-4">
                 <label class="block text-gray-700 text-sm font-semibold">Name</label>
-                <input type="text" class="w-full p-2 border border-gray-300 rounded" value="John Doe">
+                <input type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ Auth::user()->name }}" disabled>
             </div>
             <!-- Card Type -->
             <div class="mx-4">
                 <label class="block text-gray-700 text-sm font-semibold" for="cardtype">Card Type</label>
-                <select name="cardtype" id="type" class="w-full p-2 border border-gray-300 rounded">
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">MasterCard</option>
+                <select name="cardtype" id="type" class="w-full p-2 border border-gray-300 rounded" disabled>
+                    <option value="None">Select card type</option>
                 </select>
             </div>
             <div class="flex">
                 <!-- Card Number -->
                 <div class="mx-4">
                     <label class="block text-gray-700 text-sm font-semibold">Card Number</label>
-                    <input id="ccn" type="tel" inputmode="numeric" class="w-full p-2 border border-gray-300 rounded" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" value="1234 5678 9109 8765">
+                    <input id="ccn" type="tel" inputmode="numeric" class="w-full p-2 border border-gray-300 rounded" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" value="XXXX-XXXX-XXXX-XXXX" disabled>
                 </div>
                 <!-- CVV -->
                 <div class="mx-4">
                     <label class="block text-gray-700 text-sm font-semibold">CVV</label>
-                    <input type="text" class="w-full p-2 border border-gray-300 rounded" value="098">
+                    <input type="text" class="w-full p-2 border border-gray-300 rounded" value="XXX" Disabled>
                 </div>
             </div>
             <!-- Expiry Date -->
@@ -40,15 +39,15 @@
                     <!-- Month -->
                     <div>
                         <label for="expirymonth" class="block text-gray-700 text-sm font-semibold">Month</label>
-                        <select name="expirymonth" id="expirymonth" class="w-full p-2 border border-gray-300 rounded">
-                            <option value="01">07</option>
+                        <select name="expirymonth" id="expirymonth" class="w-full p-2 border border-gray-300 rounded" disabled>
+                            <option value="None">01</option>
                         </select>
                     </div>
                     <!-- Year -->
                     <div>
                         <label for="expiryyear" class="block text-gray-700 text-sm font-semibold">Year</label>
-                        <select name="expiryyear" id="expiryyear" class="w-full p-2 border border-gray-300 rounded">
-                            <option value="2024">2026</option>
+                        <select name="expiryyear" id="expiryyear" class="w-full p-2 border border-gray-300 rounded" disabled>
+                            <option value="2024">2024</option>
                         </select>
                     </div>
                 </div>
