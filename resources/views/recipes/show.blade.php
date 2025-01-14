@@ -51,8 +51,62 @@
             </div>
         </div>
 
+        <!-- Comment section -->
+        <hr class="hrline"/>
+        <div class="flex justify-start items-start h-full pl-96 ">
+            <div class="flex flex-col bg-gray-100 py-2 rounded-xl mt-4 w-1/3 sm:w-[33%] md:h-[375px]">      
+                <h1 class="text-xl pl-4 font-bold">Customer Reviews</h1>
+                <p class="text-l pl-4">🌕🌕🌕🌗🌑</p> <!-- moon not stars :P -->
+                <p class="text-l pl-4">3.5 out of 5</p> <!-- Make real ratings later -->
+                <p class="pl-4">100 global ratings<p>
+                <div class="flex items-center space-x-4 pl-4 mt-4">
+                    <!-- Rating -->
+                    <p>5 star</p>
+                    <!-- Add a percent bar later -->
+                    <div class="w-[75%] h-8 bg-gray-300 rounded-md"></div>
+                    <!-- Percent -->
+                    <p>69%</p>
+                </div>
+                <div class="flex items-center space-x-4 pl-4 mt-4">
+                    <!-- Rating -->
+                    <p>4 star</p>
+                    <!-- Add a percent bar later -->
+                    <div class="w-[75%] h-8 bg-gray-300 rounded-md"></div>
+                    <!-- Percent -->
+                    <p>69%</p>
+                </div>
+                <div class="flex items-center space-x-4 pl-4 mt-4">
+                    <!-- Rating -->
+                    <p>3 star</p>
+                    <!-- Add a percent bar later -->
+                    <div class="w-[75%] h-8 bg-gray-300 rounded-md"></div>
+                    <!-- Percent -->
+                    <p>69%</p>
+                </div>
+                <div class="flex items-center space-x-4 pl-4 mt-4">
+                    <!-- Rating -->
+                    <p>2 star</p>
+                    <!-- Add a percent bar later -->
+                    <div class="w-[75%] h-8 bg-gray-300 rounded-md"></div>
+                    <!-- Percent -->
+                    <p>69%</p>
+                </div>
+                <div class="flex items-center space-x-4 pl-4 mt-4">
+                    <!-- Rating -->
+                    <p>1 star</p>
+                    <!-- Add a percent bar later -->
+                    <div class="w-[75%] h-8 bg-gray-300 rounded-md"></div>
+                    <!-- Percent -->
+                    <p>69%</p>
+                </div>
+            </div>
+            <div class="flex flex-col bg-gray-100 py-2 rounded-xl ml-4 mt-4 w-1/3 sm:w-[41%] md:h-[675px]">      
+                <!-- Content goes here -->
+            </div>
+        </div>
+
         <div class="flex justify-center mt-4 mb-4">
-            <a class="bg-primary p-4 text-white rounded-xl text-center text-xl font-bold hover:bg-orange-600 transition" href="{{ url('/recipes') }}">Back to recipes</a>
+            <a class="bg-primary p-3 text-white rounded-lg text-center text-l font-bold hover:bg-orange-600 transition" href="{{ url('/recipes') }}">Back to recipes</a>
         </div>
     </div>
     
