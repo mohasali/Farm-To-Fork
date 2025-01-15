@@ -50,9 +50,9 @@
                 @endif
             </div>
         </div>
-
+        
         <div class="flex justify-center mt-4 mb-4">
-            <a class="bg-primary p-4 text-white rounded-xl text-center text-xl font-bold hover:bg-orange-600 transition" href="{{ url('/recipes') }}">Back to recipes</a>
+            <a class="bg-primary p-3 text-white rounded-lg text-center text-l font-bold hover:bg-orange-600 transition" href="{{ url('/recipes') }}">Back to recipes</a>
         </div>
     </div>
     
