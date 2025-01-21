@@ -91,7 +91,7 @@
                     <h1 class="font-bold text-lg">Review this product</h1>
                     <p class="text-sm">Share your thoughts with other customers</p>
                     <div class="flex justify-center mt-2">
-                        <button class="border border-primary text-primary rounded-full w-[60%] p-2">
+                        <button class="border border-primary text-primary rounded-full w-[60%] p-2 hover:bg-orange-100">
                             Write a review
                         </button>
                     </div>
@@ -125,7 +125,7 @@
                     <!-- Comment -->
                     <p class="text-sm mt-2">This offering was a delightful surprise! The flavors were vibrant, and the ingredients were exceptionally fresh.</p>
                     <div class="flex items-center mt-2 space-x-4">
-                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs">
+                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
                             Helpful
                         </button>
                         <p class="text-xs">|</p>
@@ -143,7 +143,7 @@
                     <!-- Comment -->
                     <p class="text-sm mt-2">Listening to Radiohead and starving on a Tuesday night, I purchased this box thinking of all the delicious ingredients and flavours that will enter my mouth when it arrives. AND IT DIDN'T DISAPPOINT!</p>
                     <div class="flex items-center mt-2 space-x-4">
-                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs">
+                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
                             Helpful
                         </button>
                         <p class="text-xs">|</p>

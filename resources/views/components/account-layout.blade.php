@@ -15,7 +15,7 @@
                 <x-account-nav-link href="{{ route('account.orders') }}" :active="request()->routeIs('account.orders')" >Orders</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.address') }}" :active="request()->routeIs('account.address')" >Addresses</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.subscription') }}" :active="request()->routeIs('account.subscription')" >Subscriptions</x-account-nav-link>
-                <x-account-nav-link href="{{ route('account.rewards') }}" :active="request()->routeIs('account.subscription')" >Rewards</x-account-nav-link>
+                <x-account-nav-link href="{{ route('account.rewards') }}" :active="request()->routeIs('account.rewards')" >Rewards</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.payments') }}" :active="request()->routeIs('account.payments')" >Payments</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.contactpref') }}" :active="request()->routeIs('account.contactpref')" >Contact Preferences</x-account-nav-link>
                 <form class=" m-0" method="POST" action="/logout">
