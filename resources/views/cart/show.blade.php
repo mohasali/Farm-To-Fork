@@ -1,15 +1,46 @@
 <x-layout>
     <div>
     <div class=" flex justify-between mt-40 mb-4 mx-4 ">
-        <div class="text-4xl"> Your Cart</div>
+        <div class="text-4xl font-bold">Your Cart</div>
         <div class="flex flex-col justify-between space-y-2">
             <div class=" text-xl font-bold">Subtotal: £{{ $total }}</div>
             <a href="/checkout" class=" text-center bg-primary text-white px-2 py-0.5 rounded hover:bg-accent1  duration-300 ease-in-out">Checkout</a>
         </div>
     </div>
     <div class="grid grid-cols-1 ">
-        @foreach ($cartItems as $item )
-        <div class="border-t-8 border-primary flex p-4 space-x-4">
+        <!-- If the cart is empty -->
+        @if ($cartItems->isEmpty())
+        <div class="border-t-8 border-primary"></div>
+        <div class="text-center w-full flex flex-col items-center justify-center pt-16">
+            <h1 class="text-accent2 text-5xl pb-4 font-bold">Oh noes! Your cart is empty!</h1>
+            <a href='/boxes' class="bg-primary px-6 py-3 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300" onclick="">
+            Browse products
+            </a >
+            <img id="emptyCartImage" src="" alt="Sad dog" class="h-64 md:h-64">
+        </div>
+        <script>
+            // When page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                // Array of images
+                const images = [
+                    '/images/emptyCart/1.png',
+                    '/images/emptyCart/2.png',
+                    '/images/emptyCart/3.png',
+                    '/images/emptyCart/4.png',
+                    '/images/emptyCart/5.png'
+                ];
+
+                // Choose a random image
+                const randomImage = images[Math.floor(Math.random() * images.length)];
+
+                // Set the image to the random Image
+                document.getElementById('emptyCartImage').src = randomImage;
+                // Could add separate alt tags but too lazy
+            });
+        </script>
+        @else
+        @foreach ($cartItems as $item)
+            <div class="border-t-8 border-primary flex p-4 space-x-4">
             <div class="w-[60%] max-w-[300px]">
                 <img class="rounded-lg" src="{{ $item->box->imagePath }}" alt="Box">
             </div>
@@ -46,6 +77,7 @@
         </form>
         @endforeach
         <div class="border-t-8 border-primary"></div>
+        @endif
     </div>
     </div>
 </x-layout>

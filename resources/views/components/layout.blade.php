@@ -42,9 +42,18 @@
             <button class="hover:text-primary">Log Out</button>
           </form>
         </div>
-      </div>
-        <x-nav-link href='/cart'> Cart </x-nav-link>
-      </div>
+        </div>
+        <x-nav-link href='/cart' class="relative">
+            <img src="/images/cart.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75">
+            @php
+                $cartItemCount = Auth::check() ? Auth::user()->cartItems()->count() : 0;
+            @endphp
+            @if($cartItemCount > 0)
+                <p class="absolute -top-1.5 -right-1 bg-accent2 text-white text-xs rounded-full px-2 py-1">
+                    {{ $cartItemCount }}
+                </p>
+            @endif
+        </x-nav-link>
 
       
       @endauth
