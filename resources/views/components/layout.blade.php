@@ -138,7 +138,7 @@
         
         <div class="flex flex-col items-center">
           <h3 class="text-base md:text-lg font-semibold">Subscribe to our Newsletter</h3>
-          <button class="px-8 py-1 mt-3 bg-text text-white rounded-lg">Join</button>
+          <button class="px-8 py-1 mt-3 bg-text text-white rounded-lg hover:opacity-75">Join</button>
         </div>
       </div>
     </div>
