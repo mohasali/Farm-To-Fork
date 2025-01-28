@@ -91,9 +91,9 @@
                     <h1 class="font-bold text-lg">Review this product</h1>
                     <p class="text-sm">Share your thoughts with other customers</p>
                     <div class="flex justify-center mt-2">
-                        <button class="border border-primary text-primary rounded-full w-[60%] p-2 hover:bg-orange-100">
+                        <a href="{{ url('/boxes/' . $box->id . '/review') }}" class="border border-primary text-primary text-center rounded-full w-[60%] p-2 hover:bg-orange-100">
                             Write a review
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
