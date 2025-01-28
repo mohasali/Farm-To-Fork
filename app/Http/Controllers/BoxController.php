@@ -52,4 +52,10 @@ class BoxController extends Controller
         $tags = $box->tags()->get();
         return view('boxes.show',['box'=>$box,'tags'=>$tags]);
     }
+
+    public function review(Box $box) {
+        $tags = $box->tags()->get();
+        return view('boxes.review', ['box' => $box, 'tags'=>$tags]);
+    }
+    
 }

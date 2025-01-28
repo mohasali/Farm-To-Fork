@@ -39,7 +39,7 @@ Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
     Route::get('/boxes/{box}','show');
-
+    Route::get('/boxes/{box}/review', [BoxController::class, 'review']);
     //Route::get('/boxes/create','create')->middleware('auth');
     //Route::get('/boxes/{box}/edit','edit')->middleware('auth')->can('edit','box');
     //Route::patch('/boxes/{box}','update')->middleware('auth')->can('edit','box');;
