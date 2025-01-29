@@ -13,19 +13,19 @@
         <div class="border-t-8 border-primary"></div>
         <div class="text-center w-full flex flex-col items-center justify-center pt-16">
             <h1 class="text-accent2 text-5xl pb-4 font-bold">Oh noes! Your cart is empty!</h1>
-            <a href='/boxes' class="bg-primary px-6 py-3 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300" onclick="">
+            <a href='/boxes' class="bg-primary px-6 py-3 mb-16 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300" onclick="">
             Browse products
-            </a >
-            <img id="emptyCartImage" src="" alt="Sad dog" class="h-64 md:h-64">
+            </a>
+            <img id="emptyCartImage" src="" alt="Sad dog" class="h-64 w-64 object-cover mb-16 rounded-xl md:h-64">
         </div>
         <script>
             // When page loads
             document.addEventListener('DOMContentLoaded', () => {
                 // Array of images
                 const images = [
-                    '/images/emptyCart/1.png',
+                    '/images/emptyCart/1.JPEG',
                     '/images/emptyCart/2.png',
-                    '/images/emptyCart/3.png',
+                    '/images/emptyCart/3.jpg',
                     '/images/emptyCart/4.png',
                     '/images/emptyCart/5.png'
                 ];

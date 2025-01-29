@@ -22,6 +22,7 @@
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
+      <x-nav-link href="{{ url('/account/rewards') }}" class="flex items-center"><i class="fa-solid fa-gift"></i></x-nav-link>
     </div>
 
     <!-- Navigation bar guest access -->
@@ -74,6 +75,7 @@
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
+      <x-nav-link href="{{ url('/account/rewards') }}" class="flex items-center"><i class="fa-solid fa-gift"></i></x-nav-link>
       <x-nav-link href='/cart'>Cart</x-nav-link>
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
