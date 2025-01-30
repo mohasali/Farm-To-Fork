@@ -19,8 +19,8 @@
           <section class=" w-full h-730px flex flex-wrap flex-col lg:flex-row items-center "> 
             <div class="lg:w-1/2 w-full lg:h-1/2 h-300px p-5 flex items-center justify-center ">
               <div class="bg-gray-200 rounded-2xl w-3/4 h-3/4 lg:p-10 p-4">
-                <p class="text-black">Welcome to Farm to Fork, we’re your sustainable solution to fresh, locally grown produce delivered straight to your fork. 
-                      We take inspiration from the European Union’s Farm to Fork Strategy for sustainable food systems (food.ec.europa.eu, 2024), sharing the vision to reduce the environmental impact of food production while tackling food waste.
+                <p class="text-black">Welcome to Farm to Fork! We are your sustainable solution to fresh, locally grown produce delivered straight to your fork. 
+                      We take inspiration from the European Union’s Farm to Fork Strategy for sustainable food systems, sharing the vision to reduce the environmental impact of food production while tackling food waste.
                 </p>
               </div>
             </div>
@@ -41,10 +41,12 @@
             <section class=" lg:w-1/2 w-full lg:h-1/2 h-300px p-5 flex items-center justify-center ">
               <div class="bg-gray-200 rounded-2xl w-3/4 h-3/4 lg:p-10 p-4">
                 <p class="text-black">At farm to fork, we offer subscription based, locally sourced produce boxes that prioritise sustainability, freshness and convenience. 
-                      Our service includes:
-                      Locally sourced produce: we support local farmers while reducing the miles your food takes to get to you.
-                      Customisable boxes: we give you the flexibility to change the contents of your box to suit your preferences.
-                      Innovative recipes: we teach you how step by step the best ways to use our ingredients.
+                  Our service includes:
+                  <ul>
+                    <li>• Locally sourced produce: we support local farmers while reducing the miles your food takes to get to you.</li>
+                    <li>• Customisable boxes: we give you the flexibility to change the contents of your box to suit your preferences.</li>
+                    <li>• Innovative recipes: we teach you how step by step the best ways to use our ingredients.</li>
+                  </ul>
                 </p>
               </div>
             </section>
@@ -68,7 +70,7 @@
                 We understand the importance of cultural diversity in the UK, and we reflect that in our products. 
                 Our boxes feature ingredients originating from a wide range of cuisines, ensuring that every customer can receive a taste of home and the chance to try something new.
 
-                By picking up a box from farm to fork, you’re not only investing in your health but also helping to build a greener more environmentally sustainable future. 
+                By picking up a box from Farm to Fork, you’re not only investing in your health but also helping to build a greener more environmentally sustainable future. 
                 Together, we can reduce food waste, support our local farmers and change the views on sustainable cooking for good.
 
                 </p>

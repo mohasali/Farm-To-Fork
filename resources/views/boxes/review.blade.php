@@ -43,7 +43,7 @@
                     <textarea type="text" id="reviewtext" name="reviewtext" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" required></textarea>
                 </div>
                 <!-- Submit  -->
-                <div class="text-center flex-inline">
+                <div class="text-center flex-inline flex-col space-y-4">
                     <a href="{{ url('/boxes/' . $box->id) }}" class="bg-gray-300 text-gray-70 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-400">Cancel</a>
                     <button type="submit" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-600">Submit</button>
                 </div>
