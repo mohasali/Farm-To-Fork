@@ -3,50 +3,64 @@
     <p class="text-sm text-gray-500 mb-4"></p>
 
     <!-- Personal Information Form -->
-    <form class="grid grid-cols-1 sm:grid-cols-2 gap-4" method="POST" action='/user'>
+    <form class="grid grid-cols-1 sm:grid-cols-2 gap-4" method="POST" action="{{ route('user.update', ['field' => request()->query('field')]) }}">
         @csrf
         @method('PATCH')
+
+        @php
+            $editableField = request()->query('field'); // Get which field should be editable
+        @endphp
+
         <!-- Full Name -->
+        @if ($editableField === 'name')
         <div class="col-span-2">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Name</label>
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" id="name" name="name" value="{{ Auth::user()->name }}" required>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" name="name" value="{{ Auth::user()->name }}" required>
         </div>
+        @endif
 
         <!-- Email -->
+        @if ($editableField === 'email')
         <div class="col-span-1">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Email</label>
-            @php
-            $email = Auth::user()->email ?? ''; // Ensure email is not null
-            $parts = explode('@', $email);
-
-            $var = (count($parts) > 1) ? '@' . strtolower($parts[1]) : '@';
-            @endphp
-            <input type="email" name="email" id="email" class="w-full p-2 border border-gray-300 rounded" value="{{ Auth::user()->email}}" required>
+            <input type="email" class="w-full p-2 border border-gray-300 rounded" name="email" value="{{ Auth::user()->email }}" required>
         </div>
-        <x-form-error name="email"/>
+        @endif
 
         <!-- Phone -->
+        @if ($editableField === 'phone')
         <div class="col-span-1">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Phone</label>
-            <input type="text" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded " value="{{ Auth::user()->phone }}" >
+            <input type="text" class="w-full p-2 border border-gray-300 rounded" name="phone" value="{{ Auth::user()->phone }}">
         </div>
-        <x-form-error name="phone"/>
+        @endif
 
         <!-- Password -->
+        @if ($editableField === 'password')
         <div class="col-span-1">
-            <label class="block text-gray-700 text-sm font-semibold mb-1">Password</label>
-            <input type="password" name="password" id="password" class="w-full p-2 border border-gray-300 rounded">
+            <label class="block text-gray-700 text-sm font-semibold mb-1">New Password</label>
+            <input type="password" class="w-full p-2 border border-gray-300 rounded" name="password">
         </div>
         <div class="col-span-1">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Confirm Password</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" class="w-full p-2 border border-gray-300 rounded">
+            <input type="password" class="w-full p-2 border border-gray-300 rounded" name="password_confirmation">
         </div>
-        <x-form-error name="password"/>
+        @endif
 
         <!-- Buttons -->
         <div class="col-span-2 flex space-x-4 mt-6">
             <button type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">Save</button>
             <a href='/account/user' class="bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400">Cancel</a>
         </div>
+        
+        <!-- Display any errors from the fields -->
+        @if ($errors->any())
+            <div class="text-red-500 font-semibold text-sm mt-2">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+
     </form>
 </x-account-layout>

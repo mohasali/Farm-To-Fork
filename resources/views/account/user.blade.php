@@ -7,7 +7,10 @@
         <!-- Username -->
         <div class="col-span-2">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Name</label>
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ Auth::user()->name }}" disabled>
+            <div class="relative w-full">
+                <input type="text" class="w-full p-2 pr-10 border border-gray-300 rounded" value="{{ Auth::user()->name }}" disabled>
+                <a href="{{ route('account.edit', ['field' => 'name']) }}" class="absolute inset-y-0 right-0 flex items-center"><img src="/images/Edit.png" alt="Edit icon" class="h-6 md:h-8 hover:opacity-75"></a>
+            </div>
         </div>
 
         <!-- Email -->
@@ -19,7 +22,10 @@
 
             $var = (count($parts) > 1) ? '@' . strtolower($parts[1]) : '@';
             @endphp
-            <input type="email" class="w-full p-2 border border-gray-300 rounded" value="{{ substr(Auth::user()->email, 0, 1) }}********{{ substr(explode('@', Auth::user()->email)[0], -1) }}{{ $var }}" disabled>
+            <div class="relative w-full">
+                <input type="email" class="w-full p-2 border border-gray-300 rounded" value="{{ substr(Auth::user()->email, 0, 1) }}********{{ substr(explode('@', Auth::user()->email)[0], -1) }}{{ $var }}" disabled>
+                <a href="{{ route('account.edit', ['field' => 'email']) }}" class="absolute inset-y-0 right-0 flex items-center"><img src="/images/Edit.png" alt="Edit icon" class="h-6 md:h-8 hover:opacity-75"></a>
+            </div>
         </div>
 
         <!-- Phone -->
@@ -29,22 +35,24 @@
             if($phone!=''){ $phone = "********".substr(Auth::user()->phone, -3);};
             @endphp
             <label class="block text-gray-700 text-sm font-semibold mb-1">Phone</label>
-            <input type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ Auth::user()->phone }}" disabled>
+            <div class="relative w-full">
+                <a href="{{ route('account.edit', ['field' => 'phone']) }}" class="absolute inset-y-0 right-0 flex items-center"><img src="/images/Edit.png" alt="Edit icon" class="h-6 md:h-8 hover:opacity-75"></a>
+                <input type="text" class="w-full p-2 border border-gray-300 rounded" name="phone" value="{{ Auth::user()->phone }}" disabled>
+            </div>
         </div>
 
         <!-- Password -->
         <div class="col-span-1">
             <label class="block text-gray-700 text-sm font-semibold mb-1">Password</label>
-            <input type="password" class="w-full p-2 border border-gray-300 rounded" value="********" disabled>
+            <div class="relative w-full">
+                <input type="password" class="w-full p-2 pr-10 border border-gray-300 rounded" value="********" disabled>
+                <a href="{{ route('account.edit', ['field' => 'password']) }}" class="absolute inset-y-0 right-0 flex items-center"><img src="/images/Edit.png" alt="Edit icon" class="h-6 md:h-8 hover:opacity-75"></a>
+            </div>
         </div>
-        <!-- Buttons -->
-        <div class="col-span-2 flex space-x-4 mt-6">
-            <a href="{{ route('account.edit') }}" type="submit" class="bg-primary text-white px-4 py-2 rounded font-semibold hover:bg-orange-600">Edit</a>
-        </div>
-        @if (session('success'))
+    </div>
+    @if (session('success'))
         <div class=" text-green-600 font-bold text-sm mt-1">
             {{ session('success') }}
         </div>
-        @endif
-    </div>
+    @endif
 </x-account-layout>
