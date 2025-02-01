@@ -79,6 +79,9 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
 });
 
+// Edit account personal information
+Route::patch('/user', [UserController::class, 'update'])->name('user.update');
+
 // Checkout
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
