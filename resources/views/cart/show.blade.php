@@ -27,7 +27,9 @@
                     '/images/emptyCart/2.png',
                     '/images/emptyCart/3.jpg',
                     '/images/emptyCart/4.png',
-                    '/images/emptyCart/5.png'
+                    '/images/emptyCart/5.png',
+                    'images/emptyCart/6.jpg',
+                    'images/emptyCart/7.jpg'
                 ];
 
                 // Choose a random image
