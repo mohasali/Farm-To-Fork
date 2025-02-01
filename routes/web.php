@@ -82,6 +82,11 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
 // Edit account personal information
 Route::patch('/user', [UserController::class, 'update'])->name('user.update');
 
+// Edit contact preferences
+Route::middleware(['auth'])->group(function () {
+    Route::put('/account/update-contact-preferences', [UserController::class, 'updateContactPreferences'])->name('account.update.contact.preferences');
+});
+
 // Checkout
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');

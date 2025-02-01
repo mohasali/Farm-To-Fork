@@ -79,6 +79,22 @@ class UserController extends Controller
         }
     }
 
+    public function updateContactPreferences(Request $request)
+    {
+        $user = Auth::user();
+
+        $validatedData = $request->validate([
+            'contact_preferences' => 'nullable|array', // nullable = optional
+            'contact_preferences.*' => 'in:email,phone', // Get email/phone
+        ]);
+
+        $user->update([
+            'contact_preferences' => json_encode($validatedData['contact_preferences'] ?? []), // if no preferences, save an empty array
+        ]);
+
+        return redirect(route('account.contactpref'))->with('success', 'Contact preferences updated successfully.');
+    }
+
 
 
 }

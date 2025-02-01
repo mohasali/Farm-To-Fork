@@ -21,6 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('isAdmin')->default(false);
+            $table->json('contact_preferences')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
