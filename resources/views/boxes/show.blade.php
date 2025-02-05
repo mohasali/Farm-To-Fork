@@ -166,8 +166,8 @@
             border: 1px solid #000;
             border-radius: 50%;
             cursor: none;
-            width: 100px;
-            height: 100px;
+            width: 250px;
+            height: 250px;
             display: none; /* Is initially hidden */
             pointer-events: none; /* Stop interference with cursor */
         }
