@@ -107,4 +107,5 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
+    Route::get('/admin/userdetailmanagement', 'userdetailmanagement')->name('admin.userdetailmanagement');
 });
