@@ -79,8 +79,7 @@ class UserController extends Controller
         }
     }
 
-    public function updateContactPreferences(Request $request)
-    {
+    public function updateContactPreferences(Request $request){
         $user = Auth::user();
 
         $validatedData = $request->validate([
@@ -94,7 +93,4 @@ class UserController extends Controller
 
         return redirect(route('account.contactpref'))->with('success', 'Contact preferences updated successfully.');
     }
-
-
-
 }

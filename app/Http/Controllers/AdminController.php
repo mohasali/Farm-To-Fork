@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class AdminController extends Controller
 {
@@ -11,6 +13,7 @@ class AdminController extends Controller
     }
 
     public function userdetailmanagement(){
-        return view('admin.userdetailmanagement');
+        $users = User::all(); // Get all users
+        return view('admin.userdetailmanagement', compact('users'));
     }
 }
