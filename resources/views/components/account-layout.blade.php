@@ -18,6 +18,10 @@
                 <x-account-nav-link href="{{ route('account.rewards') }}" :active="request()->routeIs('account.rewards')" >Rewards</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.payments') }}" :active="request()->routeIs('account.payments')" >Payments</x-account-nav-link>
                 <x-account-nav-link href="{{ route('account.contactpref') }}" :active="request()->routeIs('account.contactpref')" >Contact Preferences</x-account-nav-link>
+                <!-- Only display to administrators -->
+                @if(Auth::check() && Auth::user()->isAdmin)
+                    <x-account-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')" >Admin</x-account-nav-link>
+                @endif
                 <form class=" m-0" method="POST" action="/logout">
                     @csrf
                     <button class="py-2 px-4 hover:bg-gray-200 rounded-lg text-left font-medium text-red-500">Log Out</button>
