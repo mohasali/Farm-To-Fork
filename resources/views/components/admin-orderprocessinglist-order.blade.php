@@ -10,10 +10,6 @@
                 <div class="w-24 flex items-center"><p><strong>Order ID</strong></p></div>
                 <input type="text" value="{{ $order->id }}" class="w-full px-3 py-2 bg-gray-100 rounded-md" disabled>
             </div>
-            <!-- Edit Icon -->
-            <a href="" class="w-8 h-8 border rounded-md flex items-center justify-center">
-                <img src="/images/Edit.png" alt="Edit icon" class="w-5 h-5"/>
-            </a>
         </div>
         <div class="flex items-center space-x-2">
             <!-- Order Customer Name -->
