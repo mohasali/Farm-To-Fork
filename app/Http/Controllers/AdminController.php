@@ -21,4 +21,8 @@ class AdminController extends Controller
         $orders = Order::all(); // Get all orders
         return view('admin.orderprocessinglist', compact('orders'));
     }
+
+    public function addproduct(){
+        return view('admin.addproduct');
+    }
 }

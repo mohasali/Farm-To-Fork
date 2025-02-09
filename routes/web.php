@@ -109,4 +109,5 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin','index')->name('admin.index');
     Route::get('/admin/userdetailmanagement', 'userdetailmanagement')->name('admin.userdetailmanagement');
     Route::get('/admin/orderprocessing', 'orderprocessinglist')->name('admin.orderprocessinglist');
+    Route::get('/admin/addproduct', 'addproduct')->name('admin.addproduct');
 });
