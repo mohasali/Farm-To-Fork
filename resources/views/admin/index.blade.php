@@ -10,6 +10,7 @@
         <x-admin-nav-link href="{{ route('admin.userdetailmanagement') }}" :active="request()->routeIs('admin.userdetailmanagement')" >Customer Detail Management</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.orderprocessinglist') }}" :active="request()->routeIs('admin.orderprocessinglist')" >Order Processing List</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.userdetailmanagement') }}" :active="request()->routeIs('admin.userdetailmanagement')" >Inventory Management - Products</x-admin-nav-link>
-        <x-admin-nav-link href="{{ route('admin.userdetailmanagement') }}" :active="request()->routeIs('admin.userdetailmanagement')" >Add New Product</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.addproduct') }}" :active="request()->routeIs('admin.addproduct')" >Add New Product</x-admin-nav-link>
+        <x-admin-nav-link href="" :active="request()->routeIs('')" >Users</x-admin-nav-link>
     </section>
 </x-layout>
