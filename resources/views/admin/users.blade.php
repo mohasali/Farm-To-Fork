@@ -31,7 +31,7 @@
         <div class="max-h-[600px] overflow-y-auto space-y-4 p-2">
             <!-- User -->
             @foreach ($users as $user)
-                <x-admin-userdetailmanagement-item :user="$user" />
+                <x-admin-users-item :user="$user" />
             @endforeach
         </div>
     </section>

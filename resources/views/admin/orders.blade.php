@@ -31,7 +31,7 @@
         <div class="max-h-[600px] overflow-y-auto space-y-4 p-2">
             <!-- Order -->
             @foreach ($orders as $order)
-                <x-admin-orderprocessinglist-order :order="$order" />
+                <x-admin-orders-item :order="$order" />
             @endforeach
         </div>
     </section>

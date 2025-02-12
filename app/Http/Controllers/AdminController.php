@@ -12,17 +12,17 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function userdetailmanagement(){
+    public function users(){
         $users = User::all(); // Get all users
-        return view('admin.userdetailmanagement', compact('users'));
+        return view('admin.users', compact('users'));
     }
 
-    public function orderprocessinglist(){
+    public function orders(){
         $orders = Order::all(); // Get all orders
-        return view('admin.orderprocessinglist', compact('orders'));
+        return view('admin.orders', compact('orders'));
     }
 
-    public function addproduct(){
-        return view('admin.addproduct');
+    public function products(){
+        return view('admin.products');
     }
 }

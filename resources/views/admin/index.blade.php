@@ -7,10 +7,10 @@
     </section>
     <!-- Grid content -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 max-w-4xl mx-auto text-center">
-        <x-admin-nav-link href="{{ route('admin.userdetailmanagement') }}" :active="request()->routeIs('admin.userdetailmanagement')" >Customer Detail Management</x-admin-nav-link>
-        <x-admin-nav-link href="{{ route('admin.orderprocessinglist') }}" :active="request()->routeIs('admin.orderprocessinglist')" >Order Processing List</x-admin-nav-link>
-        <x-admin-nav-link href="{{ route('admin.userdetailmanagement') }}" :active="request()->routeIs('admin.userdetailmanagement')" >Inventory Management - Products</x-admin-nav-link>
-        <x-admin-nav-link href="{{ route('admin.addproduct') }}" :active="request()->routeIs('admin.addproduct')" >Add New Product</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')" >Customer Detail Management</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.orders') }}" :active="request()->routeIs('admin.orders')" >Order Processing List</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')" >Inventory Management - Products</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.products') }}" :active="request()->routeIs('admin.products')" >Add New Product</x-admin-nav-link>
         <x-admin-nav-link href="" :active="request()->routeIs('')" >Users</x-admin-nav-link>
     </section>
 </x-layout>
