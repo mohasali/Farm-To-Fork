@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
         // Recipe Seeder
         $this->call(RecipesSeeder::class);
 
-        
+        //Review Seeder
+        $this->call(ReviewSeeder::class);
     }
 }

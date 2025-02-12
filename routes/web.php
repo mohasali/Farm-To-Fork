@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
@@ -103,6 +104,9 @@ Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])-
 // Recipes
 Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
+
+//Reviews
+Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){

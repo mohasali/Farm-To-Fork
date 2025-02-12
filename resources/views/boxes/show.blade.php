@@ -115,22 +115,28 @@
                     Verified Purchase
                     Comment Helpful | Report
                     -->
-                    <h1 class="text-lg font-bold">Jane Doe</h1>
-                    <div class="flex items-center space-x-2">
-                        <p>🌕🌕🌕🌕🌑</p>
-                        <p class="font-bold">I love this box!</p>
-                    </div>
-                    <p class="text-xs">Reviewed in Manchester on 15 January 2025</p>
-                    <p class="font-bold text-primary text-xs">Verified Purchase</p>
-                    <!-- Comment -->
-                    <p class="text-sm mt-2">This offering was a delightful surprise! The flavors were vibrant, and the ingredients were exceptionally fresh.</p>
-                    <div class="flex items-center mt-2 space-x-4">
-                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
-                            Helpful
-                        </button>
-                        <p class="text-xs">|</p>
-                        <button class="text-xs">Report</button> <!-- Add report feature ig or keep it blank or scrap it -->
-                    </div>
+                    @if(isset($review))
+                        @foreach($reviews as $review)
+                        <h1 class="text-lg font-bold">Jane Doe</h1>
+                        <div class="flex items-center space-x-2">
+                            <p>🌕🌕🌕🌕🌑</p>
+                            <p class="font-bold">I love this box!</p>
+                        </div>
+                        <p class="text-xs">Reviewed in Manchester on 15 January 2025</p>
+                        <p class="font-bold text-primary text-xs">Verified Purchase</p>
+                        <!-- Comment -->
+                        <p class="text-sm mt-2">This offering was a delightful surprise! The flavors were vibrant, and the ingredients were exceptionally fresh.</p>
+                        <div class="flex items-center mt-2 space-x-4">
+                            <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
+                                Helpful
+                            </button>
+                            <p class="text-xs">|</p>
+                            <button class="text-xs">Report</button> <!-- Add report feature ig or keep it blank or scrap it -->
+                        </div>
+                        @endforeach
+                    @else
+                        <p>No reviews yet!</p>
+                    @endif
                 </div>
                 <div class="p-4 mt-2">
                     <h1 class="text-lg font-bold">John Doe</h1>
