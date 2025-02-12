@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
+            'phone' => '0712345678',
             'email' => 'test@example.com',
+            'isAdmin' => 1,
+            'contact_preferences' => '["phone"]' // lowercase pref (email, phone) in array
+
         ]);
 
         // Create order

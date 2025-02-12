@@ -22,7 +22,6 @@
       <p class="text-2xl font-semibold text-center">Sign up to our rewards scheme for<br> great deals!</p>
     </div>
   </section>
-
   <!-- Product Gallery-->
   <section class="w-full h-[830px]">
 
@@ -57,18 +56,24 @@
             <span class="dot" onclick="currentSlide(4)"></span>
             <span class="dot" onclick="currentSlide(5)"></span>
           </div> 
-  
         </div></div>
-  
       </div>
     </div>
     <!-- to start the Product Gallery slideshow on page load -->
     <body onload="currentSlide(1)">
   </section>
-
+  <!-- Reviews -->
   <section class="w-full py-10 flex flex-col items-center">
     <div class="text-center mb-8">
-      <h1 class="text-5xl font-bold">Our Location</h1>
+      <h1 class="text-4xl font-bold">What do our customers think?</h1>
+    </div>
+    <div class="bg-white flex justify-center p-4 m-4 rounded-2xl drop-shadow-lg w-[90%]">
+      
+    </div>
+  </section>
+  <section class="w-full py-10 flex flex-col items-center">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold">Our Location</h1>
     </div>
     <div class="bg-white flex justify-center p-4 m-4 rounded-2xl drop-shadow-lg w-[90%]">
       <div class="w-full h-[400px] md:h-[500px] rounded-3xl overflow-hidden">

@@ -117,7 +117,7 @@
                     -->
                     <h1 class="text-lg font-bold">Jane Doe</h1>
                     <div class="flex items-center space-x-2">
-                        <p>🌕🌕🌕🌕🌑</p>
+                        <p>🌶️🌶️🌶️🌶️🌶️</p>
                         <p class="font-bold">I love this box!</p>
                     </div>
                     <p class="text-xs">Reviewed in Manchester on 15 January 2025</p>
@@ -135,7 +135,7 @@
                 <div class="p-4 mt-2">
                     <h1 class="text-lg font-bold">John Doe</h1>
                     <div class="flex items-center space-x-2">
-                        <p>🌕🌕🌕🌕🌑</p>
+                        <p>🍅🍅🍅🍅🍅</p>
                         <p class="font-bold">Tasty!</p>
                     </div>
                     <p class="text-xs">Reviewed in Birmingham on 14 January 2025</p>
