@@ -35,8 +35,8 @@ class ReviewSeeder extends Seeder
                     'upvotes' => $data[4],
 
                     //seeding foreign keys
-                    'user_id' => User::factory(),
-                    'box_id' => Box::factory(),
+                    'user_id' => User::factory()->create()->id,
+                    'box_id' => Box::factory()->create()->id,
                 ]);
 
             }
