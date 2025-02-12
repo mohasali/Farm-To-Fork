@@ -21,6 +21,10 @@
                 </div>
                 <div class="mt-4">
                     <p class="text-sm text-gray-500">
+                        <span class="font-semibold">Status:</span> 
+                        {{ $order->status }}
+                    </p>
+                    <p class="text-sm text-gray-500">
                         <span class="font-semibold">Shipping Address:</span> 
                         {{ $order->address }}, {{ $order->city }}, {{ $order->postcode }}, {{ $order->country }}
                     </p>
