@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('postcode');
             $table->string('country');
+            $table->enum('status',['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled'])->default('Pending');
             $table->timestamps();
         });
         Schema::create('item_orders', function (Blueprint $table) {
