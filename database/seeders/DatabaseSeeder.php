@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\Box;
 use App\Models\Tag;
 use App\Models\User;
@@ -21,19 +22,29 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'phone' => '07398332754'
         ]);
 
-        // Create order
-        $order = Order::create([
+        Address::create([
             'user_id' => User::where('email', 'test@example.com')->first()->id,
-            'total' => 100,
-            'payment_intent' => 'test',
             'name' => "Test",
             'address' => "64 Zoo Lane",
             'city' => "Birmingham",
             'postcode' => "B1 234",
             'country' => "England",
         ]);
+
+        // Create order
+        $order = Order::create([
+            'user_id' => User::where('email', 'test@example.com')->first()->id,
+            'total' => 100,
+            'name' => "Test",
+            'address' => "64 Zoo Lane",
+            'city' => "Birmingham",
+            'postcode' => "B1 234",
+            'country' => "England",
+        ]);
+
 
         // Box::factory(50)->create();
 

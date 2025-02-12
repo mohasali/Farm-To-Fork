@@ -90,10 +90,7 @@ Route::middleware(['auth'])->group(function () {
 // Checkout
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
-
-// Order
-Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
-Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
+Route::get('/checkout/confirmed',[CheckoutController::class,'confirmed'])->middleware('auth')->name('checkout.confirmed');
 
 //User Addresses
 Route::post('/address', [UserAddressesController::class, 'store'])->name('address.save');
