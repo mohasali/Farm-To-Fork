@@ -12,7 +12,7 @@
             <!-- Search Bar -->
             <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-2">
                 <form class="relative w-full md:w-80 flex" method="GET">
-                    <input name="q" autocomplete="off" type="text" placeholder="Search for an order..." 
+                    <input name="q" autocomplete="off" type="text" placeholder="Search for an order id..." 
                         class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out">
                     <button type="submit" class="p-2 px-4 bg-primary text-white rounded hover:bg-accent1 transition">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -21,8 +21,19 @@
             </div>
             <!-- Product Filter and Sort By -->
             <div class="flex flex-col md:flex-row justify-between p-4 text-secondary space-y-2 md:space-y-0">
-                <button class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4">Product Filter</button>
-                <button class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4">Sort By</button>
+                <form action="" method="GET">
+                    <select class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4" name="status" onchange="this.form.submit()">
+                        <option value="" hidden>Status Filter</option>
+                        @foreach($statusOptions as $option)
+                            <option value="{{ $option }}" {{ request('status') === $option ? 'selected' : '' }}>
+                                {{ $option }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
+                <form action="" method="GET">
+                    <button type="submit" value="" class="text-red-600 ml-4">Reset</button>
+                </form>                
             </div>
         </div>
     </section>

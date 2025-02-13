@@ -17,10 +17,29 @@ class AdminController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    public function orders(){
-        $orders = Order::with(['user', 'itemOrders.box'])->get(); // Get all orders
+    public function orders(Request $request){
+        $request->validate([
+            'status' => 'string',
+            'q' => 'integer'
+        ]);
+        
+        $id = $request->input('q');
+        $status = $request->input('status');
+        
+        $query = Order::with(['user', 'itemOrders.box']);
+        if ($id) {
+            $query->where('id', $id);
+        }
+        if ($status) {
+            $query->where('status', $status);
+        }
+        $orders = $query->get();
         $statusOptions = ['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled'];
-        return view('admin.orders', ['orders'=>$orders,'statusOptions'=>$statusOptions]);
+        return view('admin.orders', [
+            'orders' => $orders,
+            'statusOptions' => $statusOptions
+        ]);
+        
     }
 
     public function updateOrderStatus(Request $request)
@@ -37,7 +56,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
     
-
     public function products(){
         return view('admin.products');
     }
