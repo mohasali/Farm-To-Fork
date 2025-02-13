@@ -67,8 +67,21 @@
     <div class="text-center mb-8">
       <h1 class="text-4xl font-bold">What do our customers think?</h1>
     </div>
-    <div class="bg-white flex justify-center p-4 m-4 rounded-2xl drop-shadow-lg w-[90%]">
-      
+    <div class="bg-white flex justify-center p-4 m-4 rounded-2xl drop-shadow-lg w-[50%] h-[90%]">
+      <!-- Review card -->
+      <!-- Title, description | Name stars -->
+      <div class="bg-gray-300 w-1/3 h-full rounded-lg  p-4">
+        <!-- Title -->
+        <h1 class="text-primary font-bold">Title</h1>
+        <!-- Description -->
+        <p class="">Lorem ipsum odor amet, consectetuer adipiscing elit. Parturient lacinia fermentum massa dolor quisque. 
+          Adipiscing mattis lacus, id lobortis purus risus libero.Tristique risus natoque amet feugiat.</p>
+        <hr class="mt-2 mb-2">
+        <div class="flex flex-row">
+          <h1><strong>John Doe</strong></h1>
+          <p class="">🌕🌕🌕🌕🌕</p>
+        </div>
+      </div>
     </div>
   </section>
   <section class="w-full py-10 flex flex-col items-center">
