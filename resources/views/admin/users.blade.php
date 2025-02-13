@@ -19,11 +19,6 @@
                     </button>
                 </form> 
             </div>
-            <!-- Product Filter and Sort By -->
-            <div class="flex flex-col md:flex-row justify-between p-4 text-secondary space-y-2 md:space-y-0">
-                <button class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4">Product Filter</button>
-                <button class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4">Sort By</button>
-            </div>
         </div>
     </section>
     <!-- Display Users -->
@@ -36,3 +31,20 @@
         </div>
     </section>
 </x-layout>
+
+<script>
+    function viewUserInfo(i){
+        document.getElementById('info_'+i).classList.remove('hidden');
+
+    }
+    function closeInfo(i) {
+        document.getElementById('info_'+i).classList.add('hidden');
+    }
+    function viewOrders(i){
+        document.getElementById('orders_'+i).classList.remove('hidden');
+
+    }
+    function closeOrders(i) {
+        document.getElementById('orders_'+i).classList.add('hidden');
+    }
+</script>

@@ -12,8 +12,17 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function users(){
-        $users = User::all(); // Get all users
+    public function users(Request $request){
+        $request->validate([
+            'q' => 'string'
+        ]);
+        $q = $request->input('q');
+        $users = User::with('orders.itemOrders.box'); // Get all users
+
+        if ($q) {
+            $users->where('email', 'like', "%$q%");
+        }
+        $users = $users->get();
         return view('admin.users', compact('users'));
     }
 
