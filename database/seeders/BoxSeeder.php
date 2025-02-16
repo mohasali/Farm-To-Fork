@@ -36,7 +36,7 @@ class BoxSeeder extends Seeder
                     'price'=> number_format($data[2],2,'.',','),
                     'description'=> $data[3],
 
-                    'imagePath' => '/images/Farm-to-ForkBox1.png'
+                    'imagePath' => '/images/covers/default_cover.png'
                 ]);
             }
             $firstline = false;

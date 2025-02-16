@@ -108,4 +108,5 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/orders', 'orders')->name('admin.orders');
     Route::patch('/admin/orders','updateOrderStatus');
     Route::get('/admin/products', 'products')->name('admin.products');
+    Route::post('/admin/products','addProduct');
 });

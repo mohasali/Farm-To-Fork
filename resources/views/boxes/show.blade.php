@@ -4,15 +4,22 @@
             <a class="md:hidden text-3xl mb-2 font-light italic underline hover:text-accent2" href="/boxes?type={{ urlencode($box->type) }}">{{ $box->type }}</a> <!-- Type (mobile) -->
             <div class="md:hidden text-4xl mb-3 font-medium"> {{ $box->title }}</div> <!-- Title (mobile) -->
 
+            <div class="relative">
             <!-- image container -->
             <div class="flex justify-center md:block pt-7 img-magnifier-container">
                 <img 
                     class="w-full max-w-xs sm:max-w-md md:w-[450px] rounded-lg" 
                     id="myimage" 
                     src="{{ $box->imagePath }}" 
-                    alt="Box Image">
-            </div>
+                    alt="Box Image">                
 
+            </div>
+            @if ($box->stock < 5)
+            <div class="absolute top-2 right-2 bg-red-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                Only {{ $box->stock }} left
+            </div>
+            @endif
+            </div>
             <div class="flex flex-col space-y-4">
                 <a class="hidden md:inline-block text-xl font-light italic hover:underline hover:text-accent2" href="/boxes?type={{ urlencode($box->type) }}">{{ $box->type }}</a>
                 <div class="hidden md:block text-3xl font-medium">{{ $box->title }}</div> <!-- Title -->
@@ -36,8 +43,10 @@
                         <button class="bg-primary px-6 py-3 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300">
                             Add to cart £{{ $box->price }}
                         </button>
+
                     </div>
                 </x-add-cart-form>
+
                 <x-success-alert :boxId="$box->id" />
             </div>
         </div>
