@@ -33,9 +33,7 @@ class DatabaseSeeder extends Seeder
             'address' => "64 Zoo Lane",
             'city' => "Birmingham",
             'postcode' => "B1 234",
-            'country' => "England",
-            'isAdmin' => 1,
-            'contact_preferences' => '["phone"]' // lowercase pref (email, phone) in array
+            'country' => "England"
 
         ]);
 
