@@ -12,11 +12,13 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
-    return view('home');
+    $reviews = Review::latest()->take(3)->with('user')->get();
+    return view('home',['reviews'=>$reviews]);
 });
 
 Route::get('/about', function () {

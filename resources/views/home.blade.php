@@ -68,47 +68,25 @@
     <h1 class="text-4xl font-bold">What do our customers think?</h1>
   </div>
   <div class="bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 rounded-2xl drop-shadow-lg w-[90%]">
-    <!-- Review Card 1 -->
-    <div class="bg-gray-300 w-full rounded-lg p-4 flex flex-col justify-between min-h-[250px]">
-      <h1 class="text-primary font-bold text-lg">Title</h1>
-      <p class="text-sm md:text-base mt-2">
-      Lorem ipsum odor amet, consectetuer adipiscing elit. Parturient lacinia fermentum massa dolor quisque. 
-      Adipiscing mattis lacus, id lobortis purus risus libero. Tristique risus natoque amet feugiat.
-      </p>
+    @foreach ($reviews as $review)
+      <div class="bg-gray-100 w-full rounded-lg p-4 flex flex-col justify-between min-h-[250px]">
+      <h1 class="text-primary font-bold text-lg">{{ $review->title }}</h1>
+      <p class="text-sm md:text-base mt-2">{{ $review->description }}</p>
       <hr class="mt-2 mb-2">
       <div class="flex justify-between items-center">
-        <h1 class="font-bold">John Doe</h1>
-        <p class="text-lg">🌕🌕🌕🌕🌕</p>
+        <h1 class="font-bold">{{ $review->user->name }}</h1>
+        <p>
+          @for ($i = $review->rating; $i>0; $i--)
+          🌕
+          @endfor
+          @for ($i = $review->rating; $i<5; $i++)
+          🌑
+          @endfor
+          </p>
       </div>
     </div>
+    @endforeach
 
-    <!-- Review Card 2 -->
-    <div class="bg-gray-300 w-full rounded-lg p-4 flex flex-col justify-between min-h-[250px]">
-      <h1 class="text-primary font-bold text-lg">Title</h1>
-      <p class="text-sm md:text-base mt-2">
-      Lorem ipsum odor amet, consectetuer adipiscing elit. Parturient lacinia fermentum massa dolor quisque. 
-      Adipiscing mattis lacus, id lobortis purus risus libero. Tristique risus natoque amet feugiat.
-      </p>
-      <hr class="mt-2 mb-2">
-      <div class="flex justify-between items-center">
-        <h1 class="font-bold">John Doe</h1>
-        <p class="text-lg">🌕🌕🌕🌕🌕</p>
-      </div>
-    </div>
-
-    <!-- Review Card 3 -->
-    <div class="bg-gray-300 w-full rounded-lg p-4 flex flex-col justify-between min-h-[250px]">
-      <h1 class="text-primary font-bold text-lg">Title</h1>
-      <p class="text-sm md:text-base mt-2">
-      Lorem ipsum odor amet, consectetuer adipiscing elit. Parturient lacinia fermentum massa dolor quisque. 
-      Adipiscing mattis lacus, id lobortis purus risus libero. Tristique risus natoque amet feugiat.
-      </p>
-      <hr class="mt-2 mb-2">
-      <div class="flex justify-between items-center">
-        <h1 class="font-bold">John Doe</h1>
-        <p class="text-lg">🌕🌕🌕🌕🌕</p>
-      </div>
-    </div>
   </div>
 </section>
 
