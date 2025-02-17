@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use Auth;
 
 class ReviewController extends Controller
 {
@@ -15,4 +16,5 @@ class ReviewController extends Controller
     public function show($id) {
         return view('review',['review'=>Review::findOrFail($id)]);
     }
+
 }

@@ -57,44 +57,22 @@
             <div class="flex flex-col bg-gray-100 py-4 px-6 rounded-xl w-full md:w-1/3">
                 <h1 class="text-xl font-bold">Customer Reviews</h1>
                 <p class="text-lg">🌕🌕🌕🌕🌗</p> <!-- moon not stars :P -->
-                <p class="text-lg">4.5 out of 5</p> <!-- Make real ratings laters -->
-                <p>100 global ratings</p>
+                <p class="text-lg">{{ round($reviews->avg('rating'), 1) }} out of 5</p> <!-- Make real ratings laters -->
+                <p>{{ $reviews->count() }} global ratings</p>
+                @for ($i=5; $i>0; $i--)
+
                 <!-- If there is no rating on a star, there isn't a link for it | MUST ADD TO 100% -->
                 <div class="flex items-center space-x-4 mt-4">
-                    <p class="w-12">5 star</p>
+                    <p class="w-12">{{ $i }} star</p>
                     <!-- Rating -->
                     <div class="flex-1 h-4 bg-gray-300 rounded-md overflow-hidden">
-                        <div class="h-full bg-primary w-[60%]"></div>
+                        <div class="h-full bg-primary" style="width: {{ $reviews->count() > 0 ? round(($reviews->groupBy('rating')->map->count()->get($i, 0) / $reviews->count()) * 100, 2) : 0 }}%;"></div>
                     </div>
                     <!-- Percent -->
-                    <p class="w-12 text-right">60%</p>
+                    <p class="w-12 text-right">{{ $reviews->count() > 0 ? round(($reviews->groupBy('rating')->map->count()->get($i, 0) / $reviews->count()) * 100, 2) : 0 }}%</p>
                 </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <p class="w-12">4 star</p>
-                    <div class="flex-1 h-4 bg-gray-300 rounded-md overflow-hidden">
-                        <div class="h-full bg-primary w-[20%]"></div>
-                    </div>
-                    <p class="w-12 text-right">20%</p>
-                </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <p class="w-12">3 star</p>
-                    <div class="flex-1 h-4 bg-gray-300 rounded-md"></div>
-                    <p class="w-12 text-right">0%</p>
-                </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <p class="w-12">2 star</p>
-                    <div class="flex-1 h-4 bg-gray-300 rounded-md overflow-hidden">
-                        <div class="h-full bg-primary w-[10%]"></div>
-                    </div>
-                    <p class="w-12 text-right">10%</p>
-                </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <p class="w-12">1 star</p>
-                    <div class="flex-1 h-4 bg-gray-300 rounded-md overflow-hidden">
-                        <div class="h-full bg-primary w-[10%]"></div>
-                    </div>
-                    <p class="w-12 text-right">10%</p>
-                </div>
+
+                @endfor
                 <!-- Write a review -->
                 <div class="mt-4">
                     <h1 class="font-bold text-lg">Review this product</h1>
@@ -124,17 +102,24 @@
                     Verified Purchase
                     Comment Helpful | Report
                     -->
-                    @if(isset($review))
+                    @if(!$reviews->isEmpty())
                         @foreach($reviews as $review)
-                        <h1 class="text-lg font-bold">Jane Doe</h1>
+                        <h1 class="text-lg font-bold">{{ $review->user->name }}</h1>
                         <div class="flex items-center space-x-2">
-                            <p>🌕🌕🌕🌕🌑</p>
-                            <p class="font-bold">I love this box!</p>
+                            <p>
+                            @for ($i = $review->rating; $i>0; $i--)
+                            🌕
+                            @endfor
+                            @for ($i = $review->rating; $i<5; $i++)
+                            🌑
+                            @endfor
+                            </p>
+                            <p class="font-bold">{{ $review->title }}</p>
                         </div>
-                        <p class="text-xs">Reviewed in Manchester on 15 January 2025</p>
+                        <p class="text-xs">Reviewed on {{ $review->created_at }}</p>
                         <p class="font-bold text-primary text-xs">Verified Purchase</p>
                         <!-- Comment -->
-                        <p class="text-sm mt-2">This offering was a delightful surprise! The flavors were vibrant, and the ingredients were exceptionally fresh.</p>
+                        <p class="text-sm mt-2">{{ $review->description }}</p>
                         <div class="flex items-center mt-2 space-x-4">
                             <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
                                 Helpful
@@ -147,24 +132,7 @@
                         <p>No reviews yet!</p>
                     @endif
                 </div>
-                <div class="p-4 mt-2">
-                    <h1 class="text-lg font-bold">John Doe</h1>
-                    <div class="flex items-center space-x-2">
-                        <p>🍅🍅🍅🍅🍅</p>
-                        <p class="font-bold">Tasty!</p>
-                    </div>
-                    <p class="text-xs">Reviewed in Birmingham on 14 January 2025</p>
-                    <p class="font-bold text-primary text-xs">Verified Purchase</p>
-                    <!-- Comment -->
-                    <p class="text-sm mt-2">Listening to Radiohead and starving on a Tuesday night, I purchased this box thinking of all the delicious ingredients and flavours that will enter my mouth when it arrives. AND IT DIDN'T DISAPPOINT!</p>
-                    <div class="flex items-center mt-2 space-x-4">
-                        <button class="border border-primary text-primary rounded-full px-4 py-1 text-xs hover:bg-orange-100">
-                            Helpful
-                        </button>
-                        <p class="text-xs">|</p>
-                        <button class="text-xs">Report</button>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -28,10 +28,9 @@ class ReviewSeeder extends Seeder
             if(!$firstline){
                
                 $review = Review::create([
-                    'star_rating' => $data[0],
+                    'rating' => $data[0],
                     'title' => $data[1],
                     'description' => $data[2],
-                    'review_date' => $data[3],
                     'upvotes' => $data[4],
 
                     //seeding foreign keys

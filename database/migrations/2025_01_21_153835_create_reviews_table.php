@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->decimal("star_rating", 1,1);
+            $table->decimal("rating", 1,1);
             $table->string("title");
             $table->string("description")->nullable();
-            $table->timestamp("review_date");
-            $table->integer("upvotes");
+            $table->integer("upvotes")->default(0);
             $table->foreignIdFor(User::class, "user_id");
             $table->foreignIdFor(Box::class, "box_id");
             $table->timestamps();
