@@ -37,6 +37,45 @@
             </div>
         </div>
     </section>
+    <!-- Inventory alert -->
+    <!-- If statement 
+
+    -- If any item reaches under 5 = section will pop up
+    -- Any 3 < item > 5 = bg-orange-500
+    -- Any 0 <= item > 3 = bg-red-500
+
+    -->
+    <section>
+    @php
+        $lowStock = $boxes->where('stock', '<', 5)->count(); // Low stock
+        $outOfStock = $boxes->where('stock', '==', 0)->count(); // Out of stock
+
+        // Change background colour
+        $bg = $outOfStock > 0 ? 'bg-red-500' : ($lowStock > 0 ? 'bg-amber-500' : 'bg-orange-400');
+    @endphp
+
+    <div class="{{ $bg }} p-4 w-full">
+        @if ($lowStock > 0)
+            @if ($outOfStock > 0)
+                <h1 class="font-bold text-3xl text-white text-center">Out of stock!</h1>
+            @elseif ($lowStock > 0)
+                <h1 class="font-bold text-3xl text-white text-center">Low Stock</h1>
+            @endif
+        @endif
+
+        @foreach ($boxes as $box)
+            <div class="text-center">
+                @if ($box->stock < 5)
+                    <div class="flex flex-row justify-center">
+                        <h1 class="font-bold">{{ $box->title }}</h1>
+                        <p class="ml-2">{{ $box->stock }}</p>
+                    </div>
+                @endif
+            </div>
+        @endforeach
+    </div>
+</section>
+
     <!-- Display Boxes -->
     <section class="gap-4 p-6 max-w-4xl mx-auto overflow-y-auto">
         <div class="max-h-[600px] overflow-y-auto space-y-4 p-2">

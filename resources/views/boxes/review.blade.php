@@ -39,12 +39,12 @@
                 <!-- Title -->
                 <div class="mb-4">
                     <label class="text-sm font-medium mb-2">Title</label>
-                    <input type="text" id="title" name="title" class="w-full p-2 rounded-lg" placeholder="Write a catchy title" required>
+                    <input type="text" id="title" name="title" class="w-full p-2 rounded-lg" placeholder="Write a catchy title" minlength="1" maxlength="80" required>
                 </div>
                 <!-- Review paragraph -->
                 <div class="mb-4">
                     <label class="text-sm font-medium mb-2">Review</label>
-                    <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" required></textarea>
+                    <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" minlength="10" maxlength="280" required></textarea>
                 </div>
                 <!-- Submit  -->
                 <div class="text-center flex-inline flex-col space-y-4">
@@ -60,7 +60,7 @@
     const container = document.getElementById("rating-container");
     const clearButton = document.getElementById("clear-rating");
     const ratingInput = document.getElementById("rating-input");
-    let selectedRating = 0;
+    let selectedRating = 1;
     const grayOut = "color: transparent; text-shadow: 0 0 darkgray"
 
     function renderMoons(rating) {
@@ -81,7 +81,7 @@
     
     clearButton.addEventListener("click", (e) => {
         e.preventDefault();
-        selectedRating = 0;
+        selectedRating = 1;
         ratingInput.value = selectedRating;
         renderMoons(selectedRating);
     });
