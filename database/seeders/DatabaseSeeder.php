@@ -21,7 +21,11 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
+            'phone' => '0712345678',
             'email' => 'test@example.com',
+            'isAdmin' => 1,
+            'contact_preferences' => '["phone"]' // lowercase pref (email, phone) in array
+
             'phone' => '07398332754',
             'isAdmin' => true,
         ]);
@@ -69,6 +73,7 @@ class DatabaseSeeder extends Seeder
         // Recipe Seeder
         $this->call(RecipesSeeder::class);
 
-        
+        //Review Seeder
+        $this->call(ReviewSeeder::class);
     }
 }

@@ -4,11 +4,14 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use App\Enums\BoxType;
 
 
 class Box extends Model
 {
+    use HasFactory;
 
     protected $fillable = ['title','type','price','description','imagePath'];
 
