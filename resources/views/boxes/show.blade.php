@@ -56,7 +56,15 @@
         <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 px-4 md:px-8">
             <div class="flex flex-col bg-gray-100 py-4 px-6 rounded-xl w-full md:w-1/3">
                 <h1 class="text-xl font-bold">Customer Reviews</h1>
-                <p class="text-lg">🌕🌕🌕🌕🌗</p> <!-- moon not stars :P -->
+                
+                <p class="text-lg">
+                    @for ($i = round($reviews->avg('rating')); $i>0; $i--)
+                    🥕
+                    @endfor
+                    @for ($i = round($reviews->avg('rating')); $i<5; $i++)
+                    <span style="color: transparent; text-shadow: 0 0 darkgray">🥕</span>
+                    @endfor
+                </p> <!-- moon not stars :P -->
                 <p class="text-lg">{{ round($reviews->avg('rating'), 1) }} out of 5</p> <!-- Make real ratings laters -->
                 <p>{{ $reviews->count() }} global ratings</p>
                 @for ($i=5; $i>0; $i--)
@@ -108,10 +116,10 @@
                         <div class="flex items-center space-x-2">
                             <p>
                             @for ($i = $review->rating; $i>0; $i--)
-                            🌕
+                            🥕
                             @endfor
                             @for ($i = $review->rating; $i<5; $i++)
-                            🌑
+                            <span style="color: transparent; text-shadow: 0 0 darkgray">🥕</span>
                             @endfor
                             </p>
                             <p class="font-bold">{{ $review->title }}</p>

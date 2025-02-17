@@ -61,14 +61,16 @@
     const clearButton = document.getElementById("clear-rating");
     const ratingInput = document.getElementById("rating-input");
     let selectedRating = 0;
-    
+    const grayOut = "color: transparent; text-shadow: 0 0 darkgray"
+
     function renderMoons(rating) {
         container.innerHTML = "";
         ratingInput.value = rating;
         for (let i = 1; i <= 5; i++) {
             const moon = document.createElement("span");
+            moon.textContent = "🥕";
             
-            moon.textContent = rating >= i ? "🌕" : "🌑";
+            moon.style = rating >= i ? "" : grayOut;
             
             moon.dataset.value = i;
             moon.style.cursor = "pointer";

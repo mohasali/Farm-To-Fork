@@ -77,10 +77,10 @@
         <h1 class="font-bold">{{ $review->user->name }}</h1>
         <p>
           @for ($i = $review->rating; $i>0; $i--)
-          🌕
+          🥕
           @endfor
           @for ($i = $review->rating; $i<5; $i++)
-          🌑
+          <span style="color: transparent; text-shadow: 0 0 darkgray">🥕</span>
           @endfor
           </p>
       </div>
