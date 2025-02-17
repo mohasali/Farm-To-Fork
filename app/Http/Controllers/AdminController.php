@@ -54,6 +54,26 @@ class AdminController extends Controller
         ]);
         
     }
+    public function inventory(Request $request){
+        $request->validate([
+            'q' => 'string',
+            'type' => ['string', 'in:Seasonal,Meat & Dairy,Dynamic Pricing,Locally Sourced,Cultural Recipe'],
+        ]);
+        $q = $request->input('q');
+        $type = $request->input('type');
+        $boxes = Box::with('tags');
+
+        if ($q) {
+            $boxes->where('title', 'like', "%$q%");
+        }
+        if ($type) {
+            $boxes->where('type', $type);
+        }
+        $boxes = $boxes->get();
+        $types = Box::getEnumTypes();
+        return view('admin.inventory',['boxes'=>$boxes,'types'=>$types]);
+
+    }
 
     public function updateOrderStatus(Request $request)
     {

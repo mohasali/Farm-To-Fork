@@ -8,7 +8,7 @@
             <div class="flex items-center w-full">
                 <!-- Order ID -->
                 <div class="w-24 flex items-center"><p><strong>Order ID</strong></p></div>
-                <input type="text" value="{{ $order->id }}" class="w-full px-3 py-2 bg-gray-100 rounded-md" disabled>
+                <input type="number" value="{{ $order->id }}" class="w-full px-3 py-2 bg-gray-100 rounded-md" disabled>
             </div>
         </div>
         <div class="flex items-center space-x-2">
