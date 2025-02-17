@@ -23,10 +23,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'phone' => '0712345678',
             'email' => 'test@example.com',
-            'isAdmin' => 1,
-            'contact_preferences' => '["phone"]' // lowercase pref (email, phone) in array
-
-            'phone' => '07398332754',
+            'contact_preferences' => '["phone"]', // lowercase pref (email, phone) in array
             'isAdmin' => true,
         ]);
 
@@ -37,6 +34,9 @@ class DatabaseSeeder extends Seeder
             'city' => "Birmingham",
             'postcode' => "B1 234",
             'country' => "England",
+            'isAdmin' => 1,
+            'contact_preferences' => '["phone"]' // lowercase pref (email, phone) in array
+
         ]);
 
         // Create order
