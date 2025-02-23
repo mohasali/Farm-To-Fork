@@ -37,6 +37,10 @@
 
         <!-- Password -->
         @if ($editableField === 'password')
+        <div class="col-span-2">
+            <label class="block text-gray-700 text-sm font-semibold mb-1">Current Password</label>
+            <input type="password" class="w-full p-2 border border-gray-300 rounded" name="password_current">
+        </div>
         <div class="col-span-1">
             <label class="block text-gray-700 text-sm font-semibold mb-1">New Password</label>
             <input type="password" class="w-full p-2 border border-gray-300 rounded" name="password">

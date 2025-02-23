@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
-    $reviews = Review::latest()->take(3)->with('user')->get();
+    $reviews = Review::orderByDesc('rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
     return view('home',['reviews'=>$reviews]);
 });
 
@@ -113,6 +113,7 @@ Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
+    Route::get('/admin/customers','customers')->name('admin.customers');
     Route::get('/admin/users', 'users')->name('admin.users');
     Route::get('/admin/orders', 'orders')->name('admin.orders');
     Route::get('/admin/inventory', 'inventory')->name('admin.inventory');

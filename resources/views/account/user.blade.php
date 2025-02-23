@@ -37,7 +37,7 @@
             <label class="block text-gray-700 text-sm font-semibold mb-1">Phone</label>
             <div class="relative w-full">
                 <a href="{{ route('account.edit', ['field' => 'phone']) }}" class="absolute inset-y-0 right-0 flex items-center"><img src="/images/Edit.png" alt="Edit icon" class="h-6 md:h-8 hover:opacity-75"></a>
-                <input type="text" class="w-full p-2 border border-gray-300 rounded" name="phone" value="{{ Auth::user()->phone }}" disabled>
+                <input type="text" class="w-full p-2 border border-gray-300 rounded" name="phone" value="{{ $phone }}" disabled>
             </div>
         </div>
 

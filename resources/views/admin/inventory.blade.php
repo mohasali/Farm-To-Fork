@@ -95,6 +95,10 @@
                         <div class="w-36 flex items-center"><p><strong>Description</strong></p></div>
                         <input type="text" value="{{$box->description}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
                     </div>
+                    <div class="flex items-center justify-center mt-2">
+                        <!-- Box Image -->
+                        <img src="{{ $box->imagePath ?? '/images/Placeholder.jpeg' }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
+                    </div>
                     <!-- Box Type -->
                     <div class="flex items-center mt-2">
                         <div class="w-36 flex items-center"><p><strong>Type</strong></p></div>

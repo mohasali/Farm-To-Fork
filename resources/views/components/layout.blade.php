@@ -34,15 +34,18 @@
 
       <!-- Navigation bar logged in user -->
       @auth
-      <div class="group flex flex-col justify-start bg-white">
-        <x-nav-link class="group-hover:text-primary"  href='/account/user'> My Account </x-nav-link>
-        <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
-          <x-nav-link href="/account/user">Manage</x-nav-link>
-          <form class=" m-0" method="POST" action="/logout">
-            @csrf
-            <button class="hover:text-primary">Log Out</button>
-          </form>
-        </div>
+        <div class="group flex flex-col justify-start bg-white">
+          <!-- User Image (CHANGE PATH) -->
+          <x-nav-link href='/account/user'>
+            <a href='/account/user'><img src="/images/Account/default_chicken.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
+          </x-nav-link>
+          <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
+            <x-nav-link href="/account/user">Manage</x-nav-link>
+            <form class=" m-0" method="POST" action="/logout">
+              @csrf
+              <button class="hover:text-primary">Log Out</button>
+            </form>
+          </div>
         </div>
         <x-nav-link href='/cart' class="relative">
             <img src="/images/cart.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75">
@@ -76,18 +79,36 @@
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
       <x-nav-link href="{{ url('/account/rewards') }}" class="flex items-center"><i class="fa-solid fa-gift"></i></x-nav-link>
-      <x-nav-link href='/cart'>Cart</x-nav-link>
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>
       @endguest
-
+      
       @auth
-      <x-nav-link href='/'> My Account </x-nav-link>
-      <form class=" m-0 ml-3" method="POST" action="/logout">
-        @csrf
-        <button class="hover:text-primary">Log Out</button>
-      </form>
+      <div class="group flex flex-col justify-start bg-white">
+          <!-- User Image (CHANGE PATH) -->
+          <x-nav-link href='/account/user'>
+            <a href='/account/user'><img src="/images/Account/default_chicken.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
+          </x-nav-link>
+          <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
+            <x-nav-link href="/account/user">Manage</x-nav-link>
+            <form class=" m-0" method="POST" action="/logout">
+              @csrf
+              <button class="hover:text-primary">Log Out</button>
+            </form>
+          </div>
+        </div>
+        <x-nav-link href='/cart' class="relative">
+            <img src="/images/cart.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75">
+            @php
+                $cartItemCount = Auth::check() ? Auth::user()->cartItems()->count() : 0;
+            @endphp
+            @if($cartItemCount > 0)
+                <p class="absolute -top-1.5 -right-1 bg-accent2 text-white text-xs rounded-full px-2 py-1">
+                    {{ $cartItemCount }}
+                </p>
+            @endif
+        </x-nav-link>
       @endauth
     </div>
   </nav>
