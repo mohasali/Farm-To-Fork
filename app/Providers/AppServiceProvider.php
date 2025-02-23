@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
  
         Paginator::defaultSimpleView('pagination::simple-tailwind');
 
-        Model::preventLazyLoading();
+        Model::preventLazyLoading(false);
 
     }
 }
