@@ -71,7 +71,14 @@
     
     <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
         @foreach ($boxes as $box )
-        <div class="flex flex-col items-center text-center px-5 pb-6 ">
+        <div class="flex flex-col items-center text-center px-5 pb-6 relative ">
+
+            @if ($box->stock < 5)
+            <div class="absolute right-5 bg-red-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                Only {{ $box->stock }} left
+            </div>
+            @endif
+
             <a href="boxes/{{ $box->id }}" class="group">
                 <div> <img class=" border-text border-2 group-hover:border-accent2 rounded-lg transition duration-300 ease-in-out" src="{{ $box->imagePath }}" alt="box" > </div>
                 <div class=" flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">

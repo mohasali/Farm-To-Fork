@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
+use App\Models\Review;
 use App\Models\Tag;
+use Auth;
 use Illuminate\Http\Request;
 
 class BoxController extends Controller
@@ -50,7 +52,9 @@ class BoxController extends Controller
 
     public function show(Box $box) {
         $tags = $box->tags()->get();
-        return view('boxes.show',['box'=>$box,'tags'=>$tags]);
+        $reviews = $box->reviews()->with('user')->get();
+        
+        return view('boxes.show',['box'=>$box,'tags'=>$tags,'reviews'=>$reviews]);
     }
 
     public function review(Box $box) {
@@ -58,4 +62,21 @@ class BoxController extends Controller
         return view('boxes.review', ['box' => $box, 'tags'=>$tags]);
     }
     
+    public function addReview(Box $box, Request $request){
+        $request->validate([
+            'rating' => ['required', 'integer', 'min:0', 'max:5'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
+        ]);
+
+        Review::create([
+            'rating'=> $request->rating,
+            'title'=> $request->title,
+            'description' => $request->description,
+            'box_id'=> $box->id,
+            'user_id'=>Auth::user()->id,
+        ]);
+        return redirect()->back()->with(['success'=> 'Review added succesfully.']);
+
+    }
 }

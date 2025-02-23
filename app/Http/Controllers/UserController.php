@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -58,12 +59,20 @@ class UserController extends Controller
                 $user->phone = $validatedData['phone'];
             }
 
-            // Phone
+            // Password
             if ($field === 'password') {
                 $validatedData = $request->validate([
+                    'password_current' => ['required'],
                     'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
                 ]);
+
+                // Check if current = current
+                if (!Hash::check($validatedData['password_current'], $user->password)){
+                    return back()->withErrors(['password_current' => 'The current password is incorrect']);
+                }
+                // Update password
                 $user->password = bcrypt($validatedData['password']);
+                $user->save();
             }
 
             // Save if a field has been updated

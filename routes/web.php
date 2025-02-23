@@ -11,11 +11,14 @@ use App\Http\Controllers\OrderController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
+use App\Http\Controllers\ReviewController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
-    return view('home');
+    $reviews = Review::orderByDesc('rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
+    return view('home',['reviews'=>$reviews]);
 });
 
 Route::get('/about', function () {
@@ -39,7 +42,9 @@ Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
     Route::get('/boxes/{box}','show');
-    Route::get('/boxes/{box}/review', [BoxController::class, 'review']);
+    Route::get('/boxes/{box}/review','review')->middleware('auth');
+    Route::post('/boxes/{box}/review','addReview')->middleware('auth');
+
     //Route::get('/boxes/create','create')->middleware('auth');
     //Route::get('/boxes/{box}/edit','edit')->middleware('auth')->can('edit','box');
     //Route::patch('/boxes/{box}','update')->middleware('auth')->can('edit','box');;
@@ -90,10 +95,7 @@ Route::middleware(['auth'])->group(function () {
 // Checkout
 Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
-
-// Order
-Route::post('/order/confirmation',[OrderController::class,'confirmation'])->middleware('auth')->name('order.confirmation');;
-Route::get('/order/confirmed',[OrderController::class,'confirmed'])->middleware('auth')->name('orders.confirmed');
+Route::get('/checkout/confirmed',[CheckoutController::class,'confirmed'])->middleware('auth')->name('checkout.confirmed');
 
 //User Addresses
 Route::post('/address', [UserAddressesController::class, 'store'])->name('address.save');
@@ -104,10 +106,18 @@ Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])-
 Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
+//Reviews
+Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
+
+
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
-    Route::get('/admin/userdetailmanagement', 'userdetailmanagement')->name('admin.userdetailmanagement');
-    Route::get('/admin/orderprocessing', 'orderprocessinglist')->name('admin.orderprocessinglist');
-    Route::get('/admin/addproduct', 'addproduct')->name('admin.addproduct');
+    Route::get('/admin/customers','customers')->name('admin.customers');
+    Route::get('/admin/users', 'users')->name('admin.users');
+    Route::get('/admin/orders', 'orders')->name('admin.orders');
+    Route::get('/admin/inventory', 'inventory')->name('admin.inventory');
+    Route::patch('/admin/orders','updateOrderStatus');
+    Route::get('/admin/products', 'products')->name('admin.products');
+    Route::post('/admin/products','addProduct');
 });
