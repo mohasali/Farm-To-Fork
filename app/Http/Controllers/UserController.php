@@ -102,4 +102,9 @@ class UserController extends Controller
 
         return redirect(route('account.contactpref'))->with('success', 'Contact preferences updated successfully.');
     }
+
+    public function show($id){
+        $user = User::with('orders.itemOrders.box')->findOrFail($id);
+        return view('customer.show', compact('user'));
+    }
 }

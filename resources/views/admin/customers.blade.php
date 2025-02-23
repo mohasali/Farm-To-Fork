@@ -46,22 +46,25 @@
                 <!-- Loop through users -->
                 @foreach ($users as $user)
                     <div class="bg-gray-50 p-4 rounded-lg">
-                        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-                            <div class="w-16 h-16 rounded-full overflow-hidden">
-                                <!-- User image else default image -->
-                                <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                        <!-- Customer has their own page --> 
+                        <a href="{{ url('/customer/' . $user->id) }}">
+                            <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+                                <div class="w-16 h-16 rounded-full overflow-hidden">
+                                    <!-- User image else default image -->
+                                    <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="ml-4 text-center md:text-left">
+                                    <h3 class="font-medium text-lg">{{ $user->name }}</h3>
+                                    <p class="text-gray-500">{{ $user->email }}</p>
+                                    <!-- Check if user or admin -->
+                                    @if ($user->isAdmin == 0)
+                                        <p class="text-gray-700">User</p>
+                                    @else
+                                        <p class="text-gray-700">Admin</p>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="ml-4 text-center md:text-left">
-                                <h3 class="font-medium text-lg">{{ $user->name }}</h3>
-                                <p class="text-gray-500">{{ $user->email }}</p>
-                                <!-- Check if user or admin -->
-                                @if ($user->isAdmin == 0)
-                                    <p class="text-gray-700">User</p>
-                                @else
-                                    <p class="text-gray-700">Admin</p>
-                                @endif
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             @endif

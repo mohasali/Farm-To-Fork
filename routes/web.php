@@ -121,3 +121,6 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
 });
+
+// Customer pages
+Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
