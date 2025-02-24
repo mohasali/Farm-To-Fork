@@ -33,20 +33,19 @@
 
                 <x-add-cart-form value="{{ $box->id }}">
                     <div class="flex items-center space-x-4">
-                        <select class="rounded-md border-2 border-primary px-4 py-2" name="increment" id="increment">
+                        <select class="rounded-md border-2 border-primary px-4 py-2" name="increment" id="increment" onchange="updatePrice({{ $box->price }})">
                             <!-- Amount dropdown -->
                             @for ($i = 1; $i <= 10; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
                         </select>
                         <!-- Add to cart button -->
-                        <button class="bg-primary px-6 py-3 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300">
-                            Add to cart £{{ $box->price }}
+                        <button 
+                            class="bg-primary px-6 py-3 text-white rounded-xl text-sm md:text-lg font-bold hover:bg-accent1 transition duration-300">
+                            Add to cart £<span id="totalPrice">{{ $box->price }}</span>
                         </button>
-
                     </div>
                 </x-add-cart-form>
-
                 <x-success-alert :boxId="$box->id" />
             </div>
         </div>
@@ -164,3 +163,11 @@
         }
     </style>
 </x-layout>
+<!-- Update box price when choosing quantity -->
+<script>
+    function updatePrice(basePrice) {
+        let quantity = document.getElementById("increment").value; // select value
+        let totalPrice = basePrice * quantity; // box * select value
+        document.getElementById("totalPrice").textContent = totalPrice.toFixed(2); // 2 dp
+    }
+</script>
