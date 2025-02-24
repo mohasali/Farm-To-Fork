@@ -23,6 +23,7 @@
             <div class="flex flex-col space-y-4">
                 <a class="hidden md:inline-block text-xl font-light italic hover:underline hover:text-accent2" href="/boxes?type={{ urlencode($box->type) }}">{{ $box->type }}</a>
                 <div class="hidden md:block text-3xl font-medium">{{ $box->title }}</div> <!-- Title -->
+                <div>{{ $box->stock }} left in stock!</div>
                 <div class="text-xl md:text-lg mt-3 space-x-2 font-light underline md:no-underline italic">
                     @foreach ($tags as $tag)
                     <a class="hover:underline hover:text-accent2" href="/boxes?tags%5B%5D={{$tag->id}}">{{ $tag->name }}</a>
