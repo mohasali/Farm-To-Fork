@@ -1,4 +1,5 @@
 <script src="{{ asset('js/slides.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <x-layout>
   <section class="relative w-full min-h-[calc(100vh-200px)] bg-cover bg-center" style="background-image: url('images/bg1.jpg');">
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center">

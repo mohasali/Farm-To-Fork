@@ -11,3 +11,11 @@ menuLinks.forEach(link => {
         mobileMenu.classList.remove('active');
     });
 });
+
+
+(function() {
+    var tidioScript = document.createElement("script");
+    tidioScript.src = "//code.tidio.co/wdoityvtearzrtco9yijzazul9ojf51u.js";
+    tidioScript.async = true;
+    document.body.appendChild(tidioScript);
+})();
