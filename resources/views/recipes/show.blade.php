@@ -57,7 +57,7 @@
     </div>
     
     <!-- import the javascript -->
-    @vite(['resources/js/glass.js'])
+    @vite(['resources/js/recipeGlass.js'])
     <style>
         /*  Doesn't work with external css for some very odd reason
             Magnifying glass CSS */
