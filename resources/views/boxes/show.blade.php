@@ -15,7 +15,7 @@
                     <div class="slides fade">
                         <!-- Current number of the slideshow -->
                         <div class="numbertext">{{ $index + 1 }} / {{ count($images) }}</div>
-                        <img class="w-full h-full object-contain rounded-lg img-magnifier-image" src="{{ $image }}" alt="Box Image {{ $index + 1 }}">
+                        <img class="w-full h-full object-contain rounded-lg img-magnifier-image-{{ $index+1 }}" src="{{ $image }}" alt="Box Image {{ $index + 1 }}">
                     </div>
                     @endforeach
                     
@@ -29,9 +29,12 @@
                 
                 <!-- Dots below image -->
                 <div class="dots-container text-center mt-4">
-                    @foreach($images as $index => $image)
-                    <span class="dot" onclick="currentSlide({{ $index + 1 }})"></span>
-                    @endforeach
+                    @if (count($images)>1)
+                        @foreach($images as $index => $image)
+                        <span class="dot" onclick="currentSlide({{ $index + 1 }})"></span>
+                        @endforeach
+                    @endif
+
                 </div>
             </div>
             
@@ -275,6 +278,7 @@
             let totalPrice = basePrice * quantity; // box * select value
             document.getElementById("totalPrice").textContent = totalPrice.toFixed(2); // 2 dp
         }
+        
     </script>
     
     @vite(['resources/js/boxesShow.js'])

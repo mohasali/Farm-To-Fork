@@ -34,7 +34,7 @@ class Box extends Model
         foreach ($files as $file) {
             // Check if its an image file
             $extension = strtolower($file->getExtension());
-            if (in_array($extension, ['jpg', 'jpeg', 'png'])) {
+            if (in_array($extension, ['jpg', 'jpeg', 'png','webp'])) {
                 // Convert path to web URL
                 $relativePath = 'images/Boxes/' . $folderName . '/' . $file->getFilename();
                 $images[] = '/' . $relativePath;

@@ -71,11 +71,11 @@ function magnify(imgID, zoom) {
         return { x: x, y: y };
     }
 }
-
+window.initMagnifier= initMagnifier;
 // Initialize magnifier for each slide's image
 function initMagnifier(selector) {
     // Get visible slide image
-    let visibleImg = document.querySelector(selector + ":not([style*='display: none'])");
+    let visibleImg = document.querySelector(selector);
     
     // Remove any existing magnifier glasses
     let glasses = document.querySelectorAll(".img-magnifier-glass");
@@ -90,5 +90,5 @@ function initMagnifier(selector) {
 
 // Initialize when document is loaded
 document.addEventListener("DOMContentLoaded", function() {
-    initMagnifier(".img-magnifier-image");
+    initMagnifier(".img-magnifier-image-1");
 });

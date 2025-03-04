@@ -1,6 +1,8 @@
 // Slideshow
 let slideIndex = 1;
-showSlides(slideIndex); // First slide
+window.showSlides = showSlides; // Make showSlides global
+window.plusSlides = plusSlides; // Make plusSlides global
+window.currentSlide = currentSlide; // Make currentSlide global
 
 // Change slides when button is clicked
 function plusSlides(n) {
@@ -22,6 +24,7 @@ function showSlides(n) {
     // If current slide is less than 1, go to last slide
     if (n < 1) {slideIndex = slides.length}
     
+    document.getElementById("activeImage").id = "";
     // Hide all sides
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
@@ -37,11 +40,9 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
     
     // Reinitialize magnifying glass for the current slide -- THIS DOESN'T WORK FOR MULTIPLE IDK WHY AND HOW TO FIX
-    if (typeof initMagnifier === 'function') {
-        setTimeout(function() {
-            initMagnifier(".img-magnifier-image");
-        }, 100);
-    }
+    setTimeout(function() {
+        initMagnifier(".img-magnifier-image-"+slideIndex);
+    }, 50);
 }
 
 // Change every 5 seconds
