@@ -42,7 +42,7 @@
             <div class="bg-gray-200 rounded-2xl w-3/4 h-3/4 lg:p-10 p-4">
               <p class="text-black">At farm to fork, we offer subscription based, locally sourced produce boxes that prioritise sustainability, freshness and convenience. 
                 Our service includes:
-                <ul>
+                <ul class="text-black">
                   <li>• Locally sourced produce: we support local farmers while reducing the miles your food takes to get to you.</li>
                   <li>• Customisable boxes: we give you the flexibility to change the contents of your box to suit your preferences.</li>
                   <li>• Innovative recipes: we teach you how step by step the best ways to use our ingredients.</li>
