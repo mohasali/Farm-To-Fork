@@ -16,40 +16,39 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function customers(Request $request)
-{
-    $request->validate([
-        'q' => 'nullable|string',
-        'customer' => 'nullable|in:user,admin', // Validation
-    ]);
+    public function customers(Request $request){
+        $request->validate([
+            'q' => 'nullable|string',
+            'customer' => 'nullable|in:user,admin', // Validation
+        ]);
 
-    // Search query and filter
-    $q = $request->input('q');
-    $customerType = $request->input('customer');
+        // Search query and filter
+        $q = $request->input('q');
+        $customerType = $request->input('customer');
 
-    // Get all users
-    $usersQuery = User::query();
+        // Get all users
+        $usersQuery = User::query();
 
-    if ($q) {
-        $usersQuery->where('email', 'like', "%$q%");
-    }
-
-    // Check if customer is a user or admin
-    if ($customerType) {
-        if ($customerType === 'user') {
-            // User filter
-            $usersQuery->where('isAdmin', false);
-        } elseif ($customerType === 'admin') {
-            // Admin filter
-            $usersQuery->where('isAdmin', true);
+        if ($q) {
+            $usersQuery->where('email', 'like', "%$q%");
         }
+
+        // Check if customer is a user or admin
+        if ($customerType) {
+            if ($customerType === 'user') {
+                // User filter
+                $usersQuery->where('isAdmin', false);
+            } elseif ($customerType === 'admin') {
+                // Admin filter
+                $usersQuery->where('isAdmin', true);
+            }
+        }
+
+        // Get users based off the query
+        $users = $usersQuery->get();
+
+        return view('admin.customers', compact('users'));
     }
-
-    // Get users based off the query
-    $users = $usersQuery->get();
-
-    return view('admin.customers', compact('users'));
-}
 
 
     public function users(Request $request){
