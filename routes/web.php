@@ -90,6 +90,8 @@ Route::patch('/user', [UserController::class, 'update'])->name('user.update');
 // Edit contact preferences
 Route::middleware(['auth'])->group(function () {
     Route::put('/account/update-contact-preferences', [UserController::class, 'updateContactPreferences'])->name('account.update.contact.preferences');
+    Route::get('/account/orders/{order}/track', [AccountController::class, 'track'])->name('order.track');
+    Route::get('/account/orders/{order}/return', [AccountController::class, 'return'])->name('order.return');
 });
 
 // Checkout

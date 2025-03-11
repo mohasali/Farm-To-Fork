@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,5 +47,27 @@ class AccountController extends Controller
 
     public function contactpref(){
         return view('account.contactpref');
+    }
+
+    public function track(Order $order){
+        // Allow users to view their own orders
+        if ($order->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('account.order-track', [
+            'order' => $order,
+        ]);
+    }
+
+    public function return(Order $order){
+        // Allow users to view their own orders
+        if ($order->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('account.order-return', [
+            'order' => $order,
+        ]);
     }
 }
