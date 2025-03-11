@@ -109,7 +109,6 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 //Reviews
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
 
-
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
@@ -121,6 +120,9 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
 });
+
+// Orders
+Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->name('admin.orders.update')->middleware(IsAdmin::class);
 
 // Customer pages
 Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
