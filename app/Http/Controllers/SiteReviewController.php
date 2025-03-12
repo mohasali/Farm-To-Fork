@@ -8,11 +8,11 @@ use App\Models\SiteReview;
 class SiteReviewController extends Controller
 {
     public function siteReviews(){
-        $site_reviews = SiteReview::all();
-        return view('site_reviews.site_reviews', compact('site_reviews'));
+        $siteReviews = SiteReview::all();
+        return view('home', compact('siteReviews'));
     }
 
     public function show($id) {
-        return view('site_review',['site_review'=>SiteReview::findOrFail($id)]);
+        return view('review',['review'=>SiteReview::findOrFail($id)]);
     }
 }

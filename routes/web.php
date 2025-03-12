@@ -109,7 +109,8 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
 //Reviews
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
-Route::get('/reviews/{$siteReviews}', [SiteReviewController::class, 'show']);
+Route::get('/{id}', [SiteReviewController::class, 'show']);
+Route::get('/', [SiteReviewController::class, 'siteReviews']);
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
