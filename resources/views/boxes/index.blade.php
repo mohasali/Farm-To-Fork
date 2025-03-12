@@ -69,27 +69,33 @@
         </div>
     </div>
     
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         @foreach ($boxes as $box )
-        <div class="flex flex-col items-center text-center px-5 pb-6 relative ">
-
-            @if ($box->stock < 5)
-            <div class="absolute right-5 bg-red-500 text-white text-sm py-1 px-2 rounded-full z-10">
-                Only {{ $box->stock }} left
-            </div>
-            @endif
-
-            <a href="boxes/{{ $box->id }}" class="group">
-                <div> <img class=" border-text border-2 group-hover:border-accent2 rounded-lg transition duration-300 ease-in-out" src="{{ $box->imagePath }}" alt="box" > </div>
-                <div class=" flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">
-                    <div class="font-bold text-mg " >{{ $box->title }}</div>
+        <div class="flex flex-col items-center text-center pb-6 border rounded-lg shadow-sm p-4">
+            <a href="boxes/{{ $box->id }}" class="group w-full">
+                <div class="box-image-container w-full">
+                    @php
+                        $boxImages = $box->getImages();
+                    @endphp
+                    
+                    @foreach($boxImages as $index => $image)
+                    <div class="slides fade group rounded-lg">
+                        <img 
+                            class="h-48 object-cover rounded-lg" 
+                            src="{{ $image }}" 
+                            alt="{{ $box->title }} Image">
+                    </div>
+                    @endforeach
+                </div>
+                <div class="flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">
+                    <div class="font-bold text-mg pr-4" >{{ $box->title }}</div>
                     <div>£{{ $box->price }}</div>
                 </div>
             </a>
 
-            <x-add-cart-form value="{{ $box->id }}">
+            <x-add-cart-form value="{{ $box->id }}" class="w-full mt-auto">
                 <input class="hidden" id="increment" name="increment" value="1"> 
-                <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out"> Add to Cart</button>
+                <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out">Add to Cart</button>
             </x-add-cart-form>
 
             <x-success-alert :boxId="$box->id"/>
@@ -97,6 +103,7 @@
         @endforeach
     </div>
     <div class="my-6 mx-8"> {{$boxes->links()}} </div>
+    @vite(['resources/js/boxesIndex.js'])
 </x-layout>
 
 <script>

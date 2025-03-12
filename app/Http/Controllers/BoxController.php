@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 
 class BoxController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request, Box $box){
         $request->validate([
             'type' => 'string',
             'q' => 'string',
@@ -40,21 +39,28 @@ class BoxController extends Controller
     
         $boxes = $query->paginate(12);
         $tags = Tag::all();
+        $images = $box->getImages();
     
         return view('boxes.index', [
             'boxes' => $boxes,
             'type' => $type,
             'types' => Box::getEnumTypes(),
-            'tags' => $tags
+            'tags' => $tags,
+            'images' => $images
         ]);
     }
     
-
     public function show(Box $box) {
         $tags = $box->tags()->get();
         $reviews = $box->reviews()->with('user')->get();
+        $images = $box->getImages(); // Get all images for the box
         
-        return view('boxes.show',['box'=>$box,'tags'=>$tags,'reviews'=>$reviews]);
+        return view('boxes.show', [
+            'box' => $box,
+            'tags' => $tags,
+            'reviews' => $reviews,
+            'images' => $images
+        ]);
     }
 
     public function review(Box $box) {
@@ -77,6 +83,5 @@ class BoxController extends Controller
             'user_id'=>Auth::user()->id,
         ]);
         return redirect()->back()->with(['success'=> 'Review added succesfully.']);
-
     }
 }

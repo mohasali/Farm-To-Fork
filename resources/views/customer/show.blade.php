@@ -1,7 +1,8 @@
 <x-layout>
     <section class="max-w-4xl h-[600px] mt-4 rounded-md mx-auto p-6 shadow-md">
+    <x-account-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')">Back</x-account-nav-link>
         <!-- User info -->
-        <div class="flex items-center space-x-4 bg-gray-50 p-4 rounded-lg">
+        <div class="flex items-center space-x-4 mt-4 bg-gray-50 p-4 rounded-lg">
             <!-- User image -->
             <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
@@ -15,6 +16,7 @@
                     @endif
                 </div>
                 <p class="text-gray-500">{{ $user->email }}</p>
+                <p class="text-primary text-md">Upvotes: 0</p>
             </div>
         </div>
         <!-- Only allow admins or customers to view their own page -->
