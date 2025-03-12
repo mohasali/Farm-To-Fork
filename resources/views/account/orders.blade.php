@@ -52,8 +52,14 @@
                     <div class="flex flex-row">
                         <!-- Track order -->
                         <a href="{{ route('order.track', $order->id) }}" class="bg-primary text-white p-2 m-2 font-medium rounded-lg hover:bg-accent1 transition">Track Order</a>
-                        <!-- Return -->
-                        <a href="{{ route('order.return', $order->id) }}" class="bg-gray-200 p-2 m-2 font-medium rounded-lg hover:bg-gray-300 transition">Return</a>
+                        <!-- Show return button only for Pending, Processing and Shipped orders -->
+                        @if ($order->status == 'Delivered' || $order->status == 'Completed')
+                            <!-- Return -->
+                            <a href="{{ route('order.return', $order->id) }}" class="bg-gray-200 p-2 m-2 font-medium rounded-lg hover:bg-gray-300 transition">Return</a>
+                        @elseif ($order->status == 'Pending' || $order->status == 'Processing' || $order->status == 'Shipped')
+                            <!-- Cancel -->
+                            <a href="" class="bg-red-500 text-white p-2 m-2 font-medium rounded-lg hover:bg-red-600 transition">Cancel</a>
+                        @endif
                     </div>
                 </div>
             </div>
