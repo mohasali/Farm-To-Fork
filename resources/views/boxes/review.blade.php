@@ -46,6 +46,17 @@
                     <label class="text-sm font-medium mb-2">Review</label>
                     <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" minlength="10" maxlength="280" required></textarea>
                 </div>
+                <p class="text-lg font-bold">What do you think of our website?</p>
+                <!-- Site Title -->
+                <div class="mb-4">
+                    <label class="text-sm font-medium mb-2">Title</label>
+                    <input type="text" id="title" name="title" class="w-full p-2 rounded-lg" placeholder="Write a catchy title" minlength="1" maxlength="80" required>
+                </div>
+                <!-- Site Review paragraph -->
+                <div class="mb-4">
+                    <label class="text-sm font-medium mb-2">Review</label>
+                    <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" minlength="10" maxlength="280" required></textarea>
+                </div>
                 <!-- Submit  -->
                 <div class="text-center flex-inline flex-col space-y-4">
                     <a href="{{ url('/boxes/' . $box->id) }}" class="bg-gray-300 text-gray-70 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-400">Cancel</a>

@@ -12,6 +12,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SiteReviewController;
 use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
@@ -108,7 +109,7 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
 //Reviews
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
-
+Route::get('/reviews/{$siteReviews}', [SiteReviewController::class, 'show']);
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
