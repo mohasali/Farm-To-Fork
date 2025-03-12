@@ -31,7 +31,16 @@
                 <div class="mt-4">
                     <p class="text-sm text-gray-500">
                         <span class="font-semibold">Status:</span> 
-                        {{ $order->status }}
+                        <span class="text-sm px-3 py-1 rounded-lg text-white
+                            @if($order->status == 'Pending') bg-yellow-500 
+                            @elseif($order->status == 'Processing') bg-blue-500 
+                            @elseif($order->status == 'Shipped') bg-indigo-500 
+                            @elseif($order->status == 'Out For Delivery') bg-orange-500 
+                            @elseif($order->status == 'Delivered') bg-green-500 
+                            @elseif($order->status == 'Completed') bg-emerald-500 
+                            @else bg-red-500 @endif">
+                            {{ $order->status }}
+                        </span>
                     </p>
                     <p class="text-sm text-gray-500">
                         <span class="font-semibold">Shipping Address:</span> 

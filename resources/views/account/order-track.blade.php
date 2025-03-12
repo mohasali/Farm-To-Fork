@@ -65,12 +65,27 @@
                     <h2 class="text-xl font-semibold mb-4">Items Ordered</h2>
                     <div class="space-y-4">
                         @foreach($order->itemOrders as $item)
+                            <!-- If item is the last item in array index, remove border-b -->
                             <div class="flex items-center justify-between border-b pb-4">
                                 <div>
                                     <h3 class="font-semibold">{{ $item->box->title }}</h3>
-                                    <p class="text-class="w-16 h-16 object-covsm text-gray-500">Quantity: {{ $item->quantity }}</p>
+                                    <!-- Grab all images -->
+                                    @php
+                                        $images = $item->box->getImages();
+                                    @endphp
+                                    <div class="flex flex-row">
+                                    @if (!empty($images))
+                                        @foreach ($images as $image)
+                                            <img src="{{ asset($image) }}" alt="Box Image" class="mx-auto my-4 h-48 object-cover rounded-lg">
+                                        @endforeach
+                                    @else
+                                        <p class="text-black">No images available.</p>
+                                    @endif
+                                    </div>
+                                    <!-- Item quantity -->
+                                    <p class="w-16 h-16 object-covsm text-gray-500">Quantity: {{ $item->quantity }}</p>
+                                    <p class="font-semibold">£{{ number_format($item->box->price * $item->quantity, 2) }}</p>
                                 </div>
-                                <p class="font-semibold">£{{ number_format($item->box->price * $item->quantity, 2) }}</p>
                             </div>
                         @endforeach
                     </div>
