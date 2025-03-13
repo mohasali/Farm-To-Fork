@@ -85,9 +85,9 @@
           </p>
       </div>
     </div>
-    @endforeach 
-
+    @endforeach
   </div>
+  <a href='review' class="px-7 py-3 mt-4 flex flex-col items-center bg-primary text-white rounded-lg hover:bg-accent1 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Give us a review!</a>  
 </section>
 
 

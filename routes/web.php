@@ -25,10 +25,17 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+
+//Site Review Page
+Route::get('/review', function(){
+    return view('review');
+})->middleware('auth');
+
 // Contact Page
 Route::get('/contact', function () {
     return view('contact');
 });
+
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -111,6 +118,8 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
 Route::get('/{id}', [SiteReviewController::class, 'show']);
 Route::get('/', [SiteReviewController::class, 'siteReviews']);
+Route::post('/review', [SiteReviewController::class, 'store']);
+
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
