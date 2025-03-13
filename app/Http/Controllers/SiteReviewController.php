@@ -24,6 +24,6 @@ class SiteReviewController extends Controller
             'site_description' => request()->description,
             'user_id'=>Auth::user()->id,
         ]);
-        return redirect()->back()->with(['success'=> 'Review added succesfully.']);
+        return redirect('/');
     }
 }
