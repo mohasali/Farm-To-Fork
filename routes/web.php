@@ -14,12 +14,13 @@ use App\Http\Controllers\UserAddressesController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SiteReviewController;
 use App\Models\Review;
+use App\Models\SiteReview;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
-    $reviews = Review::orderByDesc('rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
-    return view('home',['reviews'=>$reviews]);
+    $siteReviews = SiteReview::orderByDesc('site_rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
+    return view('home',['siteReviews'=>$siteReviews]);
 });
 
 Route::get('/about', function () {
@@ -117,7 +118,7 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 //Reviews
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
 Route::get('/{id}', [SiteReviewController::class, 'show']);
-Route::get('/', [SiteReviewController::class, 'siteReviews']);
+//Route::get('/', [SiteReviewController::class, 'siteReviews']);
 Route::post('/review', [SiteReviewController::class, 'store']);
 
 
