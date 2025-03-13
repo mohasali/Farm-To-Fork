@@ -68,18 +68,18 @@
     <h1 class="text-4xl font-bold">What do our customers think?</h1>
   </div>
   <div class="bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 rounded-2xl drop-shadow-lg w-[90%]">
-    @foreach ($reviews as $review)
+    @foreach ($siteReviews as $review)
       <div class="bg-gray-100 w-full rounded-lg p-4 flex flex-col justify-between min-h-[250px]">
-      <h1 class="text-primary font-bold text-lg">{{ $review->title }}</h1>
-      <p class="text-sm md:text-base mt-2">{{ $review->description }}</p>
+      <h1 class="text-primary font-bold text-lg">{{ $review->site_title }}</h1>
+      <p class="text-sm md:text-base mt-2">{{ $review->site_description }}</p>
       <hr class="mt-2 mb-2">
       <div class="flex justify-between items-center">
         <h1 class="font-bold">{{ $review->user->name }}</h1>
         <p>
-          @for ($i = $review->rating; $i>0; $i--)
+          @for ($i = $review->site_rating; $i>0; $i--)
           🥕
           @endfor
-          @for ($i = $review->rating; $i<5; $i++)
+          @for ($i = $review->site_rating; $i<5; $i++)
           <span style="color: transparent; text-shadow: 0 0 darkgray">🥕</span>
           @endfor
           </p>
@@ -87,6 +87,7 @@
     </div>
     @endforeach
   </div>
+  <a href='review' class="px-7 py-3 mt-4 flex flex-col items-center bg-primary text-white rounded-lg hover:bg-accent1 text-lg md:text-2xl font-bold transition duration-300 ease-in-out">Give us a review!</a>  
 </section>
 
 
