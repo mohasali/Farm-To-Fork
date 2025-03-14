@@ -9,12 +9,18 @@
     </section>
     
     <div class="flex flex-wrap justify-between items-center w-full mt-6 mb-12 px-5">
-        <div>
-            <button class="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out" id="filter-menu-toggle">
+        <div class="relative group">
+            <button class="flex items-center px-4 py-2 mb-4 bg-primary text-white rounded-lg hover:bg-accent1 transition duration-300 ease-in-out" id="filter-menu-toggle">
                 <span>Filters</span>
             </button>
-    
-            <div class="absolute mt-2 hidden bg-white border border-gray-200 shadow-md rounded-lg w-64 z-10" id="filter-menu">
+            <!-- If filters are applied, show clear filters button -->
+            @if($type || request()->tags || request()->min_price || request()->max_price)
+            <a href="/boxes" class="w-full mt-8 px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition">
+                Clear Filters
+            </a>
+            @endif
+            
+            <div class="absolute mt-2 -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 bg-white border border-gray-200 shadow-md rounded-lg w-64 z-10 transition-all duration-300 ease-in-out" id="filter-menu">
                 <div class="flex flex-col justify-center text-center p-4 space-y-3">
 
                     <h3 class="font-bold text-lg text-gray-800">Categories</h3>
@@ -36,24 +42,39 @@
                         <input hidden value="{{ request()->q }}" name="q">
                     @endif
                     <h3 class="font-bold text-lg text-gray-800">Filter Options</h3>
-                        @foreach ($tags as $tag)
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="form-checkbox text-primary" name="tags[]" value="{{$tag->id}}" {{ is_array(request()->tags) && in_array($tag->id, request()->tags) ? 'checked' : '' }}>
-                            <span>{{ $tag->name }}</span>
-                        </label>
-                        @endforeach
+                    @foreach ($tags as $tag)
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" class="form-checkbox text-primary" name="tags[]" value="{{$tag->id}}" {{ is_array(request()->tags) && in_array($tag->id, request()->tags) ? 'checked' : '' }}>
+                        <span>{{ $tag->name }}</span>
+                    </label>
+                    @endforeach
+                    
+                    <!-- Price filter with slider -->
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-lg text-gray-800">Price Range</h3>
+                        <div class="flex justify-between text-sm text-gray-700">
+                            <span>£<span id="min-price-display">{{ request()->min_price ?? 0 }}</span></span>
+                            <span>£<span id="max-price-display">{{ request()->max_price ?? 100 }}</span></span>
+                        </div>
+                        <div class="space-y-2">
+                            <input type="range" id="min-price" name="min_price" min="0" max="100" value="{{ request()->min_price ?? 0 }}" class="w-full accent-primary">
+                            <input type="range" id="max-price" name="max_price" min="0" max="100" value="{{ request()->max_price ?? 100 }}" class="w-full accent-primary">
+                        </div>
+                    </div>
 
-                        <button class="w-full mt-3 px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition" type="submit">
-                            Apply Filters
-                        </button>
+                    <!-- Apply -->
+                    <button class="w-full mt-3 px-4 py-2 bg-primary text-white rounded-lg hover:bg-accent1 transition" type="submit">
+                        Apply Filters
+                    </button>
                 </form>
             </div>
         </div>
 
         <div class="text-center">
-            <h3 class=" text-5xl font-bold">{{ $type }}</h3>
+            <h3 class=" text-5xl font-bold m-4">{{ $type }}</h3>
         </div>
-
+        
+        <!-- Search bar -->
         <div class="w-full md:w-auto mt-3 md:mt-0">
             <form class="relative group" method="GET">
                 @if($type)
@@ -104,11 +125,32 @@
     </div>
     <div class="my-6 mx-8"> {{$boxes->links()}} </div>
     @vite(['resources/js/boxesIndex.js'])
-</x-layout>
+    <script>
+        const minPriceInput = document.getElementById("min-price");
+        const maxPriceInput = document.getElementById("max-price");
+        const minPriceDisplay = document.getElementById("min-price-display");
+        const maxPriceDisplay = document.getElementById("max-price-display");
+        
+        function updatePriceDisplays() {
+            minPriceDisplay.textContent = minPriceInput.value;
+            maxPriceDisplay.textContent = maxPriceInput.value;
+        }
 
-<script>
-    document.getElementById('filter-menu-toggle').addEventListener('click', () => {
-    const menu = document.getElementById('filter-menu');
-    menu.classList.toggle('hidden');
-});
- </script>
+        minPriceInput.addEventListener("input", () => {
+            if (parseInt(minPriceInput.value) >= parseInt(maxPriceInput.value)) {
+                minPriceInput.value = maxPriceInput.value - 1;
+            }
+            updatePriceDisplays();
+        });
+        
+        maxPriceInput.addEventListener("input", () => {
+            if (parseInt(maxPriceInput.value) <= parseInt(minPriceInput.value)) {
+                maxPriceInput.value = parseInt(minPriceInput.value) + 1;
+            }
+            updatePriceDisplays();
+        });
+
+        // Initialize displays
+        updatePriceDisplays();
+    </script>
+</x-layout>

@@ -66,7 +66,7 @@
                     <div class="space-y-4">
                         @foreach($order->itemOrders as $item)
                             <!-- If item is the last item in array index, remove border-b -->
-                            <div class="flex items-center justify-between border-b pb-4">
+                            <div class="flex items-center justify-between {{ !$loop->last ? 'border-b' : '' }} pb-4">
                                 <div>
                                     <h3 class="font-semibold">{{ $item->box->title }}</h3>
                                     <!-- Grab all images -->
