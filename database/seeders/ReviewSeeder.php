@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Box;
 use App\Models\Review;
+use App\Models\SiteReview;
 
 class ReviewSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class ReviewSeeder extends Seeder
         while(($data = fgetcsv($reviewCSV, 5000, ",")) !== false){
             if(!$firstline){
                
+                //box reviews
                 $review = Review::create([
                     'rating' => $data[0],
                     'title' => $data[1],
@@ -36,6 +38,16 @@ class ReviewSeeder extends Seeder
                     //seeding foreign keys
                     'user_id' => User::factory()->create()->id,
                     'box_id' => Box::factory()->create()->id,
+                ]);
+
+                //site review
+                $site_review = SiteReview::create([
+                    'site_rating' => $data[5],
+                    'site_title' => $data[6],
+                    'site_description' => $data[7],
+
+                    //FK
+                    'user_id' => User::factory()->create()->id,
                 ]);
 
             }

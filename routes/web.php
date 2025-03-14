@@ -12,22 +12,31 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SiteReviewController;
 use App\Models\Review;
+use App\Models\SiteReview;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
 Route::get('/', function () {
-    $reviews = Review::orderByDesc('rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
-    return view('home',['reviews'=>$reviews]);
+    $siteReviews = SiteReview::orderByDesc('site_rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
+    return view('home',['siteReviews'=>$siteReviews]);
 });
 
 Route::get('/about', function () {
     return view('about');
 });
+
+//Site Review Page
+Route::get('/review', function(){
+    return view('review');
+})->middleware('auth');
+
 // Contact Page
 Route::get('/contact', function () {
     return view('contact');
 });
+
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -110,6 +119,9 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
 //Reviews
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
+Route::get('/{id}', [SiteReviewController::class, 'show']);
+//Route::get('/', [SiteReviewController::class, 'siteReviews']);
+Route::post('/review', [SiteReviewController::class, 'store']);
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
