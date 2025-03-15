@@ -44,7 +44,7 @@
                 <!-- Review paragraph -->
                 <div class="mb-4">
                     <label class="text-sm font-medium mb-2">Review</label>
-                    <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" minlength="10" maxlength="280"></textarea>
+                    <textarea type="text" id="reviewtext" name="description" class="w-full p-2 rounded resize-none" placeholder="What should other customers know?" rows="5" minlength="10" maxlength="280" required></textarea>
                 </div>
                 <!-- Submit  -->
                 <div class="text-center flex-inline flex-col space-y-4">

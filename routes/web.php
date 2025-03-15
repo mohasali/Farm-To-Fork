@@ -27,16 +27,18 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
 //Site Review Page
+
 Route::get('/review', function(){
     return view('review');
 })->middleware('auth');
+
 
 // Contact Page
 Route::get('/contact', function () {
     return view('contact');
 });
-
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -117,12 +119,6 @@ Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])-
 Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
-//Reviews
-Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
-Route::get('/{id}', [SiteReviewController::class, 'show']);
-//Route::get('/', [SiteReviewController::class, 'siteReviews']);
-Route::post('/review', [SiteReviewController::class, 'store']);
-
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
@@ -140,3 +136,9 @@ Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->nam
 
 // Customer pages
 Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
+
+//Reviews - KEEP AT THE BOTTOM 
+Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
+Route::get('/{id}', [SiteReviewController::class, 'show']);
+//Route::get('/', [SiteReviewController::class, 'siteReviews']);
+Route::post('/review', [SiteReviewController::class, 'store']);
