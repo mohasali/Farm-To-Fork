@@ -1,8 +1,8 @@
 <x-layout>
-    <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto p-4 md:my-16 bg-gray-50 rounded-lg shadow-lg">
+    <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto p-2 md:p-4 md:my-8 bg-gray-50 rounded-lg shadow-lg">
         
         <!-- Sidebar -->
-        <aside class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-md flex flex-col items-center h-auto md:h-[475px] mb-4">            
+        <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md flex flex-col items-center h-auto md:max-h-[calc(100vh-4rem)] mb-2 md:mb-0 overflow-y-auto">            
             <!-- User Info -->
             <div class="text-center mb-6">
                 <h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2>
@@ -30,10 +30,8 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="w-full md:w-3/4 bg-white p-8 rounded-lg shadow-md md:ml-4 overflow-y-auto max-h-[475px]">
-
+        <main class="w-full md:w-3/4 bg-white p-4 md:p-6 rounded-lg shadow-md md:ml-4 flex-1 overflow-y-auto md:max-h-[calc(100vh-4rem)]">
             {{ $slot }}
-            
         </main>
     </div>
 </x-layout>

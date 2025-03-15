@@ -14,27 +14,39 @@ class BoxController extends Controller
         $request->validate([
             'type' => 'string',
             'q' => 'string',
-            'tags' => 'array'
+            'tags' => 'array',
+            'min_price' => 'numeric|min:0',
+            'max_price' => 'numeric|min:0'
         ]);
     
         $q = $request->input('q');
         $tags = $request->input('tags');
         $type = urldecode($request->input('type'));
+        $minPrice = $request->input('min_price', 0);
+        $maxPrice = $request->input('max_price', 100);
     
         $query = Box::query();
     
+        // Filter based on type
         if ($type) {
             $query->where('type', '=', $type);
         }
-    
+
+        // Filter based on tags
         if ($tags) {
             $query->whereHas('tags', fn($tagQuery) => $tagQuery->whereIn('tags.id', $tags));
         }
     
+        // Filter based on search
         if ($q) {
             $query->where(fn($searchQuery) =>
                 $searchQuery->where('title', 'LIKE', '%' . $q . '%')
             );
+        }
+
+        // Filter based on price
+        if ($minPrice !== null && $maxPrice !== null) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
         }
     
         $boxes = $query->paginate(12);
@@ -46,7 +58,9 @@ class BoxController extends Controller
             'type' => $type,
             'types' => Box::getEnumTypes(),
             'tags' => $tags,
-            'images' => $images
+            'images' => $images,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice
         ]);
     }
     

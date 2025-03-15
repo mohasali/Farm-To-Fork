@@ -92,4 +92,21 @@ class CheckoutController extends Controller
         return view('cart.confirmed',['order'=>$order]);
     }
 
+    // Update order status
+    public function update(Request $request, Order $order)
+    {
+        // Validate the request data
+        $request->validate([
+            'status' => ['required', Rule::in(['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled'])]
+        ]);
+        
+        // Update the order status
+        $order->update([
+            'status' => $request->status
+        ]);
+
+        // Return with success message
+        return back()->with('success', 'Order status updated successfully');
+    }
+
 }

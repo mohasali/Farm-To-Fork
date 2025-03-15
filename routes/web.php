@@ -27,16 +27,18 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
 //Site Review Page
+
 Route::get('/review', function(){
     return view('review');
 })->middleware('auth');
+
 
 // Contact Page
 Route::get('/contact', function () {
     return view('contact');
 });
-
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -99,6 +101,8 @@ Route::patch('/user', [UserController::class, 'update'])->name('user.update');
 // Edit contact preferences
 Route::middleware(['auth'])->group(function () {
     Route::put('/account/update-contact-preferences', [UserController::class, 'updateContactPreferences'])->name('account.update.contact.preferences');
+    Route::match(['get', 'post'], '/account/orders/{order}/track', [AccountController::class, 'track'])->name('order.track');
+    Route::match(['get', 'post'], '/account/orders/{order}/return', [AccountController::class, 'return'])->name('order.return');
 });
 
 // Checkout
@@ -115,13 +119,6 @@ Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])-
 Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
 
-//Reviews
-Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
-Route::get('/{id}', [SiteReviewController::class, 'show']);
-//Route::get('/', [SiteReviewController::class, 'siteReviews']);
-Route::post('/review', [SiteReviewController::class, 'store']);
-
-
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
     Route::get('/admin','index')->name('admin.index');
@@ -134,5 +131,14 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::post('/admin/products','addProduct');
 });
 
+// Orders
+Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->name('admin.orders.update')->middleware(IsAdmin::class);
+
 // Customer pages
 Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
+
+//Reviews - KEEP AT THE BOTTOM 
+Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);
+Route::get('/{id}', [SiteReviewController::class, 'show']);
+//Route::get('/', [SiteReviewController::class, 'siteReviews']);
+Route::post('/review', [SiteReviewController::class, 'store']);
