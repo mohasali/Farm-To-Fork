@@ -9,6 +9,8 @@
             <x-form-input name="password" id="password" type="password" label="Password"/>
             <x-form-error name="password"/>
 
+            <a href="forgot-password" class="ml-2 md:ml-1 text-secondary text-sm">Forgot Password? </a>
+
             <button class="bg-primary text-white py-2 rounded hover:bg-accent1 text-lg mt-4">Log In</button>
              
             <div class="flex items-center">
