@@ -139,7 +139,7 @@
                     @if(!$reviews->isEmpty())
                         @foreach($reviews as $review)
                         <div class="mb-6 pb-4 border-b border-gray-300 last:border-0">
-                            <h1 class="text-lg font-bold">{{ $review->user->name }}</h1>
+                            <h1 class="text-lg font-bold">{{ $review->user->name ?? 'Deleted User'}}</h1>
                             <div class="flex items-center space-x-2">
                                 <p>
                                 @for ($i = $review->rating; $i>0; $i--)

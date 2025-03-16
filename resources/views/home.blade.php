@@ -74,7 +74,7 @@
       <p class="text-sm md:text-base mt-2">{{ $review->site_description }}</p>
       <hr class="mt-2 mb-2">
       <div class="flex justify-between items-center">
-        <h1 class="font-bold">{{ $review->user->name }}</h1>
+        <h1 class="review-username">{{ $review->user->name ?? 'Deleted User' }}</h1>
         <p>
           @for ($i = $review->site_rating; $i>0; $i--)
           🥕

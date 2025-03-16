@@ -5,7 +5,7 @@
         <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md flex flex-col items-center h-auto md:max-h-[calc(100vh-4rem)] mb-2 md:mb-0 overflow-y-auto">            
             <!-- User Info -->
             <div class="text-center mb-6">
-                <h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2>
+                <a href="/customer/{{Auth::user()->id}}"><h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2></a>
             </div>
 
             <!-- Navigation Links -->

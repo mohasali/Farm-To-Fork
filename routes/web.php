@@ -95,6 +95,9 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
 });
 
+Route::get('/customer/{id}/edit/{field}', [UserController::class, 'edit'])->name('customer.edit');
+Route::put('/customer/{id}/update', [UserController::class, 'updateAdmin'])->name('customer.update');
+
 // Edit account personal information
 Route::patch('/user', [UserController::class, 'update'])->name('user.update');
 
@@ -136,6 +139,7 @@ Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->nam
 
 // Customer pages
 Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
+Route::delete('/customer/{user}', [UserController::class, 'destroy'])->name('customer.remove')->middleware(IsAdmin::class);
 
 //Reviews - KEEP AT THE BOTTOM 
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);

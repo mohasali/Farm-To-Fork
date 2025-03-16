@@ -103,8 +103,74 @@ class UserController extends Controller
         return redirect(route('account.contactpref'))->with('success', 'Contact preferences updated successfully.');
     }
 
+    // Show customer
     public function show($id){
         $user = User::with('orders.itemOrders.box')->findOrFail($id);
         return view('customer.show', compact('user'));
     }
+
+    // Delete customer
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        
+        // Check if admin
+        if (!auth()->user()->isAdmin) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+        
+        $user->delete();
+        
+        return redirect('/admin/customers')->with('success', 'Customer deleted successfully');
+    }
+
+    // Admin edit customer -
+    public function edit($id, $field){
+        $user = User::findOrFail($id);
+        
+        // Check if admin
+        if (!auth()->user()->isAdmin) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+        
+        return view('customer.edit', compact('user', 'field'));
+    }
+
+    public function updateAdmin(Request $request, $id){
+        $user = User::findOrFail($id);
+        
+        // Check if admin
+        if (!auth()->user()->isAdmin) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+        
+        $field = $request->field;
+        
+        // Validation
+        if ($field == 'name') {
+            // Name
+            $request->validate(['name' => 'required|string|max:255']);
+        } elseif ($field == 'email') {
+            // Email
+            $request->validate(['email' => 'required|email|unique:users,email,'.$user->id]);
+        } elseif ($field == 'phone') {
+            // Phone
+            $request->validate(['phone' => 'nullable|string|max:20']);
+        } elseif ($field == 'password') {
+            // Password
+            $request->validate([
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+            
+            $user->password = Hash::make($request->password);
+            $user->save();
+            
+            return redirect('/customer/' . $user->id)->with('success', 'Password updated successfully');
+        }
+        
+        $user->$field = $request->$field;
+        $user->save();
+        
+        return redirect('/customer/' . $user->id)->with('success', ucfirst($field) . ' updated successfully');
+    }
+
 }
