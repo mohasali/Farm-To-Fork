@@ -20,6 +20,8 @@ class UserController extends Controller
                              'phone' => ['required', 'string', 'min:10', 'max:15'],
                              'password'=>['confirmed','required',Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
+        $attributes['upvotes'] = 0;
+        $attributes['egg_count'] = 0;
         $user = User::create($attributes);
         Auth::login($user);
 
@@ -172,5 +174,4 @@ class UserController extends Controller
         
         return redirect('/customer/' . $user->id)->with('success', ucfirst($field) . ' updated successfully');
     }
-
 }

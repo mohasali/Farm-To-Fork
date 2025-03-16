@@ -1,6 +1,23 @@
 <script src="{{ asset('js/slides.js') }}"></script>
 <x-layout>
   <section class="relative w-full min-h-[calc(100vh-200px)] bg-cover bg-center" style="background-image: url('images/bg1.jpg');">
+    <!-- Egg hunt banner -->
+    <div class="flex flex-col pt-16 text-center">
+      <h1 class="font-bold text-2xl text-primary">Egg Hunt is now LIVE</h1> 
+      <p>5 eggs have been scattered across the website<br></p>
+      <p>Find them all to win a prize!</p>
+      <!-- Loop through egg_count and if user has found an egg, display it normally else display a transparent egg -->
+      <p>
+        @for ($i = 1; $i <= 5; $i++)
+          @if ($i <= 5) <!-- egg_count -->
+            <span class="text-black">🥚</span>
+          @else
+            <span class="text-black opacity-20">🥚</span>
+          @endif
+        @endfor
+      </p>
+    </div>
+    <!-- Farm to Fork -->
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
       <h1 class="text-5xl font-bold pb-4">Farm To Fork</h1>
       <h2 class="text-primary text-2xl font-semibold pb-8">Fresh Ingredients, Delivered to Your Doorstep</h2>

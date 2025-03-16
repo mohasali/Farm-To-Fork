@@ -17,7 +17,8 @@
                     @endif
                 </div>
                 <p class="text-gray-500 text-sm sm:text-base">{{ $user->email }}</p>
-                <p class="text-primary text-sm sm:text-md pb-4">Upvotes: 0</p>
+                <p class="text-primary text-sm sm:text-md">Upvotes: {{ $user->upvotes}}</p>
+                <p class="text-primary text-sm sm:text-md pb-4">Egg count: {{ $user->egg_count }}</p>
                 @if (auth()->user()->isAdmin)
                     <form action="{{ route('customer.remove', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
                         @csrf

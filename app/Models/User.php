@@ -22,7 +22,9 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'contact_preferences'
+        'contact_preferences',
+        'upvotes',
+        'egg_count'
     ];
 
     /**

@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             'phone' => '0712345678',
             'email' => 'test@example.com',
             'contact_preferences' => '["phone"]', // lowercase pref (email, phone) in array
+            'upvotes' => 100,
+            'egg_count' => 0,
             'isAdmin' => true,
         ]);
 

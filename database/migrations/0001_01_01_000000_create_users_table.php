@@ -22,6 +22,8 @@ return new class extends Migration
             $table->timestamps();
             $table->boolean('isAdmin')->default(false);
             $table->json('contact_preferences')->nullable();
+            $table->integer('upvotes')->default(0);
+            $table->integer('egg_count')->default(0);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
