@@ -15,6 +15,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SiteReviewController;
 use App\Models\Review;
 use App\Models\SiteReview;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Home / Index
@@ -133,6 +135,15 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
 });
+
+// Update customer roles
+Route::put('/update-user-role/{id}', function(Request $request, $id) {
+    $user = User::findOrFail($id);
+    $user->isAdmin = $request->isAdmin;
+    $user->save();
+
+    return back()->with('success', 'User role updated successfully.');
+})->name('update-user-role');
 
 // Orders
 Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->name('admin.orders.update')->middleware(IsAdmin::class);
