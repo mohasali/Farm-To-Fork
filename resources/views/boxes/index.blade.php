@@ -103,7 +103,7 @@
                     <div class="slides fade group rounded-lg">
                         <img 
                             class="h-48 object-cover rounded-lg" 
-                            src="{{ $image }}" 
+                            src="{{ $boxImages[0] }}" 
                             alt="{{ $box->title }} Image">
                     </div>
                     @endforeach
