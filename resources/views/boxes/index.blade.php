@@ -107,6 +107,14 @@
                             alt="{{ $box->title }} Image">
                     </div>
                     @endforeach
+                    
+                     <!-- Dynamic Pricing Label -->
+
+                     @if($box->type == 'Dynamic Pricing')
+                    <div class="absolute top-2 right-2 bg-green-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                     Dynamically Priced
+                    </div>
+                    @endif
                 </div>
                 <div class="flex items-baseline p-2 w-full justify-evenly group-hover:text-accent2 transition duration-300 ease-in-out">
                     <div class="font-bold text-mg pr-4" >{{ $box->title }}</div>

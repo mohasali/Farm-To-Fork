@@ -25,7 +25,17 @@
                         Only {{ $box->stock }} left
                     </div>
                     @endif
+
+                    <!-- Dynamic Pricing Label -->
+
+                    @if($box->type == 'Dynamic Pricing')
+                    <div class="absolute top-2 right-2 bg-green-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                     Dynamically Priced
+                    </div>
+                    @endif
                 </div>
+
+                
                 
                 <!-- Dots below image -->
                 <div class="dots-container text-center mt-4">
