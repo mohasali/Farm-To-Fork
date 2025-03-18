@@ -21,6 +21,7 @@ class BoxSeeder extends Seeder
         $boxCSV = fopen(base_path("database/data/Box-data.csv"),"r");
         // disregards the firstline - headings
         $firstline = true;
+
         //reads the data
         while(($data=fgetcsv($boxCSV,5000,",")) !==False){
             
@@ -34,7 +35,7 @@ class BoxSeeder extends Seeder
                     'price'=> (float) $data[2],
                     'description'=> $data[3],
                     'stock' => random_int(1,15),
-                    'imagePath' => '/images/covers/default_cover.png'
+                    'imagePath' => $data[4],
                 ]);
             }
             $firstline = false;
