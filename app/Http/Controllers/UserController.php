@@ -231,7 +231,7 @@ class UserController extends Controller
         Log::debug('An informational message.');
         $attributes = request()->validate([
             'email'=>['required','email'],
-            'password'=>[/*'confirmed',*/ 'required',Password::min(8)->mixedCase()->numbers()->symbols()],
+            'password'=>['confirmed', 'required',Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
 
         $updatePassword = DB::table('password_reset')->where([
