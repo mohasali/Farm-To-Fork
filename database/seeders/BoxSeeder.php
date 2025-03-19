@@ -35,7 +35,7 @@ class BoxSeeder extends Seeder
                     'price'=> (float) $data[2],
                     'description'=> $data[3],
                     'stock' => random_int(1,15),
-                    'imagePath' => $data[4],
+                    'image_path' => $data[4]
                 ]);
             }
             $firstline = false;
