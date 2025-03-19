@@ -25,17 +25,9 @@
                                 <input class="ml-4 mt-1" type="checkbox" id="items[]" name="items[]" value="{{ $item->id }}">
                             </div>
                             <!-- Grab all images -->
-                            @php
-                                $images = $item->box->getImages();
-                            @endphp
+             
                             <div class="flex flex-row">
-                            @if (!empty($images))
-                                @foreach ($images as $image)
-                                    <img src="{{ asset($image) }}" alt="Box Image" class="mx-auto my-4 h-36 object-cover rounded-lg">
-                                @endforeach
-                            @else
-                                <p class="text-black">No images available.</p>
-                            @endif
+                                <img src="{{ $item->box->getImages()[0] }}" alt="Box Image" class="mx-auto my-4 h-36 object-cover rounded-lg">
                             </div>
                             <!-- Item quantity -->
                             <p class="w-16 h-16 object-covsm text-gray-500">Quantity: {{ $item->quantity }}</p>
