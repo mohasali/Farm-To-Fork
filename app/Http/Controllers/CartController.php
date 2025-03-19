@@ -29,17 +29,29 @@ class CartController extends Controller
         $cartItem = Cart::firstOrCreate(['box_id'=>$request->boxId,'user_id'=>Auth::user()->id]);
 
         $increment = $request->input('increment', 1);
-        $cartItem->increment('quantity',$increment);
+        
+        if($cartItem->box->stock >= $cartItem->quantity + (int)$increment){         
+            $cartItem->increment('quantity',$increment);
 
-        return redirect()->back()->with(['success'=> 'Item added to cart successfully!','boxId'=>$request->boxId]);
+            return redirect()->back()->with(['success'=> 'Item added to cart successfully!']);
+        }
+
+        if($cartItem->quantity == 0){
+            $cartItem->delete();
+        }
+        return redirect()->back()->with(['message'=> 'Not enough items in stock.']); 
     }
 
     public function update(Cart $cart){
         request()->validate([
             'quantity' => 'required|numeric|gt:0'
         ]);
-        $cart->update(['quantity'=>request('quantity')]);
-        return redirect()->back();
+        if($cart->box->stock >= request('quantity')){ 
+            $cart->update(['quantity'=>request('quantity')]);        
+            return redirect()->back();
+        }
+        return redirect()->back()->with(['message'=> 'Not enough items in stock.']); 
+
     }
 
     public function delete(Cart $cart){

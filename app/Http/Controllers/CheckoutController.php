@@ -6,7 +6,10 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\ItemOrder;
+use App\Models\PromoCode;
 use Illuminate\Validation\Rule;
+
+use function PHPUnit\Framework\isEmpty;
 
 class CheckoutController extends Controller
 {
@@ -14,7 +17,13 @@ class CheckoutController extends Controller
         $total =Cart::getTotal(Auth::user());
         $cartItems = Cart::getItems(Auth::user());
         $addresses = Auth::user()->addresses()->get();
-        return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems,'addresses'=>$addresses]);
+        $payments = Auth::user()->payments()->get();
+
+        if($cartItems->count()==0){
+            return redirect()->route('cart.show');
+        }
+
+        return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems,'addresses'=>$addresses,'payments'=>$payments]);
     }
 
     public function process(Request $request)
@@ -34,27 +43,37 @@ class CheckoutController extends Controller
             'phone' => 'required|numeric|digits_between:10,15',
             'card' => 'required|digits:16',
             'cvv' => 'required|digits_between:3,4',
-            'exp' => ['required', 'date_format:m/y', 'after:today'],
+            'exp' => ['required', 'date_format:m/y', 'after:today']
         ], [
             'exp.after' => 'The expiration date must be after the end of the current month.',
             'exp.date_format' => 'The expiration date must be in the format MM/YY.',
             'exp.required' => 'The expiration date is required.',
         ]);
-        
-
-        // Get the total from the cart
+                // Get the total from the cart
         $total = Cart::getTotal(Auth::user());
+        if($request['promo']!=""){
+            $promo = PromoCode::where('code',$request['promo'])->first();
+            if($promo==null){
+                return redirect()->route('checkout')->with('message', 'The promo code is invalid.');;
+            }
+            $total = $total*(1-$promo->value);
+            $promo->count --;
+            if($promo->count <= 0){
+                $promo->delete();
+            }
+    
+        }
 
-        // Create the order
-        $order = Order::create([
-            'user_id' => Auth::id(),
-            'total' => $total,
-            'name' => $attributes['name'],
-            'address' => $attributes['address'],
-            'city' => $attributes['city'],
-            'postcode' => $attributes['postcode'],
-            'country' => $attributes['country'],
-        ]);
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->total = $total;
+        $order->name = $attributes['name'];
+        $order->address = $attributes['address'];
+        $order->city = $attributes['city'];
+        $order->postcode = $attributes['postcode'];
+        $order->country = $attributes['country'];
+        $order->save();
+
 
         // Get the items from the cart
         $items = Cart::getItems(Auth::user());
@@ -67,6 +86,8 @@ class CheckoutController extends Controller
                 'quantity' => $item->quantity,
             ]);
 
+            $item->box->stock -= $item->quantity;
+            $item->box->save();
             // Delete the item from the cart after processing it
             $item->delete();
         }
@@ -90,6 +111,23 @@ class CheckoutController extends Controller
         $order = Order::findOrFail($orderId);
 
         return view('cart.confirmed',['order'=>$order]);
+    }
+
+    // Update order status
+    public function update(Request $request, Order $order)
+    {
+        // Validate the request data
+        $request->validate([
+            'status' => ['required', Rule::in(['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled','Returned'])]
+        ]);
+        
+        // Update the order status
+        $order->update([
+            'status' => $request->status
+        ]);
+
+        // Return with success message
+        return back()->with('success', 'Order status updated successfully');
     }
 
 }

@@ -22,8 +22,6 @@ class BoxFactory extends Factory
             'type' => fake()->randomElement(Box::getEnumTypes()),
             'description' => fake()->text(500),
             'price' => fake()->randomFloat(2,10,40),
-            'imagePath' => '/images/crate.jpg'
-
         ];
     }
 }

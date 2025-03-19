@@ -83,6 +83,7 @@
             <p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which You are resident.</p>
             <!-- United States Legal Compliance -->
             <h4 class="text-black text-xl md:text-3xl font-bold mt-8">United States Legal Compliance</h4>
+            <x-egg :value="1"/>
             <p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a &quot;terrorist supporting&quot; country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
             <!-- Severability and Waiver -->
             <h4 class="text-black text-xl md:text-3xl font-bold mt-8">Severability and Waiver</h4>

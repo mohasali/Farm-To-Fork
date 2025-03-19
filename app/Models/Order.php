@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $guarded = [];
+    protected $fillable = ['status'];
+
+    public static $orderedStatuses = ['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled','Returned'];
 
     public function user()
     {
@@ -16,5 +19,9 @@ class Order extends Model
     public function itemOrders()
     {
         return $this->hasMany(ItemOrder::class);
+    }
+
+    public function refund(){
+        return $this->hasOne(Refund::class);
     }
 }

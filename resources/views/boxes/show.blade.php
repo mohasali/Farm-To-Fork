@@ -1,4 +1,12 @@
 <x-layout>
+    @if (session('message'))
+            <div class="max-w-4xl mx-auto my-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 shadow-md rounded-lg flex items-center">
+                <!-- Message Text -->
+                <div class="text-sm font-medium">
+                    {{ session('message') }}
+                </div>
+            </div>
+        @endif
     <div class="flex flex-col justify-start mt-8 mb-6">
         <div class="flex flex-col md:flex-row mx-auto space-y-6 md:space-y-0 md:space-x-6 p-4 md:p-8">
             <!-- Mobile title and type section -->
@@ -139,7 +147,7 @@
                     @if(!$reviews->isEmpty())
                         @foreach($reviews as $review)
                         <div class="mb-6 pb-4 border-b border-gray-300 last:border-0">
-                            <h1 class="text-lg font-bold">{{ $review->user->name }}</h1>
+                            <h1 class="text-lg font-bold">{{ $review->user->name ?? 'Deleted User'}}</h1>
                             <div class="flex items-center space-x-2">
                                 <p>
                                 @for ($i = $review->rating; $i>0; $i--)

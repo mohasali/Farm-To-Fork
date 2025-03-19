@@ -22,10 +22,22 @@
             <!-- Product Filter and Sort By -->
             <div class="flex flex-col md:flex-row justify-between p-4 text-secondary space-y-2 md:space-y-0">
                 <form action="" method="GET">
-                    <select class="w-full md:w-auto bg-gray-100 rounded-lg py-2 px-4" name="status" onchange="this.form.submit()">
+                    <select class="w-full md:w-auto rounded-lg py-2 px-4" name="status" onchange="this.form.submit()">
                         <option value="" hidden>Status Filter</option>
                         @foreach($statusOptions as $option)
-                            <option value="{{ $option }}" {{ request('status') === $option ? 'selected' : '' }}>
+                            <option value="{{ $option }}" 
+                                {{ request('status') === $option ? 'selected' : '' }}
+                                class="
+                                    @if($option == 'Pending') bg-yellow-500 text-white
+                                    @elseif($option == 'Processing') bg-blue-500 text-white
+                                    @elseif($option == 'Shipped') bg-indigo-500 text-white
+                                    @elseif($option == 'Out For Delivery') bg-orange-500 text-white
+                                    @elseif($option == 'Delivered') bg-green-500 text-white
+                                    @elseif($option == 'Completed') bg-emerald-500 text-white
+                                    @elseif ($option == 'Returned') bg-pink-500 text-white
+                                    @else bg-red-500 text-white
+                                    @endif"
+                            >
                                 {{ $option }}
                             </option>
                         @endforeach
@@ -37,10 +49,9 @@
             </div>
         </div>
     </section>
-    <!-- Display Orders -->
-    <section class="gap-4 p-6 max-w-4xl mx-auto overflow-y-auto">
-        <div class="max-h-[600px] overflow-y-auto space-y-4 p-2">
-            <!-- Order -->
+    <!-- Orders Grid -->
+    <section class="gap-4 p-6 max-w-6xl mx-auto overflow-y-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto p-2">
             @foreach ($orders as $order)
                 <x-admin-orders-item :order="$order" :statusOptions="$statusOptions" />
             @endforeach

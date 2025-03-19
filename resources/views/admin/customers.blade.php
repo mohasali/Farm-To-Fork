@@ -56,15 +56,19 @@
                                 <div class="ml-4 text-center md:text-left">
                                     <h3 class="font-medium text-lg">{{ $user->name }}</h3>
                                     <p class="text-gray-500">{{ $user->email }}</p>
-                                    <!-- Check if user or admin -->
-                                    @if ($user->isAdmin == 0)
-                                        <p class="text-gray-700">User</p>
-                                    @else
-                                        <p class="text-gray-700">Admin</p>
-                                    @endif
                                 </div>
                             </div>
                         </a>
+                        <div class="ml-16 pl-2">
+                            <form method="POST" action="{{ route('update-user-role', $user->id) }}">
+                                @csrf
+                                @method('PUT')
+                                <select name="isAdmin" class="p-2 m-2 mb-0 bg-gray-100 rounded-lg" onchange="this.form.submit()">
+                                    <option value="0" {{ $user->isAdmin == 0 ? 'selected' : '' }}>User</option>
+                                    <option value="1" {{ $user->isAdmin == 1 ? 'selected' : '' }}>Admin</option>
+                                </select>
+                            </form>
+                        </div>
                     </div>
                 @endforeach
             @endif

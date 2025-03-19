@@ -39,7 +39,7 @@
           <x-nav-link href='/account/user'>
             <a href='/account/user'><img src="/images/Account/default_chicken.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
           </x-nav-link>
-          <div class="group-hover:flex fixed top-[65px] flex-col z-10 p-4 space-y-2 hidden bg-white">
+          <div class="group-hover:flex fixed top-[60px] right-[40px] flex-col z-10 p-4 space-y-2 hidden bg-white">
             <x-nav-link href="/account/user">Manage</x-nav-link>
             <form class=" m-0" method="POST" action="/logout">
               @csrf

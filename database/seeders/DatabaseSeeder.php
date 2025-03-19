@@ -7,6 +7,7 @@ use App\Models\Box;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Reward;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,13 +20,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'phone' => '0712345678',
             'email' => 'test@example.com',
             'contact_preferences' => '["phone"]', // lowercase pref (email, phone) in array
+            'upvotes' => 100,
             'isAdmin' => true,
         ]);
+        Reward::create(['user_id'=>$user->id]);
 
         Address::create([
             'user_id' => User::where('email', 'test@example.com')->first()->id,

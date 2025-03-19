@@ -7,7 +7,9 @@
             <p class="text-2xl mb-1" style="opacity: 0.75;">+</p>
             <p class="text-2xl">Add Address</p>
         </button>
-
+        <div class="absolute right-20 bottom-36">
+            <x-egg :value="3"/>
+        </div>
         @foreach ($addresses as $address)
             <!-- Current address -->
             <div class="address-item flex flex-col bg-gray-100 py-2 rounded-xl justify-start items-start w-full sm:w-[100%] md:h-[225px]">

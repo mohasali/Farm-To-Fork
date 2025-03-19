@@ -4,11 +4,11 @@
     <div class="overflow-y-auto h-[428px] space-y-4">
     <section class="gap-4 max-w-4xl mx-auto text-center">
         <form class="relative w-full md:w-80 flex" method="GET">
-                    <input name="q" autocomplete="off" type="text" placeholder="Search for an order..." 
-                        class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out">
-                    <button type="submit" class="p-2 px-4 bg-primary text-white rounded hover:bg-accent1 transition">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+            <input name="q" autocomplete="off" type="text" placeholder="Search for an order..." 
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out">
+            <button type="submit" class="p-2 px-4 bg-primary text-white rounded hover:bg-accent1 transition">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </form> 
     </section>
         @foreach ($orders as $order)
@@ -31,7 +31,17 @@
                 <div class="mt-4">
                     <p class="text-sm text-gray-500">
                         <span class="font-semibold">Status:</span> 
-                        {{ $order->status }}
+                        <span class="text-sm px-3 py-1 rounded-lg text-white
+                            @if($order->status == 'Pending') bg-yellow-500 
+                            @elseif($order->status == 'Processing') bg-blue-500 
+                            @elseif($order->status == 'Shipped') bg-indigo-500 
+                            @elseif($order->status == 'Out For Delivery') bg-orange-500 
+                            @elseif($order->status == 'Delivered') bg-green-500 
+                            @elseif($order->status == 'Completed') bg-emerald-500 
+                            @elseif($order->status == 'Returned') bg-pink-500 
+                            @else bg-red-500 @endif">
+                            {{ $order->status }}
+                        </span>
                     </p>
                     <p class="text-sm text-gray-500">
                         <span class="font-semibold">Shipping Address:</span> 
@@ -42,13 +52,15 @@
                     </p>
                     <div class="flex flex-row">
                         <!-- Track order -->
-                        <button class="bg-gray-200 p-2  m-2 font-medium rounded-lg">Track order</button>
-                        <!-- Status -->
-                        <button class="bg-gray-200 p-2  m-2 font-medium rounded-lg">Status</button>
-                        <!-- Return -->
-                        <button class="bg-gray-200 p-2  m-2 font-medium rounded-lg">Return</button>
-                        <!-- Track order -->
-                        <button class="bg-gray-200 p-2  m-2 font-medium rounded-lg">Status</button>
+                        <a href="{{ route('order.track', $order->id) }}" class="bg-primary text-white p-2 m-2 font-medium rounded-lg hover:bg-accent1 transition">Track Order</a>
+                        <!-- Show return button only for Pending, Processing and Shipped orders -->
+                        @if ($order->status == 'Delivered' || $order->status == 'Completed')
+                            <!-- Return -->
+                            <a href="{{ route('order.return', $order->id) }}" class="bg-gray-200 p-2 m-2 font-medium rounded-lg hover:bg-gray-300 transition">Return</a>
+                        @elseif ($order->status == 'Pending' || $order->status == 'Processing' || $order->status == 'Shipped')
+                            <!-- Cancel -->
+                            <a href="" class="bg-red-500 text-white p-2 m-2 font-medium rounded-lg hover:bg-red-600 transition">Cancel</a>
+                        @endif
                     </div>
                 </div>
             </div>

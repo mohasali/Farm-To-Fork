@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemOrder;
+use App\Models\Order;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Refund;
 class AccountController extends Controller
 {
     public function user(){
@@ -35,15 +38,66 @@ class AccountController extends Controller
         return view('account.subscription');
     }
 
-    public function rewards(){
-        return view('account.rewards');
+    public function rewards(){        
+        $reward = Auth::user()->reward;
+        $promoCodes = Auth::user()->promoCodes;
+        return view('account.rewards',['reward'=>$reward,'promoCodes'=>$promoCodes]);
     }
 
     public function payments(){
-        return view('account.payments');
+        $payments = Auth::user()->payments()->get();
+        return view('account.payments',['payments'=>$payments]);
     }
 
     public function contactpref(){
         return view('account.contactpref');
     }
+
+    public function track(Order $order){
+        // Allow users to view their own orders
+        if ($order->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('account.order-track', [
+            'order' => $order,
+        ]);
+    }
+
+    public function return(Request $request, Order $order)
+    {
+        if ($request->isMethod('post')) {
+            // Validate request
+            $validated = $request->validate([
+                'items' => 'required|array',
+                'reason' => 'required|string',
+                'return' => 'required|in:payment,replacement'
+            ]);
+
+                
+            foreach($validated['items'] as $id){
+                $itemOrder = ItemOrder::find($id); 
+                $itemOrder->returned = true;  
+                $itemOrder->save();     
+            }
+
+            Refund::create([
+                'order_id'=>$order->id,
+                'reason'=> $validated['reason'],
+                'return'=>$validated['return']
+            ]);
+
+            // Update order status to Canceled
+            $order->update(['status' => 'Returned']);
+
+            return redirect()->route('account.orders')->with('success', 'Order has been succesfully returned');
+        }
+
+        // Display return form
+        return view('account.order-return', [
+            'order' => $order,
+        ]);
+    }
+
+    
 }

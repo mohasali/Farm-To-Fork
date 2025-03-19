@@ -1,63 +1,113 @@
-@props(['order','statusOptions'])
+@props(['order', 'statusOptions'])
+
+@php
+    // Order statuses in order 
+    $orderedStatuses = ['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled','Returned'];
+
+    // Current status index
+    $currentIndex = array_search($order->status, $orderedStatuses);
+
+    // Get next status in order
+    $nextStatus = ($currentIndex !== false && $currentIndex < count($orderedStatuses) - 1) 
+
+        // If current status isn't last, get next status
+        ? $orderedStatuses[$currentIndex + 1] 
+
+        // If last status, return null
+        : null;
+@endphp
 
 <!-- Order Card -->
-<div class="bg-gray-50 p-4 font-medium text-lg rounded-lg flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-    <!-- Order Info -->
-    <div class="flex-1 w-full">
-        <div class="flex items-center space-x-2">
-            <div class="flex items-center w-full">
-                <!-- Order ID -->
-                <div class="w-24 flex items-center"><p><strong>Order ID</strong></p></div>
-                <input type="number" value="{{ $order->id }}" class="w-full px-3 py-2 bg-gray-100 rounded-md" disabled>
-            </div>
-        </div>
-        <div class="flex items-center space-x-2">
-            <!-- Order Customer Name -->
-            <div class="w-24 flex items-center"><p><strong>Name</strong></p></div>
-            <!-- Hyperlink to user page -->
-            <a href="" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md"><input type="text" value="{{ $order->user->name }}" disabled></a>
-        </div>
-        <div class="flex items-center mt-2">
-            <!-- Order Description -->
-            <?php
-                $description = "";
-                foreach ($order->itemOrders as $item) {
-                    $description .= $item->box->title . " × " . $item->quantity . ", ";
-                }
-                // Remove the trailing comma and space
-                $description = rtrim($description, ", ");
-
-            ?>
-            <div class="w-36 flex items-center"><p><strong>Description</strong></p></div>
-            <input type="text" value="{{$description}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-        </div>
-        <div class="flex items-center mt-2">
-            <div class="w-36 flex items-center"><p><strong>Address</strong></p></div>
-            <input type="text" value="{{$order->address.", ".$order->city.", ".$order->country.", ".$order->postcode}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-        </div>
-        <div class="flex items-center mt-2">
-            <!-- Order Status -->
-            <div class="w-36 flex items-center"><p><strong>Status</strong></p></div>
-            <form action="" method="POST">
-                @method('PATCH')
-                @csrf
-                <input name="orderId" value="{{ $order->id }}" hidden>
-                <select class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" name="status" onchange="this.form.submit()">
-                    @foreach($statusOptions as $status)
-                        <option value="{{ $status }}" {{ $order->status === $status ? 'selected' : '' }}>
-                            {{ $status }}
-                        </option>
-                    @endforeach
-                </select>
-            </form>
-        </div>
-
-        <!-- Buttons -->
-        <!--
-        <div class="flex flex-col md:flex-row justify-between mt-4 space-y-2 md:space-y-0">
-            <button class="w-full md:w-1/2 bg-gray-100 rounded-lg py-2 text-center">View Order Details</button>
-            <button class="w-full md:w-1/4 bg-gray-100 rounded-lg py-2 text-center">Expand Info</button>
-        </div>
-    -->
+<div class="bg-gray-50 shadow-md rounded-lg p-6 w-full max-w-3xl mx-auto">
+    <!-- Order Header -->
+    <div class="flex flex-col md:flex-row justify-between items-center border-b pb-4">
+        <h3 class="text-xl text-primary font-semibold">Order ID #{{ $order->id }}</h3>
+        <span class="text-sm px-3 py-1 rounded-lg text-white
+            @if($order->status == 'Pending') bg-yellow-500 
+            @elseif($order->status == 'Processing') bg-blue-500 
+            @elseif($order->status == 'Shipped') bg-indigo-500 
+            @elseif($order->status == 'Out For Delivery') bg-orange-500 
+            @elseif($order->status == 'Delivered') bg-green-500 
+            @elseif($order->status == 'Completed') bg-emerald-500
+            @elseif($order->status == 'Returned') bg-pink-500 
+            @else bg-red-500 @endif">
+            {{ $order->status }}
+        </span>
     </div>
+
+    <!-- Order Details -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <!-- User -->
+        <div>
+            <p class="text-secondary font-medium">User</p>
+            <a href="/customer/{{ $order->user->id }}" class="block mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm">
+                {{ $order->user->email }}
+            </a>
+        </div>
+        
+        <!-- Date -->
+        <div>
+            <p class="text-secondary font-medium">Date</p>
+            <input type="text" value="{{ $order->created_at->format('d-m-Y') }}" 
+                   class="w-full mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm" disabled>
+        </div>
+
+        <!-- Total -->
+        <div>
+            <p class="text-secondary font-medium">Total</p>
+            <input type="text" value="£{{ $order->total }}" 
+                   class="w-full mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm" disabled>
+        </div>
+
+        <!-- Address -->
+        <div>
+            <p class="text-secondary font-medium">Address</p>
+            <input type="text" value="{{ $order->address }}, {{ $order->city }}, {{ $order->country }}, {{ $order->postcode }}" 
+                   class="w-full mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm" disabled>
+        </div>
+    </div>
+
+    <!-- Ordered Items -->
+    <div class="mt-4">
+        <h4 class="text-lg font-bold">Ordered Items</h4>
+        <div class="space-y-2">
+            @foreach($order->itemOrders as $item)
+                <!-- If only text areas weren't so stupid and didn't have to have stupid formatting on the page making it look all stupid -->
+                <textarea class="w-full px-3 py-2 bg-gray-200 rounded-md resize-none text-sm" rows="2" disabled>
+{{ $item->box->title }} × {{ $item->quantity }}
+Price: £{{ $item->box->price }}
+                </textarea>
+            @endforeach
+        </div>
+    </div>
+
+    @if($order->refund)
+    <div class="mt-4">
+        <h4 class="text-lg font-bold">Returned Items</h4>
+        <div class="space-y-2">
+            @foreach($order->itemOrders->where('returned', true) as $item)
+            <!-- If only text areas weren't so stupid and didn't have to have stupid formatting on the page making it look all stupid -->
+                <textarea class="w-full px-3 py-2 bg-gray-200 rounded-md resize-none text-sm" rows="2" disabled>
+                    {{ $item->box->title }} × {{ $item->quantity }}
+                    Price: £{{ $item->box->price }}
+                </textarea>
+            @endforeach
+        </div>
+        <p><strong>Return Reason: </strong>{{$order->refund->reason}}</p>
+        <p><strong>Return Method:</strong> {{$order->refund->return}}</p>
+
+    </div>
+@endif
+    <!-- Status Button -->
+    <!-- If the order is not canceled or completed, show the status button -->
+    @if($nextStatus && $order->status !== 'Canceled' && $order->status !== 'Completed')
+        <form action="{{ route('admin.orders.update', $order) }}" method="POST" class="mt-4">
+            @method('PATCH')
+            @csrf
+            <input type="hidden" name="status" value="{{ $nextStatus }}">
+            <button type="submit" class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                Mark as {{ $nextStatus }}
+            </button>
+        </form>
+    @endif
 </div>

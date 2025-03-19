@@ -27,17 +27,14 @@ class BoxSeeder extends Seeder
             if(!$firstline){
 
                 $type = $this->mapType($data[1]);
-
-                # To-Do: create an exception if type is invalid
-                
+            
                 Box::create([
                     'title' => $data[0],
-                    'type' => $type ,
-                    'price'=> number_format($data[2],2,'.',','),
+                    'type' => $type,
+                    'price'=> (float) $data[2],
                     'description'=> $data[3],
-                    'stock' => random_int(1,15),
-                    'imagePath' => '/images/covers/default_cover.png'
-                ]);
+                    'stock' => random_int(1,15)
+            ]);
             }
             $firstline = false;
         }
@@ -56,5 +53,7 @@ class BoxSeeder extends Seeder
             default => null
         };
     }
+
+    
     
 }

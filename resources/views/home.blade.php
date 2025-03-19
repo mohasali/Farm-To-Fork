@@ -1,7 +1,35 @@
 <script src="{{ asset('js/slides.js') }}"></script>
 <x-layout>
   <section class="relative w-full min-h-[calc(100vh-200px)] bg-cover bg-center" style="background-image: url('images/bg1.jpg');">
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+    <!-- Egg hunt banner -->
+    <div class="flex flex-col pt-16 text-center">
+      <h1 class="font-bold text-2xl text-primary">Egg Hunt is now LIVE</h1> 
+      <p>5 eggs have been scattered across the website<br></p>
+      <p>Find them all to win a prize!</p>
+      <!-- Loop through egg_count and if user has found an egg, display it normally else display a transparent egg -->
+      <p>
+        @if (Auth::user())
+          
+        @for ($i = 1; $i <=Auth::user()->eggHunt()->count(); $i++)
+            <span>🥚</span>
+        @endfor
+        @for ($i = 1; $i <=5-Auth::user()->eggHunt()->count(); $i++)
+            <span style="color: transparent; text-shadow: 0 0 darkgray">🥚</span>
+        @endfor
+        @if (Auth::user()->eggHunt()->count()>=5)
+        <form action="{{ route('eggHunt.claim') }}" method="POST">
+          @csrf
+            <button class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-accent1 mt-2">
+                Claim Promo Code
+            </button>
+        </form>
+        @endif        
+         @endif
+
+      </p>
+    </div>
+    <!-- Farm to Fork -->
+    <div class="inset-0 flex flex-col items-center justify-center text-center">
       <h1 class="text-5xl font-bold pb-4">Farm To Fork</h1>
       <h2 class="text-primary text-2xl font-semibold pb-8">Fresh Ingredients, Delivered to Your Doorstep</h2>
       <div class="flex justify-center space-x-5">
@@ -74,7 +102,7 @@
       <p class="text-sm md:text-base mt-2">{{ $review->site_description }}</p>
       <hr class="mt-2 mb-2">
       <div class="flex justify-between items-center">
-        <h1 class="font-bold">{{ $review->user->name }}</h1>
+        <h1 class="review-username">{{ $review->user->name ?? 'Deleted User' }}</h1>
         <p>
           @for ($i = $review->site_rating; $i>0; $i--)
           🥕

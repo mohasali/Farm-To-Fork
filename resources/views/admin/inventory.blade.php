@@ -1,4 +1,34 @@
 <x-layout>
+    <section>
+        @php
+            $lowStock = $boxes->where('stock', '<', 5)->count(); // Low stock
+            $outOfStock = $boxes->where('stock', '==', 0)->count(); // Out of stock
+    
+            // Change background colour
+            $bg = $outOfStock > 0 ? 'bg-red-500' : ($lowStock > 0 ? 'bg-amber-500' : 'bg-orange-400');
+        @endphp
+    
+        <div class="{{ $bg }} p-4 w-full">
+            @if ($lowStock > 0)
+                @if ($outOfStock > 0)
+                    <h1 class="font-bold text-3xl text-white text-center">Out of stock!</h1>
+                @elseif ($lowStock > 0)
+                    <h1 class="font-bold text-3xl text-white text-center">Low Stock</h1>
+                @endif
+            @endif
+    
+            @foreach ($boxes as $box)
+                <div class="text-center">
+                    @if ($box->stock < 5)
+                        <div class="flex flex-row justify-center">
+                            <h1 class="font-bold">{{ $box->title }}</h1>
+                            <p class="ml-2">{{ $box->stock }}</p>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    </section>
     <!-- Order Processing List -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center px-4">
@@ -45,36 +75,7 @@
     -- Any 0 <= item > 3 = bg-red-500
 
     -->
-    <section>
-    @php
-        $lowStock = $boxes->where('stock', '<', 5)->count(); // Low stock
-        $outOfStock = $boxes->where('stock', '==', 0)->count(); // Out of stock
 
-        // Change background colour
-        $bg = $outOfStock > 0 ? 'bg-red-500' : ($lowStock > 0 ? 'bg-amber-500' : 'bg-orange-400');
-    @endphp
-
-    <div class="{{ $bg }} p-4 w-full">
-        @if ($lowStock > 0)
-            @if ($outOfStock > 0)
-                <h1 class="font-bold text-3xl text-white text-center">Out of stock!</h1>
-            @elseif ($lowStock > 0)
-                <h1 class="font-bold text-3xl text-white text-center">Low Stock</h1>
-            @endif
-        @endif
-
-        @foreach ($boxes as $box)
-            <div class="text-center">
-                @if ($box->stock < 5)
-                    <div class="flex flex-row justify-center">
-                        <h1 class="font-bold">{{ $box->title }}</h1>
-                        <p class="ml-2">{{ $box->stock }}</p>
-                    </div>
-                @endif
-            </div>
-        @endforeach
-    </div>
-</section>
 
     <!-- Display Boxes -->
     <section class="gap-4 p-6 max-w-4xl mx-auto overflow-y-auto">
@@ -82,7 +83,7 @@
             <!-- Box -->
             @foreach ($boxes as $box)
             <!-- Box Card -->
-            <div class="bg-gray-50 p-4 font-medium text-lg rounded-lg flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div class="bg-gray-200 p-4 font-medium text-lg rounded-lg flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                 <!-- Box Info -->
                 <div class="flex-1 w-full">
                     <div class="flex items-center space-x-2">
@@ -97,7 +98,7 @@
                     </div>
                     <div class="flex items-center justify-center mt-2">
                         <!-- Box Image -->
-                        <img src="{{ $box->imagePath ?? '/images/Placeholder.jpeg' }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
+                        <img src="{{ $box->getImages()[0] }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
                     </div>
                     <!-- Box Type -->
                     <div class="flex items-center mt-2">
@@ -120,6 +121,9 @@
                     <div class="flex items-center mt-2">
                         <div class="w-36 flex items-center"><p><strong>Stock</strong></p></div>
                         <input type="text" value="{{$box->stock}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
+                    </div>
+                    <div class="flex justify-center w-full mt-5">
+                        <a href="{{ route("inventory.edit",$box->id) }}" class="bg-green-600 p-2 text-white rounded hover:bg-green-500 text-lg">Edit</a>
                     </div>
                 </div>
             </div>            
