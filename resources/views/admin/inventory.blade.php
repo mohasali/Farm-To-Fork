@@ -98,7 +98,7 @@
                     </div>
                     <div class="flex items-center justify-center mt-2">
                         <!-- Box Image -->
-                        <img src="{{ $box->imagePath ?? '/images/Placeholder.jpeg' }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
+                        <img src="{{ $box->getImages()[0] }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
                     </div>
                     <!-- Box Type -->
                     <div class="flex items-center mt-2">

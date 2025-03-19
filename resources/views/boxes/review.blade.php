@@ -27,7 +27,7 @@
                 <img 
                     class="w-full max-w-xs sm:max-w-md md:w-[450px] rounded-lg opacity-80" 
                     id="myimage" 
-                    src="{{ $box->imagePath }}" 
+                    src="{{ $box->getImages()[0] }}" 
                     alt="Box Image">
             </div>
             

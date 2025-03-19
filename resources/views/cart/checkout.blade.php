@@ -91,7 +91,7 @@
                 <div class="py-2">
                     <x-cart-item 
                     :quantity="$item->quantity" 
-                    :imagePath="$item->box->imagePath" 
+                    :imagePath="$item->box->getImages()[0]" 
                     :price="$item->box->price" 
                     :title="$item->box->title" 
                     :type="$item->box->type" />

@@ -141,10 +141,6 @@ class AdminController extends Controller
             'description' => ['required', 'string', 'max:1000'],
             'cover' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp', 'max:2048'],
         ]);
-        $imagePath = $request->hasFile('cover') 
-            ? $request->file('cover')->move('images\covers', time() . '.' . $request->cover->extension()) 
-            : 'images/covers/default_cover.png';
-
         // Create the product
         $box = Box::create([
             'title' => $attributes['title'],
@@ -152,8 +148,14 @@ class AdminController extends Controller
             'price' => $attributes['price'],
             'type' => $attributes['type'],
             'description' => $attributes['description'],
-            'imagePath' => '/'.$imagePath,
         ]);
+        $folderName = str_replace(' ', '_', $box->title);
+        $dirPath = public_path('images/Boxes/' . $folderName);
+        mkdir($dirPath, 0777, true);
+
+        if($request->hasFile('cover')){
+            $request->file('cover')->move( $dirPath, time() . '.' . $request->cover->extension());
+        }
 
         $box->tags()->attach($attributes['tags']);
 
@@ -179,20 +181,22 @@ class AdminController extends Controller
             'cover' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp', 'max:2048'],
         ]);
 
-        $imagePath = $request->hasFile('cover') 
-            ? $request->file('cover')->move('images\covers', time() . '.' . $request->cover->extension()) 
-            : $box->imagePath;
-
         $box->update([
             'title' => $attributes['title'],
             'stock' => $attributes['stock'],
             'price' => $attributes['price'],
             'type' => $attributes['type'],
             'description' => $attributes['description'],
-            'imagePath' => '/'.$imagePath,
-        ]);
+                ]);
         $box->save();
 
+        $folderName = str_replace(' ', '_', $box->title);
+        $dirPath = public_path('images/Boxes/' . $folderName);
+        mkdir($dirPath, 0777, true);
+        if($request->hasFile('cover')){
+            $request->file('cover')->move( $dirPath, time() . '.' . $request->cover->extension());
+        }
+        
         return redirect()->route('inventory.edit',$box->id);
     }
 

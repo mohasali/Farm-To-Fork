@@ -50,7 +50,7 @@
                 @foreach ($cartItems as $item)
                     <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-x-6 border-l-8 border-primary">
                         <div class="w-40 h-40 flex-shrink-0">
-                            <img class="rounded-lg object-cover w-full h-full" src="{{ $item->box->imagePath }}" alt="Box">
+                            <img class="rounded-lg object-cover w-full h-full" src="{{ $item->box->getImages()[0] }}" alt="Box">
                         </div>
                         <div class="flex-grow flex flex-col lg:flex-row justify-between items-start">
                             <div>

@@ -33,9 +33,8 @@ class BoxSeeder extends Seeder
                     'type' => $type,
                     'price'=> (float) $data[2],
                     'description'=> $data[3],
-                    'stock' => random_int(1,15),
-                    'imagePath' => '/images/covers/default_cover.png'
-                ]);
+                    'stock' => random_int(1,15)
+            ]);
             }
             $firstline = false;
         }
