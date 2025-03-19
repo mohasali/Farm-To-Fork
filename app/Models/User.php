@@ -23,7 +23,8 @@ class User extends Authenticatable
         'phone',
         'password',
         'contact_preferences',
-        'upvotes'
+        'upvotes',
+        'pfp'
         ];
 
     /**
