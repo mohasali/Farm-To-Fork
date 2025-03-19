@@ -51,13 +51,13 @@
                             <h2 class="text-xl font-semibold mb-4 ">Why are you returning this?</h2>
                             <select name="reason" class="bg-gray-50 p-2 rounded-lg font-semibold" required>
                                 <option value="" disabled selected>Select your reason</option>
-                                <option value="damaged">Damaged or expired products</option>
-                                <option value="incorrect">Incorrect Item received</option>
-                                <option value="not_described">Not as Described</option>
-                                <option value="late">Late Delivery</option>
-                                <option value="changed_mind">Changed Mind</option>
-                                <option value="accidental">Accidental Order</option>
-                                <option value="no_reason">No Reason</option>
+                                <option value="Damaged or expired products">Damaged or expired products</option>
+                                <option value="Incorrect Item received">Incorrect Item received</option>
+                                <option value="Not as Described">Not as Described</option>
+                                <option value="Late Delivery">Late Delivery</option>
+                                <option value="Changed Mind">Changed Mind</option>
+                                <option value="Accidental Order">Accidental Order</option>
+                                <option value="No Reason">No Reason</option>
                             </select>
                             <!-- Original packaging -->
                             <h2 class="text-md font-semibold mb-4 mt-4">Is the item inside the shipping box unopened and sealed in its original packaging?</h2>

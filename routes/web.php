@@ -7,13 +7,15 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\EggHuntController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserAddressesController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\SiteReviewController;
-use App\Models\Review;
 use App\Models\SiteReview;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $siteReviews = SiteReview::orderByDesc('site_rating')->take(3)->with('user')->get(); // Display reviews w/ highest rating
     return view('home',['siteReviews'=>$siteReviews]);
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('about');
@@ -89,12 +91,14 @@ Route::middleware('auth')->controller(AccountController::class)->group(function(
     Route::get('/account/user','user')->name('account.user');
     Route::get('/account/edit','edit')->name('account.edit');
     Route::get('/account/orders','orders')->name('account.orders');
-    Route::get('/account/paymentedit', 'paymentedit')->name('account.paymentedit');
     Route::get('/account/address','address')->name('account.address');
     Route::get('/account/subscription','subscription')->name('account.subscription');
     Route::get('/account/rewards','rewards')->name('account.rewards');
     Route::get('/account/payments', 'payments')->name('account.payments');
     Route::get('/account/contactpref', 'contactpref')->name('account.contactpref');
+
+
+    Route::post('/account/payments', 'storePayment');
 });
 
 Route::get('/customer/{id}/edit/{field}', [UserController::class, 'edit'])->name('customer.edit');
@@ -111,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Checkout
-Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');;
+Route::get('/checkout', [CheckoutController::class,'index'])->middleware('auth')->name('checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->middleware('auth')->name('checkout.process');
 Route::get('/checkout/confirmed',[CheckoutController::class,'confirmed'])->middleware('auth')->name('checkout.confirmed');
 
@@ -119,6 +123,11 @@ Route::get('/checkout/confirmed',[CheckoutController::class,'confirmed'])->middl
 Route::post('/address', [UserAddressesController::class, 'store'])->name('address.save');
 Route::patch('/address/{address}', [UserAddressesController::class, 'update'])->name('address.update');
 Route::delete('/address/{address}', [UserAddressesController::class, 'delete'])->name('address.delete');
+
+//User Addresses
+Route::post('/account/payments', [PaymentController::class, 'store']);
+Route::patch('/account/payments/{payment}', [PaymentController::class, 'update'])->name('payment.edit');
+Route::delete('/account/payments/{payment}', [PaymentController::class, 'delete'])->name('payment.delete');
 
 // Recipes
 Route::get('/recipes', [RecipeController::class, 'recipes']);
@@ -131,9 +140,14 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/users', 'users')->name('admin.users');
     Route::get('/admin/orders', 'orders')->name('admin.orders');
     Route::get('/admin/inventory', 'inventory')->name('admin.inventory');
+    Route::get('/admin/inventory/{box}', 'editInventory')->name('inventory.edit');
+
     Route::patch('/admin/orders','updateOrderStatus');
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
+    Route::post('/admin/inventory/{box}', 'editBox');
+    Route::delete('/admin/inventory/{box}', 'deleteBox');
+
 });
 
 // Update customer roles
@@ -151,6 +165,15 @@ Route::patch('admin/orders/{order}', [CheckoutController::class, 'update'])->nam
 // Customer pages
 Route::get('/customer/{id}', [UserController::class, 'show'])->name('user.show');
 Route::delete('/customer/{user}', [UserController::class, 'destroy'])->name('customer.remove')->middleware(IsAdmin::class);
+
+
+//Rewards
+Route::post('/account/rewards/stamp',[RewardController::class,'stamp'])->name('reward.stamp');
+Route::post('/account/rewards/claim',[RewardController::class,'claimStamps'])->name('reward.claim');
+
+Route::post('/egghunt/claim',[EggHuntController::class,'claim'])->name('eggHunt.claim');
+Route::post('/egghunt/add',[EggHuntController::class,'add'])->name('eggHunt.add');
+
 
 //Reviews - KEEP AT THE BOTTOM 
 Route::get('/reviews/{$reviews}', [ReviewController::class, 'show']);

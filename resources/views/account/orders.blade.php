@@ -38,6 +38,7 @@
                             @elseif($order->status == 'Out For Delivery') bg-orange-500 
                             @elseif($order->status == 'Delivered') bg-green-500 
                             @elseif($order->status == 'Completed') bg-emerald-500 
+                            @elseif($order->status == 'Returned') bg-pink-500 
                             @else bg-red-500 @endif">
                             {{ $order->status }}
                         </span>

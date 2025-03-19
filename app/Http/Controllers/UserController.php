@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reward;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -21,8 +22,8 @@ class UserController extends Controller
                              'password'=>['confirmed','required',Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
         $attributes['upvotes'] = 0;
-        $attributes['egg_count'] = 0;
         $user = User::create($attributes);
+        Reward::create(['user_id'=>$user->id]);
         Auth::login($user);
 
         return redirect('/');

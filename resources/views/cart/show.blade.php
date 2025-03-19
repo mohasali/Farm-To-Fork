@@ -1,4 +1,12 @@
 <x-layout>
+    @if (session('message'))
+    <div class="max-w-4xl mx-auto my-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 shadow-md rounded-lg flex items-center">
+        <!-- Message Text -->
+        <div class="text-sm font-medium">
+            {{ session('message') }}
+        </div>
+    </div>
+@endif
     <div class="container mx-auto px-4 py-12">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-5xl font-bold text-secondary">Your Cart</h1>

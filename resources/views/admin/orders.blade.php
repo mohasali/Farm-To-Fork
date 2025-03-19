@@ -34,6 +34,7 @@
                                     @elseif($option == 'Out For Delivery') bg-orange-500 text-white
                                     @elseif($option == 'Delivered') bg-green-500 text-white
                                     @elseif($option == 'Completed') bg-emerald-500 text-white
+                                    @elseif ($option == 'Returned') bg-pink-500 text-white
                                     @else bg-red-500 text-white
                                     @endif"
                             >

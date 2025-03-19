@@ -23,9 +23,8 @@ class User extends Authenticatable
         'phone',
         'password',
         'contact_preferences',
-        'upvotes',
-        'egg_count'
-    ];
+        'upvotes'
+        ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -68,5 +67,19 @@ class User extends Authenticatable
     public function reviews() {
         return $this->hasMany(Review::class);
     }
+    
+    public function reward() {
+        return $this->hasOne(Reward::class);
+    }
 
+    public function promoCodes() {
+        return $this->hasMany(PromoCode::class);
+    }
+    
+    public function eggHunt(){
+        return $this->hasMany(EggHunt::class);
+    }
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
 }

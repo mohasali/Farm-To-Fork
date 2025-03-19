@@ -123,6 +123,7 @@
         </div>
         @endforeach
     </div>
+
     <div class="my-6 mx-8"> {{$boxes->links()}} </div>
     @vite(['resources/js/boxesIndex.js'])
     <script>
@@ -153,4 +154,7 @@
         // Initialize displays
         updatePriceDisplays();
     </script>
+        <div class="absolute left-9">
+            <x-egg :value="2"/>
+        </div>
 </x-layout>

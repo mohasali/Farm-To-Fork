@@ -5,7 +5,9 @@
             <h1 class="m-auto text-4xl md:text-5xl font-bold p-4 pt-8 text-center text-secondary">Recipes</h1>
         </div>
     </section>
-
+    <div class="absolute left-4 top-48">
+        <x-egg :value="4"/>
+    </div>
     <!-- Recipes  -->
     <div class="flex flex-wrap justify-center w-full py-12 mt-16 lg:mt-32 mb-16 lg:mb-32 md:gap-8 items-stretch overflow-x-auto px-4">
         <!-- Go through the recipes -->

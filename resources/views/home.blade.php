@@ -8,17 +8,28 @@
       <p>Find them all to win a prize!</p>
       <!-- Loop through egg_count and if user has found an egg, display it normally else display a transparent egg -->
       <p>
-        @for ($i = 1; $i <= 5; $i++)
-          @if ($i <= 5) <!-- egg_count -->
-            <span class="text-black">🥚</span>
-          @else
-            <span class="text-black opacity-20">🥚</span>
-          @endif
+        @if (Auth::user())
+          
+        @for ($i = 1; $i <=Auth::user()->eggHunt()->count(); $i++)
+            <span>🥚</span>
         @endfor
+        @for ($i = 1; $i <=5-Auth::user()->eggHunt()->count(); $i++)
+            <span style="color: transparent; text-shadow: 0 0 darkgray">🥚</span>
+        @endfor
+        @if (Auth::user()->eggHunt()->count()>=5)
+        <form action="{{ route('eggHunt.claim') }}" method="POST">
+          @csrf
+            <button class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-accent1 mt-2">
+                Claim Promo Code
+            </button>
+        </form>
+        @endif        
+         @endif
+
       </p>
     </div>
     <!-- Farm to Fork -->
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+    <div class="inset-0 flex flex-col items-center justify-center text-center">
       <h1 class="text-5xl font-bold pb-4">Farm To Fork</h1>
       <h2 class="text-primary text-2xl font-semibold pb-8">Fresh Ingredients, Delivered to Your Doorstep</h2>
       <div class="flex justify-center space-x-5">

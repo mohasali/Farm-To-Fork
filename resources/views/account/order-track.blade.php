@@ -15,7 +15,7 @@
                     <!-- Line -->
                     <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-200"></div>
                     @php
-                        $statuses = ['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled'];
+                        $statuses = ['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled','Returned'];
                         $currentStatus = array_search($order->status, $statuses);
                     @endphp
                     

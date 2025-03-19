@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('postcode');
             $table->string('country');
-            $table->enum('status',['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled'])->default('Pending');
+            $table->enum('status',['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled','Returned'])->default('Pending');
             $table->timestamps();
         });
         Schema::create('item_orders', function (Blueprint $table) {
@@ -32,7 +32,17 @@ return new class extends Migration
             $table->foreignIdFor(Box::class,'box_id')->constrained()->cascadeOnDelete();
             $table->unique(['order_id', 'box_id']);
             $table->integer('quantity');
+            $table->boolean('returned')->default(false);
             $table->timestamps();
+        });
+
+        Schema::create('refunds', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Order::class,'order_id')->constrained()->cascadeOnDelete();
+            $table->string("reason");
+            $table->enum("return",['payment','replacement']);
+            $table->timestamps();
+
         });
     }
 

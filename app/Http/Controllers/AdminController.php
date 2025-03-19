@@ -82,7 +82,7 @@ class AdminController extends Controller
             $query->where('status', $status);
         }
         $orders = $query->get();
-        $statusOptions = ['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled'];
+        $statusOptions = ['Pending', 'Processing', 'Shipped', 'Out For Delivery', 'Delivered', 'Completed', 'Canceled','Returned'];
         return view('admin.orders', [
             'orders' => $orders,
             'statusOptions' => $statusOptions
@@ -113,7 +113,7 @@ class AdminController extends Controller
     public function updateOrderStatus(Request $request)
     {
         $attributes = $request->validate([
-            'status' => 'required|string|in:Pending,Processing,Shipped,Out For Delivery,Delivered,Completed,Canceled',
+            'status' => 'required|string|in:Pending,Processing,Shipped,Out For Delivery,Delivered,Completed,Canceled,Returned',
             'orderId' => 'required'
         ]);
     
@@ -158,5 +158,46 @@ class AdminController extends Controller
         $box->tags()->attach($attributes['tags']);
 
         return redirect()->back()->with('success', 'Product added successfully!');
+    }
+
+
+    public function editInventory(Request $request, Box $box){
+        $tags = Tag::all();
+        $types = Box::getEnumTypes();
+        return view("admin.inventory-edit",['box'=>$box,'tags'=>$tags,'types'=>$types]);
+    }
+
+    public function editBox(Request $request, Box $box){
+        $attributes = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'stock' => ['required', 'integer', 'min:1', 'max:100'],
+            'price' => ['required', 'numeric', 'min:1', 'max:100'],
+            'type' => ['required', 'string', 'in:Seasonal,Meat & Dairy,Dynamic Pricing,Locally Sourced,Cultural Recipe'],
+            'tags' => ['required', 'array'],
+            'tags.*' => ['exists:tags,id'],
+            'description' => ['required', 'string', 'max:1000'],
+            'cover' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp', 'max:2048'],
+        ]);
+
+        $imagePath = $request->hasFile('cover') 
+            ? $request->file('cover')->move('images\covers', time() . '.' . $request->cover->extension()) 
+            : $box->imagePath;
+
+        $box->update([
+            'title' => $attributes['title'],
+            'stock' => $attributes['stock'],
+            'price' => $attributes['price'],
+            'type' => $attributes['type'],
+            'description' => $attributes['description'],
+            'imagePath' => '/'.$imagePath,
+        ]);
+        $box->save();
+
+        return redirect()->route('inventory.edit',$box->id);
+    }
+
+    public function deleteBox(Box $box){
+        $box->delete();
+        return redirect()->route('admin.inventory');
     }
 }

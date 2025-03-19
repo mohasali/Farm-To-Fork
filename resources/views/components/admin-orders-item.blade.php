@@ -2,7 +2,7 @@
 
 @php
     // Order statuses in order 
-    $orderedStatuses = ['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled'];
+    $orderedStatuses = ['Pending','Processing','Shipped','Out For Delivery','Delivered','Completed','Canceled','Returned'];
 
     // Current status index
     $currentIndex = array_search($order->status, $orderedStatuses);
@@ -28,7 +28,8 @@
             @elseif($order->status == 'Shipped') bg-indigo-500 
             @elseif($order->status == 'Out For Delivery') bg-orange-500 
             @elseif($order->status == 'Delivered') bg-green-500 
-            @elseif($order->status == 'Completed') bg-emerald-500 
+            @elseif($order->status == 'Completed') bg-emerald-500
+            @elseif($order->status == 'Returned') bg-pink-500 
             @else bg-red-500 @endif">
             {{ $order->status }}
         </span>
@@ -80,6 +81,23 @@ Price: £{{ $item->box->price }}
         </div>
     </div>
 
+    @if($order->refund)
+    <div class="mt-4">
+        <h4 class="text-lg font-bold">Returned Items</h4>
+        <div class="space-y-2">
+            @foreach($order->itemOrders->where('returned', true) as $item)
+            <!-- If only text areas weren't so stupid and didn't have to have stupid formatting on the page making it look all stupid -->
+                <textarea class="w-full px-3 py-2 bg-gray-200 rounded-md resize-none text-sm" rows="2" disabled>
+                    {{ $item->box->title }} × {{ $item->quantity }}
+                    Price: £{{ $item->box->price }}
+                </textarea>
+            @endforeach
+        </div>
+        <p><strong>Return Reason: </strong>{{$order->refund->reason}}</p>
+        <p><strong>Return Method:</strong> {{$order->refund->return}}</p>
+
+    </div>
+@endif
     <!-- Status Button -->
     <!-- If the order is not canceled or completed, show the status button -->
     @if($nextStatus && $order->status !== 'Canceled' && $order->status !== 'Completed')

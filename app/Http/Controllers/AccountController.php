@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemOrder;
 use App\Models\Order;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Refund;
 class AccountController extends Controller
 {
     public function user(){
@@ -37,12 +38,15 @@ class AccountController extends Controller
         return view('account.subscription');
     }
 
-    public function rewards(){
-        return view('account.rewards');
+    public function rewards(){        
+        $reward = Auth::user()->reward;
+        $promoCodes = Auth::user()->promoCodes;
+        return view('account.rewards',['reward'=>$reward,'promoCodes'=>$promoCodes]);
     }
 
     public function payments(){
-        return view('account.payments');
+        $payments = Auth::user()->payments()->get();
+        return view('account.payments',['payments'=>$payments]);
     }
 
     public function contactpref(){
@@ -70,10 +74,23 @@ class AccountController extends Controller
                 'return' => 'required|in:payment,replacement'
             ]);
 
-            // Update order status to Canceled
-            $order->update(['status' => 'Canceled']);
+                
+            foreach($validated['items'] as $id){
+                $itemOrder = ItemOrder::find($id); 
+                $itemOrder->returned = true;  
+                $itemOrder->save();     
+            }
 
-            return redirect()->route('account.orders')->with('success', 'Order has been cancelled successfully');
+            Refund::create([
+                'order_id'=>$order->id,
+                'reason'=> $validated['reason'],
+                'return'=>$validated['return']
+            ]);
+
+            // Update order status to Canceled
+            $order->update(['status' => 'Returned']);
+
+            return redirect()->route('account.orders')->with('success', 'Order has been succesfully returned');
         }
 
         // Display return form
@@ -81,4 +98,6 @@ class AccountController extends Controller
             'order' => $order,
         ]);
     }
+
+    
 }
