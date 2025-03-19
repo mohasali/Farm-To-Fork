@@ -1,4 +1,5 @@
 @props(['value'])
+@if(Auth::user())
 @if (!(Auth::user()->eggHunt()->where('egg_id', $value)->exists()))
 <div>
     <form action="{{ route('eggHunt.add') }}" method="POST">
@@ -36,5 +37,5 @@
 </style>
 </div>
 @endif
-
+@endif
 

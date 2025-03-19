@@ -118,14 +118,14 @@
         document.getElementById('postcode').value = selectedOption.dataset.postcode || '';
         document.getElementById('country').value = selectedOption.dataset.country || '';
     });
-
+    @if(!$payments->isEmpty())
     document.getElementById('payment-dropdown').addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];
     document.getElementById('name').value = selectedOption.dataset.name || '';
     document.getElementById('card').value = selectedOption.dataset.card || '';
     document.getElementById('exp').value = selectedOption.dataset.expiry || '';
         });
-
+    @endif
     document.getElementById('card').addEventListener('input', function (e) {
       let value = e.target.value.replace(/\D/g, ''); 
       value = value.match(/.{1,4}/g)?.join(' ') ?? value; 

@@ -70,7 +70,7 @@ Route::controller(BoxController::class)->group(function() {
 // Cart
 Route::middleware('auth')->controller(CartController::class)->group(function() {
 
-    Route::get('/cart', 'show');
+    Route::get('/cart', 'show')->name('cart.show');
     Route::post('/cart/add', 'add');
     Route::patch('/cart/{cart}', 'update');
     Route::delete('/cart/{cart}', 'delete');

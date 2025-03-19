@@ -12,7 +12,7 @@
             <h1 class="text-5xl font-bold text-secondary">Your Cart</h1>
             <div class="text-right">
                 <p class="text-2xl font-semibold text-gray-700">Subtotal: <span class="text-primary">£{{ $total }}</span></p>
-                <a href="/checkout" class="block mt-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-accent1 transition-all duration-300">Checkout</a>
+                <a href="/checkout" class="block mt-2 bg-primary text-white px-2 text-center py-2 rounded-lg hover:bg-accent1 transition-all duration-300">Checkout</a>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6">

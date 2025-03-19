@@ -18,6 +18,11 @@ class CheckoutController extends Controller
         $cartItems = Cart::getItems(Auth::user());
         $addresses = Auth::user()->addresses()->get();
         $payments = Auth::user()->payments()->get();
+
+        if($cartItems->count()==0){
+            return redirect()->route('cart.show');
+        }
+
         return view('cart.checkout',['total'=>$total,'cartItems'=>$cartItems,'addresses'=>$addresses,'payments'=>$payments]);
     }
 
