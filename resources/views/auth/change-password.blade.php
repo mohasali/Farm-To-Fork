@@ -10,9 +10,8 @@
             <p class="mt-4"> </p>
             <x-form-input name="password" id="password" type="password" label="Password"/>
             <x-form-error name="password"/>
-            <p class="mt-4"> </p>
-            <x-form-input name="password" id="password" type="password" label="Confirm new password"/>
-            <x-form-error name="password"/>
+            <x-form-input name="password_confirmation" id="password_confirmation" type="password" label="Confirm Password"/>
+
 
             <button class="bg-primary text-white py-2 rounded hover:bg-accent1 text-lg mt-4">Reset Password</button>
              
