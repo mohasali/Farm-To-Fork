@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reward;
 use App\Models\User;
+use File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
@@ -22,6 +23,20 @@ class UserController extends Controller
                              'password'=>['confirmed','required',Password::min(8)->mixedCase()->numbers()->symbols()],
         ]);
         $attributes['upvotes'] = 0;
+
+        $images = [];
+        $files = File::files('images/Account');
+        foreach ($files as $file) {
+            // Check if its an image file
+            $extension = strtolower($file->getExtension());
+            if (in_array($extension, ['jpg', 'jpeg', 'png','webp'])) {
+                // Convert path to web URL
+                $relativePath = 'images/Account/'. $file->getFilename();
+                $images[] = '/' . $relativePath;
+            }
+        }
+
+        $attributes['pfp'] = $images[array_rand($images)];
         $user = User::create($attributes);
         Reward::create(['user_id'=>$user->id]);
         Auth::login($user);
