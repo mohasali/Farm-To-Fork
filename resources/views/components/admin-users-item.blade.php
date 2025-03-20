@@ -5,7 +5,7 @@
     <!-- Customer Image -->
     <div class="w-20 h-20 rounded-lg flex-shrink-0">
         <!-- User Image / Default pfp atm -->
-        <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover rounded-lg"/> 
+        <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover rounded-lg"/> 
     </div>
     <!-- Customer Info -->
     <div class="flex-1 w-full">

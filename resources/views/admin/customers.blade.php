@@ -51,7 +51,7 @@
                             <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-16 h-16 rounded-full overflow-hidden">
                                     <!-- User image else default image -->
-                                    <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                                    <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
                                 </div>
                                 <div class="ml-4 text-center md:text-left">
                                     <h3 class="font-medium text-lg">{{ $user->name }}</h3>
