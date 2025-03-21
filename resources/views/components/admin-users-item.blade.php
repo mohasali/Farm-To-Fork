@@ -6,9 +6,7 @@
     <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
         <div class="w-16 h-16 rounded-full overflow-hidden">
             <!-- User image else default image -->
-            <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" 
-                alt="{{ $user->name }}" 
-                class="w-full h-full object-cover">
+            <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
         </div>
         <div class="text-center md:text-left">
             <h3 class="font-medium text-lg">{{ $user->name }}</h3>
@@ -20,14 +18,8 @@
     <div class="w-full mt-4 flex flex-col md:flex-row md:justify-end">
         <!-- Buttons -->
         <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-            <button class="bg-gray-100 rounded-lg py-2 px-4 w-full md:w-auto" 
-                    onclick="viewOrders({{ $user->id }})">
-                Personal Order History
-            </button>
-            <button class="bg-gray-100 rounded-lg py-2 px-4 w-full md:w-auto" 
-                    onclick="viewUserInfo({{ $user->id }})">
-                Expand Info
-            </button>
+            <button class="bg-gray-100 rounded-lg py-2 px-4 w-full md:w-auto" onclick="viewOrders({{ $user->id }})">Personal Order History</button>
+            <button class="bg-gray-100 rounded-lg py-2 px-4 w-full md:w-auto" onclick="viewUserInfo({{ $user->id }})">Expand Info</button>
         </div>
     </div>
 

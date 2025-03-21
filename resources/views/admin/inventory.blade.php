@@ -29,6 +29,7 @@
             @endforeach
         </div>
     </section>
+    
     <!-- Order Processing List -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center px-4">
@@ -83,48 +84,71 @@
             <!-- Box -->
             @foreach ($boxes as $box)
             <!-- Box Card -->
-            <div class="bg-gray-200 p-4 font-medium text-lg rounded-lg flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-                <!-- Box Info -->
-                <div class="flex-1 w-full">
-                    <div class="flex items-center space-x-2">
-                        <!-- Box Name -->
-                        <div class="w-24 flex items-center"><p><strong>Name</strong></p></div>
-                        <input class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" type="text" value="{{ $box->title }}" disabled></input>
+            <section class="gap-4 p-6 max-w-4xl mx-auto">
+                <div class="max-h-[600px] space-y-4 p-2 bg-gray-50 rounded-lg">
+                    <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-16 ">
+                        <div class="w-full h-full rounded-md  sm:w-80 sm:h-30 md:w-50 md:h-50">
+                            <!-- User image else default image -->
+                            <img src="{{ $box->getImages()[0] }}" alt="{{ $box->title }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4 text-center md:text-left">
+                            <h3 class="text-lg text-primary font-bold">{{ $box->title }}</h3>
+                            <p class="text-gray-500" class="text-overflow">{{ $box->description }}</p>
+                            <div class="flex items-center mt-2">
+                                <div class="w-36 flex items-center"><p><strong>Tags</strong></p></div>
+                                <?php
+                                $tags ="";
+                                foreach ($box->tags as $tag) {
+                                    $tags .=$tag->name.", ";
+                                }
+                                $tags = rtrim($tags, ", ");
+                                ?>
+                                <input type="text" value="{{$tags}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center mt-2">
-                        <!-- Box Description -->
-                        <div class="w-36 flex items-center"><p><strong>Description</strong></p></div>
-                        <input type="text" value="{{$box->description}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-                    </div>
-                    <div class="flex items-center justify-center mt-2">
-                        <!-- Box Image -->
-                        <img src="{{ $box->getImages()[0] }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
-                    </div>
-                    <!-- Box Type -->
-                    <div class="flex items-center mt-2">
-                        <div class="w-36 flex items-center"><p><strong>Type</strong></p></div>
-                        <input type="text" value="{{$box->type}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-                    </div>
-                    <!-- Box Tags -->
-                    <div class="flex items-center mt-2">
-                        <div class="w-36 flex items-center"><p><strong>Tags</strong></p></div>
-                        <?php
-                        $tags ="";
-                        foreach ($box->tags as $tag) {
-                            $tags .=$tag->name.", ";
-                        }
-                        $tags = rtrim($tags, ", ");
-                        ?>
-                        <input type="text" value="{{$tags}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-                    </div>
-                    <!-- Box Stock -->
-                    <div class="flex items-center mt-2">
-                        <div class="w-36 flex items-center"><p><strong>Stock</strong></p></div>
-                        <input type="text" value="{{$box->stock}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled> <!-- No order description?! -->
-                    </div>
-                    <div class="flex justify-center w-full mt-5">
-                        <a href="{{ route("inventory.edit",$box->id) }}" class="bg-green-600 p-2 text-white rounded hover:bg-green-500 text-lg">Edit</a>
-                    </div>
+
+                    <!-- 
+                        <div class="flex items-center space-x-2">
+
+                            <div class="w-24 flex items-center"><p><strong>Name</strong></p></div>
+                            <input class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" type="text" value="{{ $box->title }}" disabled></input>
+                        </div>
+                        <div class="flex items-center mt-2">
+                            
+                            <div class="w-36 flex items-center"><p><strong>Description</strong></p></div>
+                            <input type="text" value="{{$box->description}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled>
+                        </div>
+                        <div class="flex items-center justify-center mt-2">
+                            
+                            <img src="{{ $box->getImages()[0] }}" alt="{{ $box->title }}" class="w-80 h-80 object-cover rounded-lg"/>
+                        </div>
+                        
+                        <div class="flex items-center mt-2">
+                            <div class="w-36 flex items-center"><p><strong>Type</strong></p></div>
+                            <input type="text" value="{{$box->type}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled>
+                        </div>
+
+                        <div class="flex items-center mt-2">
+                            <div class="w-36 flex items-center"><p><strong>Tags</strong></p></div>
+                            <?php
+                            $tags ="";
+                            foreach ($box->tags as $tag) {
+                                $tags .=$tag->name.", ";
+                            }
+                            $tags = rtrim($tags, ", ");
+                            ?>
+                            <input type="text" value="{{$tags}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled>
+                        </div>
+
+                        <div class="flex items-center mt-2">
+                            <div class="w-36 flex items-center"><p><strong>Stock</strong></p></div>
+                            <input type="text" value="{{$box->stock}}" class="w-full mt-2 px-3 py-2 bg-gray-100 rounded-md" disabled>
+                        </div>
+                        <div class="flex justify-center w-full mt-5">
+                            <a href="{{ route("inventory.edit",$box->id) }}" class="bg-green-600 p-2 text-white rounded hover:bg-green-500 text-lg">Edit</a>
+                        </div>
+                    -->
                 </div>
             </div>            
             @endforeach
