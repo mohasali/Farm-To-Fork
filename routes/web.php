@@ -86,6 +86,18 @@ Route::get('/login',[SessionController::class,'show'])->name('login')->middlewar
 Route::post('/login',[SessionController::class,'create'])->middleware('guest');
 Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
+//Forgot Password
+Route::get('/forgot-password', function () {
+    return view('auth/forgot-password');
+});
+Route::post('forgot-password', [UserController::class, 'forgotPassword']);
+
+//Change password view
+Route::get('/change-password/{token}', function($token){
+    return view('auth/change-password', compact('token'));
+})->name('change.password');
+Route::post('change-password', [UserController::class, 'resetPassword'])->name('reset.password');
+
 // Account management
 Route::middleware('auth')->controller(AccountController::class)->group(function() {
     Route::get('/account/user','user')->name('account.user');

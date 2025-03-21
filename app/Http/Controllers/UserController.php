@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\ForgotPassword;
+use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -40,6 +45,9 @@ class UserController extends Controller
         $user = User::create($attributes);
         Reward::create(['user_id'=>$user->id]);
         Auth::login($user);
+
+        //send out welcome email
+        Mail::to(request('email'))->send(new Welcome());
 
         return redirect('/');
     }
@@ -189,5 +197,58 @@ class UserController extends Controller
         $user->save();
         
         return redirect('/customer/' . $user->id)->with('success', ucfirst($field) . ' updated successfully');
+    }
+
+    /*Forgot Password
+    *
+       Checks if email is associated with account and sends out reset link if yes
+       Uses token to only reset if an email has been sent out with the reset link
+    */
+    public function forgotPassword(){
+       $email = request('email');
+
+       if (User::where('email', '=', request('email'))->exists()){
+            
+            $token = Str::random(64);
+
+            DB::table('password_reset')->insert([
+                'email' => $email,
+                'token' => $token,
+            ]);
+
+
+            Mail::to($email)->send(new ForgotPassword($token), ['token' => $token]);
+            return redirect()->back()->with('success', 'Email sent!');
+       }
+
+       else{
+            return view('auth.register');
+       }
+    }
+
+    /*
+      To change the password after password reset email has been sent to the user
+    */
+    public function resetPassword(){
+        $attributes = request()->validate([
+            'email'=>['required','email'],
+            'password'=>['confirmed', 'required',Password::min(8)->mixedCase()->numbers()->symbols()],
+        ]);
+
+        $updatePassword = DB::table('password_reset')->where([
+            'email' => request()->email,
+            'token' => request()->token,
+        ])->first();
+
+        if(!$updatePassword){
+            Log::error("error in update password");
+            return redirect()->to(route('/forgot-password'))->with("error", "Invalid");
+        }
+
+        User::where("email", request()->email)->update(['password' => Hash::make(request()->password)]);
+
+        DB::table('password_reset')->where(['email' =>request()->email])->delete();
+
+        return redirect()->to(route('login'))->with("success", "Password successfully updated");
     }
 }
