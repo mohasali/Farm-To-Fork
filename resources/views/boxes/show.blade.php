@@ -106,7 +106,7 @@
                 <div class="bg-gray-100 p-4 rounded-lg">
                     <h3 class="text-xl font-bold">Nutritional Information</h3>
                     <div class= 'mt-4' >
-                    <img src="{{ asset('images/nutritionalInfo/' . basename($box->imagePath)) }}" alt="Nutritional Information Image" class="rounded-lg w-full h-auto">
+                    <img src="{{ asset('images/nutritionalInfo/' . basename($box->nutrInfo)) }}" alt="Nutritional Information Image" class="rounded-lg w-full h-auto">
                     </div>
                 </div>
             </div>
