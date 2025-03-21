@@ -204,4 +204,10 @@ class AdminController extends Controller
         $box->delete();
         return redirect()->route('admin.inventory');
     }
+
+    // Increase box stock function
+    public function addInventory(Box $box){
+        $box->increment('stock');
+        return back()->with('success', 'Stock increased successfully');
+    }
 }

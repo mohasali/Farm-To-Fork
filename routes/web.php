@@ -141,7 +141,7 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/orders', 'orders')->name('admin.orders');
     Route::get('/admin/inventory', 'inventory')->name('admin.inventory');
     Route::get('/admin/inventory/{box}', 'editInventory')->name('inventory.edit');
-
+    Route::get('/admin/inventory/{box}/add', 'addInventory')->name('inventory.add');
     Route::patch('/admin/orders','updateOrderStatus');
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');

@@ -2,7 +2,7 @@
     <!-- Add New Product -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center px-4">
-            <x-account-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">Back</x-account-nav-link>              
+            <x-account-nav-link href="{{ route('admin.inventory') }}" :active="request()->routeIs('admin.inventory')">Back</x-account-nav-link>              
             <x-success-alert/>
             <h1 class="font-medium text-3xl md:text-5xl text-secondary">Edit Product</h1>
         </div>
