@@ -14,7 +14,6 @@ use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use Log;
 
 class UserController extends Controller
 {
