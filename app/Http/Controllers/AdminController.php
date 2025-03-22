@@ -187,17 +187,26 @@ class AdminController extends Controller
             'price' => $attributes['price'],
             'type' => $attributes['type'],
             'description' => $attributes['description'],
-                ]);
+        ]);
         $box->save();
 
         $folderName = str_replace(' ', '_', $box->title);
         $dirPath = public_path('images/Boxes/' . $folderName);
-        mkdir($dirPath, 0777, true);
+
+        // Check if directory already exists
+        if (!is_dir($dirPath)) {
+            mkdir($dirPath, 0777, true);
+        }
+
+        // Check if cover image is uploaded
         if($request->hasFile('cover')){
             $request->file('cover')->move( $dirPath, time() . '.' . $request->cover->extension());
         }
-        
-        return redirect()->route('inventory.edit',$box->id);
+
+        // Update tags
+        $box->tags()->sync($attributes['tags']);
+
+        return redirect()->route('admin.inventory.edit', $box)->with('success', 'Product edited successfully!');;
     }
 
     public function deleteBox(Box $box){

@@ -145,10 +145,13 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::patch('/admin/orders','updateOrderStatus');
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
-    Route::post('/admin/inventory/{box}', 'editBox');
-    Route::delete('/admin/inventory/{box}', 'deleteBox');
+    Route::post('/admin/inventory/{box}', 'editBox')->name('admin.inventory.edit');;
+    Route::delete('/admin/inventory/{box}', 'deleteBox')->name('admin.inventory.delete');;
 
 });
+
+Route::post('/admin/inventory/{box}', [AdminController::class, 'editBox'])->name('admin.inventory.edit');
+Route::delete('/admin/inventory/{box}', [AdminController::class, 'deleteBox'])->name('admin.inventory.delete');
 
 // Update customer roles
 Route::put('/update-user-role/{id}', function(Request $request, $id) {
