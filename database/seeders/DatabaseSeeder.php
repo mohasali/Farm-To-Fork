@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'contact_preferences' => '["phone"]', // lowercase pref (email, phone) in array
             'upvotes' => 100,
             'isAdmin' => true,
-            'pfp' => '/images/Account/cow.png'
+            'pfp' => '/images/Account/Horse.png'
         ]);
         Reward::create(['user_id'=>$user->id]);
 

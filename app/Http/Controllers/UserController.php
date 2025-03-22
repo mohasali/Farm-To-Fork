@@ -10,10 +10,10 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\ForgotPassword;
+use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use Log;
 
 class UserController extends Controller
 {
@@ -45,6 +45,9 @@ class UserController extends Controller
         $user = User::create($attributes);
         Reward::create(['user_id'=>$user->id]);
         Auth::login($user);
+
+        //send out welcome email
+        Mail::to(request('email'))->send(new Welcome());
 
         return redirect('/');
     }
@@ -208,7 +211,6 @@ class UserController extends Controller
             
             $token = Str::random(64);
 
-            //must add a check so that if there is an existing request it updates accordingly or sends error
             DB::table('password_reset')->insert([
                 'email' => $email,
                 'token' => $token,
@@ -228,7 +230,6 @@ class UserController extends Controller
       To change the password after password reset email has been sent to the user
     */
     public function resetPassword(){
-        Log::debug('An informational message.');
         $attributes = request()->validate([
             'email'=>['required','email'],
             'password'=>['confirmed', 'required',Password::min(8)->mixedCase()->numbers()->symbols()],

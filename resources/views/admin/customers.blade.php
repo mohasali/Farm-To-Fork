@@ -51,7 +51,7 @@
                             <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                                 <div class="w-16 h-16 rounded-full overflow-hidden">
                                     <!-- User image else default image -->
-                                    <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                                    <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
                                 </div>
                                 <div class="ml-4 text-center md:text-left">
                                     <h3 class="font-medium text-lg">{{ $user->name }}</h3>
@@ -63,10 +63,15 @@
                             <form method="POST" action="{{ route('update-user-role', $user->id) }}">
                                 @csrf
                                 @method('PUT')
-                                <select name="isAdmin" class="p-2 m-2 mb-0 bg-gray-100 rounded-lg" onchange="this.form.submit()">
-                                    <option value="0" {{ $user->isAdmin == 0 ? 'selected' : '' }}>User</option>
-                                    <option value="1" {{ $user->isAdmin == 1 ? 'selected' : '' }}>Admin</option>
-                                </select>
+                                <!-- User role -->
+                                @if (auth()->user()->id == $user->id)
+                                    <p class="text-red-500">You can't change your own role.</p>
+                                @else
+                                    <select name="isAdmin" class="p-2 m-2 mb-0 bg-gray-100 rounded-lg" onchange="this.form.submit()">
+                                        <option value="0" {{ $user->isAdmin == 0 ? 'selected' : '' }}>User</option>
+                                        <option value="1" {{ $user->isAdmin == 1 ? 'selected' : '' }}>Admin</option>
+                                    </select>
+                                @endif
                             </form>
                         </div>
                     </div>

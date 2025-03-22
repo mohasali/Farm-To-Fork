@@ -4,8 +4,13 @@
         <!-- Sidebar -->
         <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md flex flex-col items-center h-auto md:max-h-[calc(100vh-4rem)] mb-2 md:mb-0 overflow-y-auto">            
             <!-- User Info -->
-            <div class="text-center mb-6">
-                <a href="/customer/{{Auth::user()->id}}"><h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2></a>
+            <div class="flex items-center space-x-4 mb-6">
+                <a href="/customer/{{ Auth::user()->id }}" class="flex items-center space-x-4">
+                    <img src="{{ Auth::user()->pfp ?? '/images/Account/default_chicken.png' }}" 
+                        alt="{{ Auth::user()->name }}" 
+                        class="object-cover w-12 h-12 rounded-full">
+                    <h2 class="text-lg font-semibold">{{ Auth::user()->name }}</h2>
+                </a>
             </div>
 
             <!-- Navigation Links -->

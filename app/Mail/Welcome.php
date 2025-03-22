@@ -9,37 +9,33 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ForgotPassword extends Mailable
+class Welcome extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $token;
     /**
      * Create a new message instance.
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+        //
     }
 
     public function build(){
-        return $this->view('mail.forgot-password')
-            ->with([
-                'token' => $this->token
-            ])
-            //images
-            -> attach(public_path('images/instagram.png'),[
-                'as' => 'instagram.png',
-                'mime' => 'image/png',
-            ])
-            -> attach(public_path('/images/x.png'),[
-                'as' => 'x.png',
-                'mime' => 'image/png',
-            ])
-            -> attach(public_path('/images/facebook.png'), [
-                'as' => 'facebook.png',
-                'mime' => 'image/png',
-            ]);
+        // images
+        return $this -> attach(public_path('images/instagram.png'),[
+                        'as' => 'instagram.png',
+                        'mime' => 'image/png',
+                    ])
+                    -> attach(public_path('/images/x.png'),[
+                        'as' => 'x.png',
+                        'mime' => 'image/png',
+                    ])
+                    -> attach(public_path('/images/facebook.png'), [
+                        'as' => 'facebook.png',
+                        'mime' => 'image/png',
+                    ]);
+
     }
 
     /**
@@ -48,7 +44,7 @@ class ForgotPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Forgot Password',
+            subject: 'Welcome!',
         );
     }
 
@@ -58,7 +54,7 @@ class ForgotPassword extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.forgot-password',
+            view: 'mail.welcome',
         );
     }
 
