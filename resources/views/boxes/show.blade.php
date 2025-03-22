@@ -96,21 +96,21 @@
         </div>
         <!-- Collapsible Nutritional information -->
         <div class="my-6 mx-8">
-            
-            <button id="collapsible" class="w-full bg-primary text-white py-2 px-4 rounded-lg text-lg hover:bg-accent1 transition duration-300">
-                Nutritional Information
-            </button>
+    @if (!empty($box->nutrInfo))
+        <button id="collapsible" class="w-full bg-primary text-white py-2 px-4 rounded-lg text-lg hover:bg-accent1 transition duration-300">
+            Nutritional Information
+        </button>
 
-            
-            <div id="content" class="hidden mt-4">
-                <div class="bg-gray-100 p-4 rounded-lg">
-                    <h3 class="text-xl font-bold">Nutritional Information</h3>
-                    <div class= 'mt-4' >
-                    <img src="{{ asset('images/nutritionalInfo/' . basename($box->imagePath)) }}" alt="Nutritional Information Image" class="rounded-lg w-full h-auto">
-                    </div>
+        <div id="content" class="hidden mt-4">
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-xl font-bold">Nutritional Information</h3>
+                <div class="mt-4">
+                    <img src="{{ asset('images/nutritionalInfo/' . basename($box->nutrInfo)) }}" alt="Nutritional Information Image" class="rounded-lg w-full h-auto">
                 </div>
             </div>
         </div>
+    @endif
+</div>
 
 
         <!-- Comment section -->

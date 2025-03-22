@@ -12,7 +12,7 @@ class Box extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','type','price','description','stock'];
+    protected $fillable = ['title','type','price','description','stock','nutrInfo'];
     
     public function getImages()
     {

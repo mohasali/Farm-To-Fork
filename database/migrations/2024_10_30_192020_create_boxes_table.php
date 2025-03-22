@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('type',['Seasonal','Meat & Dairy','Dynamic Pricing','Locally Sourced','Cultural Recipe']);
             $table->decimal('price',6,2);
             $table->integer('stock')->default(10);
+            $table->string('nutrInfo')->nullable();
             $table->timestamps();
 
         });
