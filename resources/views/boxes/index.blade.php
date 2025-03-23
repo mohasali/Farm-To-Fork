@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Boxes">
     <!-- image background -->
     <section class="relative w-full bg-cover bg-center py-16 md:py-24" style="background-image: url('images/bg1.jpg');">
         <div class="container mx-auto px-4">

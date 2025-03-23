@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Terms and Conditions">
     <section class="relative w-full bg-cover transform bg-center md:bg-top min-h-[280px]" style="background-image: url('images/bg1.jpg');">
     </section>
 

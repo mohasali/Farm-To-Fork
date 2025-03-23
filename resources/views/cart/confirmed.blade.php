@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Order Confirmation">
     <div class="m-4 text-center">
       <!-- Order confirmation -->
       <div class="p-4">

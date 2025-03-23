@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Checkout">
     <div class="flex flex-wrap justify-between p-6 bg-gray-100 rounded-lg shadow-md text-black">
         <div class="w-full lg:w-[60%] mb-6 lg:mb-0 px-4">
             @if (session('message'))
