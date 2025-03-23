@@ -142,8 +142,8 @@ Route::patch('/account/payments/{payment}', [PaymentController::class, 'update']
 Route::delete('/account/payments/{payment}', [PaymentController::class, 'delete'])->name('payment.delete');
 
 // Recipes
-Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
