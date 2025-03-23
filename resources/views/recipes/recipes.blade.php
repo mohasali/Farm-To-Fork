@@ -1,13 +1,11 @@
 <x-layout>
-    <!-- Hero Header -->
-    <section class="relative w-full bg-cover bg-center py-16 md:py-24" style="background-image: url('images/bg1.jpg');">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col items-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center">Recipes</h1>
-                <p class="mt-4 text-lg md:text-xl text-center max-w-2xl">Discover delicious dishes to make with our farm-fresh ingredients</p>
+    <!-- Image background with parallax!!!!-->
+    <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/bg1.jpeg');">
+            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center">
+                <h1 class="text-4xl text-white md:text-5xl lg:text-6xl font-bold text-center">Recipes</h1>
+                <p class="mt-4 text-white text-lg md:text-xl text-center max-w-2xl">Discover delicious dishes to make with our farm-fresh ingredients</p>
             </div>
-        </div>
-    </section>
+        </section>
     
     <div class="absolute left-4 top-48 md:left-8 md:top-52 lg:left-12 animate-bounce">
         <x-egg :value="4"/>
@@ -16,8 +14,8 @@
     <!-- Search and Filter Bar -->
     <div class="bg-white shadow-md">
         <div class="container mx-auto px-4 py-4">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex gap-2 w-[40%] overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 p-2">
+            <div class="flex flex-col justify-between items-center gap-4">
+                <div class="flex gap-2 w-full overflow-x-auto whitespace-nowrap p-2">
                     <a href="{{ route('recipes.index') }}" 
                     class="px-4 py-2 {{ request()->routeIs('recipes.index') && !request()->query('tag') ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700' }} rounded-full text-sm hover:bg-primary/90 hover:text-white transition">
                         All Recipes
@@ -37,22 +35,6 @@
                             {{ $tag }}
                         </a>
                     @endforeach
-                </div>
-
-                <!-- Search bar -->
-                <div class="relative w-full md:w-64">
-                    <form class="relative" method="GET">
-                        @if($tag)
-                            <input hidden value="{{ $tag }}" name="tag">
-                        @endif
-                        <input name="q" autocomplete="off" type="text" placeholder="Search recipes..." 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <button type="submit" class="absolute right-3 top-2.5 text-gray-400 bg-transparent border-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>

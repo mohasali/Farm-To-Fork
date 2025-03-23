@@ -34,15 +34,8 @@ class RecipeController extends Controller
         $tags = $this->getTags();
         $title = 'Recipes';
         
-        // Search query
-        $q = $request->input('q');
         $selectedTag = $request->tag ? strtolower($request->tag) : null;
 
-        if ($q) {
-            $recipes = Recipe::where('title', 'LIKE', "%$q%")->paginate(8);
-            return view('recipes.recipes', compact('title', 'tags', 'recipes'));
-        }
-        
         // Get the CSV file path
         $csvPath = database_path('data/Recipe-data.csv');
         $file = fopen($csvPath, 'r');
