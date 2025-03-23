@@ -1,5 +1,7 @@
 <x-layout>
     <main class="w-full bg-gray-50">
+        <!-- Image background with parallax!!!!-->
+        <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/Aboutus.jpg');">
             <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center">
                 <h1 class="text-white text-4xl md:text-6xl font-bold mb-4">Contact Us</h1>
                 <p class="text-white/90 text-lg md:text-xl max-w-2xl px-6">Got a query?<br>Ask away! Farm to Fork is here to help!</p>
