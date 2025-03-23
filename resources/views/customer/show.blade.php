@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Admin | Customers">
     <section class="max-w-4xl mx-auto p-3 sm:p-4 md:p-6 mt-2 sm:mt-4 shadow-md min-h-[600px] mb-4 rounded-lg">
         <x-account-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')" class="text-sm sm:text-base">Back</x-account-nav-link>
         

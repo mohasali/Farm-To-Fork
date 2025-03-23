@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Account Management">
     <div class="flex flex-col md:flex-row w-full max-w-7xl mx-auto p-2 md:p-4 md:my-8 bg-gray-50 rounded-lg shadow-lg">
         
         <!-- Sidebar -->

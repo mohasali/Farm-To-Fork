@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Register">
 <div class="flex justify-center p-4">
     <form class="flex flex-col bg-white p-16 pt-6 rounded w-[100%] max-w-[500px] border-[3px] border-primary" method="POST">
         <h3 class=" font-bold text-5xl text-center pb-9 ">Register</h3>

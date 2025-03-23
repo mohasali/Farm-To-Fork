@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Review">
     <div class="flex flex-col justify-start mt-8 mb-6 ">
         <div class="flex flex-col bg-gray-100 rounded-lg w-2/3 mx-auto space-y-6 md:space-y-0 p-4">
             <!-- Title -->

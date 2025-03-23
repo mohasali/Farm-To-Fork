@@ -8,4 +8,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: '127.0.0.1',
+        port: 5173,
+        https: false, // Ensure this is set to false to avoid using Herd's SSL certificate
+      },
 });

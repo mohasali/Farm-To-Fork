@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Contact Us">
     <main class="w-full">
         <section class="relative w-full min-h-[calc(100vh-100px)] bg-cover bg-center" style="background-image: url('images/Aboutus.jpg');">
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center">

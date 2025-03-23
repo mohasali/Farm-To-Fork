@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title ="Admin | Products">
     <!-- Add New Product -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center px-4">
