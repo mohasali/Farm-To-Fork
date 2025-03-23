@@ -45,7 +45,7 @@ function magnify(imgID, zoom) {
     
         // Get the width and height of the magnifier glass
         w = glass.offsetWidth / 2;
-        h = glass.offsetHeight / 3;
+        h = glass.offsetHeight / 2;
     
         // Prevent the magnifier glass from being positioned outside the image
         if (x > img.width - w / zoom) { x = img.width - w / zoom; }

@@ -7,6 +7,13 @@ use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
+    public function index(Request $request)
+    {
+        $query = Recipe::query();
+        $recipes = $query->get();
+        return view('recipes.recipes', compact('recipes'));
+    }
+
     public function recipes() {
         // Get paginated recipes
         $recipes = Recipe::paginate(8);
