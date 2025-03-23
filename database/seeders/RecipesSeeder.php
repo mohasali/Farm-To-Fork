@@ -31,12 +31,16 @@ class RecipesSeeder extends Seeder
                 // Recipe
                 $recipe = Recipe::create([
                     'title' => $data[0],
-                    'description' => $data[1],
-                    'imagePath' => $data[4],
+                    'tag' => trim($data[1], "[]' "),
+                    'cooking_time' => (int)$data[2],
+                    'rating' => (float)$data[3],
+                    'serving' => (int)$data[4],
+                    'description' => $data[5],
+                    'imagePath' => $data[8],
                 ]);
 
                 // Ingredients
-                $ingredients = explode(',', $data[2]);
+                $ingredients = explode(',', $data[6]);
                 foreach ($ingredients as $ingredientName) {
                     Ingredient::create([
                         'name' => trim($ingredientName),
@@ -45,7 +49,7 @@ class RecipesSeeder extends Seeder
                 }
 
                 // Steps
-                $steps = explode(';', $data[3]);
+                $steps = explode(';', $data[7]);
                 foreach ($steps as $stepDescription) {
                     Step::create([
                         'description' => trim($stepDescription),

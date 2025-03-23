@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-    protected $fillable = ['title', 'description', 'imagePath'];
+    protected $fillable = [
+        'title',
+        'tag',
+        'cooking_time',
+        'rating',
+        'serving',
+        'description',
+        'imagePath'
+    ];
 
     public function ingredients()
     {
@@ -16,5 +24,10 @@ class Recipe extends Model
     public function steps()
     {
         return $this->hasMany(Step::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
