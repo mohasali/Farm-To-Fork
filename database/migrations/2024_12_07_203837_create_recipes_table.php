@@ -14,11 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->enum('tag',['Vegetarian','Quick', 'Easy', 'Seasonal', 'Keto', 'Indian', 'Italian', 'Chinese', 'Mexican', 'American', 
-            'French', 'Japanese', 'Thai', 'Mediterranean', 'Middle Eastern', 'British', 'German', 'Greek', 'Spanish', 'Caribbean', 'Moroccan', 
-            'South American', 'African', 'Other', 'Egg-free', 'Nut-free', 'Gluten-free', 'Dairy-free', 'Vegan', 'Low-fat', 'Low-sugar', 
-            'Low-salt', 'Low-calorie', 'High-protein', 'High-fiber', 'Low-carb', 'Low-GI', 'Fat-free', 'Low-sugar', 'Low-salt', 'Low-calorie',
-             'High-protein', 'High-fiber', 'Low-carb', 'Low-GI', 'Fat-free', 'Diary-free', ]);
+            $table->text('tag');
             $table->integer('cooking_time');
             $table->decimal('rating');
             $table->integer('serving');
