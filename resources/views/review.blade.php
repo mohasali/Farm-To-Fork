@@ -63,7 +63,7 @@
     </div>
 </x-layout>
 
-<<script>
+<script>
     const container = document.getElementById("rating-container");
     const clearButton = document.getElementById("clear-rating");
     const ratingInput = document.getElementById("rating-input");
