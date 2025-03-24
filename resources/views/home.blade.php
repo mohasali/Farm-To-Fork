@@ -19,7 +19,7 @@
         @if (Auth::user()->eggHunt()->count()>=5)
         <form action="{{ route('eggHunt.claim') }}" method="POST">
           @csrf
-            <button class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-accent1 mt-2">
+            <button onclick="alert('Check your rewards page for your code!')" class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-accent1 mt-2">
                 Claim Promo Code
             </button>
         </form>
@@ -29,7 +29,7 @@
       </p>
     </div>
     <!-- Farm to Fork -->
-    <div class="absolute inset-0 z-0 flex flex-col items-center justify-center text-center">
+    <div class="inset-0 z-0 flex flex-col items-center justify-center text-center">
       <h1 class="text-4xl text-primary md:text-5xl lg:text-6xl font-bold pb-4">Farm To Fork</h1>
       <h2 class="text-secondary text-xl md:text-2xl font-semibold pb-8">Fresh Ingredients, Delivered to Your Doorstep</h2>
       <div class="flex justify-center space-x-5">

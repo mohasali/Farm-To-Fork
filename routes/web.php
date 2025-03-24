@@ -18,6 +18,7 @@ use App\Http\Controllers\RewardController;
 use App\Http\Controllers\SiteReviewController;
 use App\Models\SiteReview;
 use App\Models\User;
+use App\Mail\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,11 @@ Route::get('/review', function(){
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::post('/contact',function(){
+    Mail::to(env('MAIL_USERNAME'))->send(new Contact(request()));
+    return view('contact');
+} );
+
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -56,7 +62,7 @@ Route::get('/pnc', function () {
 Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
-    Route::get('/boxes/{box}','show');
+    Route::get('/boxes/{box}','show')->name('boxes.show');
     Route::get('/boxes/{box}/review','review')->middleware('auth');
     Route::post('/boxes/{box}/review','addReview')->middleware('auth');
 

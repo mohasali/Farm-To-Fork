@@ -1,5 +1,5 @@
 <x-layout title="Contact Us">
-    <main class="w-full bg-gray-50">
+    <main class="w-full ">
         <!-- Image background with parallax!!!!-->
         <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/Aboutus.jpg');">
             <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center">
@@ -22,7 +22,8 @@
                             <h2 class="text-2xl font-semibold text-gray-800">Send Us a Message</h2>
                         </div>
                         
-                        <form action="https://formspree.io/f/mldezkpj" method="POST" class="space-y-6">
+                        <form method="POST" class="space-y-6">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- First Name -->
                                 <div>

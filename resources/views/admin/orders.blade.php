@@ -1,4 +1,4 @@
-<x-layout title = "Admin | Orders">
+<x-layout title="Admin | Orders">
     <!-- Order Processing List -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center px-4">
