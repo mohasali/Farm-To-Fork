@@ -175,7 +175,7 @@
           </a>
         </div>
         
-        <p class="text-sm md:text-base">Contact@FarmToFork.com</p>
+        <p class="text-sm md:text-base">farmtofork.999@gmail.com</p>
         
         <div class="flex flex-col items-center">
           <h3 class="text-base md:text-lg font-semibold">Subscribe to our Newsletter</h3>
