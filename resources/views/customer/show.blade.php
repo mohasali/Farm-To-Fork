@@ -1,6 +1,6 @@
 <x-layout title="Admin | Customers">
     <section class="max-w-4xl mx-auto p-3 sm:p-4 md:p-6 mt-2 sm:mt-4 shadow-md min-h-[600px] mb-4 rounded-lg bg-white">
-        @if($user->isAdmin)
+        @if(Auth::user()->isAdmin)
             <x-account-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')" class="text-sm sm:text-base">Back</x-account-nav-link>
         @else
             <x-account-nav-link href="{{ route('account.user') }}" :active="request()->routeIs('account.user')" class="text-sm sm:text-base">Back</x-account-nav-link>

@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Box;
+use App\Models\Order;
 use App\Models\Review;
 use App\Models\SiteReview;
 
@@ -36,15 +37,20 @@ class ReviewSeeder extends Seeder
                     'upvotes' => $data[4],
 
                     //seeding foreign keys
-                    'user_id' => User::factory()->create()->id,
-                    'box_id' => Box::factory()->create()->id,
+                    'user_id' => User::factory()
+                    ->has(
+                        Order::factory()
+                            ->count(fake()->numberBetween(1, 5))
+                    )
+                    ->create()->id,
+                    'box_id' => $data[5],
                 ]);
 
                 //site review
                 $site_review = SiteReview::create([
-                    'site_rating' => $data[5],
-                    'site_title' => $data[6],
-                    'site_description' => $data[7],
+                    'site_rating' => $data[6],
+                    'site_title' => $data[7],
+                    'site_description' => $data[8],
 
                     //FK
                     'user_id' => User::factory()->create()->id,
