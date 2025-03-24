@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\BoxType;
 use App\Models\Box;
+use App\Models\Enquiry;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
@@ -253,7 +254,7 @@ class AdminController extends Controller
             'revenue' => $revenue,
 
             // Enquiries
-            // 'enquiries' => ??
+             'enquiries' => Enquiry::count(),
 
             // Inventory
             'inventoryValue' => Box::sum('price') ?? 0,
