@@ -68,9 +68,10 @@
                         <!-- Tags -->
                         <div class="flex flex-wrap gap-2 mb-2">
                             @php
-                                $cleanTags = collect($recipe->tags)->map(function($tag) {
-                                    return trim(str_replace(['[', ']', "'"], '', $tag));
-                                });
+                                $cleanTags = collect(explode(',', $recipe->tag))
+                                                ->map(function ($tag) {
+                                                    return trim($tag);
+                                                });
                             @endphp
                             @foreach($cleanTags as $tag)
                                 <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">{{ $tag }}</span>

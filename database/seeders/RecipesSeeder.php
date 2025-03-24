@@ -31,7 +31,7 @@ class RecipesSeeder extends Seeder
                 // Recipe
                 $recipe = Recipe::create([
                     'title' => $data[0],
-                    'tag' => trim($data[1], "[]' "),
+                    'tag' => str_replace(["[", "]", "'"], "", $data[1]),
                     'cooking_time' => (int)$data[2],
                     'rating' => (float)$data[3],
                     'serving' => (int)$data[4],
