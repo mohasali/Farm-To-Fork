@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body class="bg-background text-text flex flex-col min-h-screen">
-  <nav class="justify-between items-center bg-white px-7 desktop-nav hidden md:flex border-b-4 border-accent1 p-1">
+<body class="z-50 bg-background text-text flex flex-col min-h-screen">
+  <nav class="z-50 justify-between items-center bg-white px-7 desktop-nav hidden md:flex border-b-4 border-accent1 p-1">
     <div>
       <a href="/"><img src="/images/logo.png" alt="Logo" class="max-w-20"></a>
     </div>
@@ -37,7 +37,7 @@
         <div class="group flex flex-col justify-start bg-white">
           <!-- User Image (CHANGE PATH) -->
           <x-nav-link href='/account/user'>
-            <a href='/account/user'><img src="{{ Auth::user()->pfp }}" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
+            <a href='/account/user'><img src="{{ Auth::user()->pfp ?? '/images/Placeholder.jpeg' }}" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
           </x-nav-link>
           <div class="group-hover:flex fixed top-[60px] right-[40px] flex-col z-10 p-4 space-y-2 hidden bg-white">
             <x-nav-link href="/account/user">Manage</x-nav-link>
@@ -63,52 +63,66 @@
       @endauth
 
     </div>
-  </nav>    
-  <nav class="px-3 z-10 bg-text p-6 mobile-nav md:hidden sticky top-0" >
+  </nav>  
+  
+  <!-- MOBILE -->
+  <nav class="px-3 z-50 bg-text p-6 mobile-nav md:hidden sticky top-0" >
     <div class="flex justify-end">
+      <!-- Farm to fork -->
+      <div class="absolute left-0 right-0 mx-auto w-max pointer-events-none">
+        <h1 class="text-white font-medium">Farm to Fork</h1>
+      </div>
       <button id="mobile-nav-button" class="mobile-nav">
         <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
         <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
         <div class=" w-[25px] h-[3px] bg-white mb-1"></div>
       </button>
     </div>
-    <div class=" flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu transition-all duration-300 ease-in-out">
+    <div class="flex flex-col fixed bg-white h-[100%] w-[200px] top-[69px] right-[0px] space-y-2 items-end p-2 mobile-menu transition-all duration-300 ease-in-out">
       <x-nav-link href='/'> Home </x-nav-link>
       <x-nav-link href='/about'> About Us </x-nav-link>
       <x-nav-link href='/boxes'> Boxes </x-nav-link>
       <x-nav-link href='/recipes'> Recipes </x-nav-link>
       <x-nav-link href='/contact'> Contact Us </x-nav-link>
       <x-nav-link href="{{ url('/account/rewards') }}" class="flex items-center"><i class="fa-solid fa-gift"></i></x-nav-link>
+      
       @guest
       <x-nav-link href='/login'> Login </x-nav-link>
       <x-nav-link href='/register'> Register </x-nav-link>
       @endguest
       
       @auth
-      <div class="group flex flex-col justify-start bg-white">
-          <!-- User Image (CHANGE PATH) -->
-          <x-nav-link href='/account/user'>
-            <a href='/account/user'><img src="/images/Account/default_chicken.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75 rounded-full"></a>
-          </x-nav-link>
-          <div class="group-hover:flex fixed top-[55px] flex-col z-10 p-4 space-y-2 hidden bg-white">
-            <x-nav-link href="/account/user">Manage</x-nav-link>
-            <form class=" m-0" method="POST" action="/logout">
+      <div class="flex-grow"></div>
+      
+        <div class="w-full flex flex-col border-t border-gray-200 pb-16 mb-16 mt-auto">
+          <div class="w-full border-t border-gray-200 pt-3 mt-auto">
+            <div class="flex justify-between items-center w-full">
+              <!-- User -->
+              <x-nav-link href='/account/user' class="flex items-center">
+                <img src="{{ Auth::user()->pfp ?? '/images/Placeholder.jpeg' }}" alt="User pfp" class="h-8 w-8 hover:opacity-75 rounded-full">
+                <span class="ml-2">Account</span>
+              </x-nav-link>
+              
+              <!-- Cart -->
+              <x-nav-link href='/cart' class="relative">
+                <img src="/images/cart.png" alt="Cart icon" class="h-8 hover:opacity-75">
+                @php
+                    $cartItemCount = Auth::check() ? Auth::user()->cartItems()->count() : 0;
+                @endphp
+                @if($cartItemCount > 0)
+                    <p class="absolute -top-1.5 -right-1 bg-accent2 text-white text-xs rounded-full px-2 py-1">
+                        {{ $cartItemCount }}
+                    </p>
+                @endif
+              </x-nav-link>
+            </div>
+            
+            <!-- Logout -->
+            <form class="mt-3 w-full" method="POST" action="/logout">
               @csrf
-              <button class="hover:text-primary">Log Out</button>
+              <button class="w-full py-2 bg-primary text-white rounded text-center">Log Out</button>
             </form>
-          </div>
         </div>
-        <x-nav-link href='/cart' class="relative">
-            <img src="/images/cart.png" alt="Cart icon" class="h-6 md:h-8 hover:opacity-75">
-            @php
-                $cartItemCount = Auth::check() ? Auth::user()->cartItems()->count() : 0;
-            @endphp
-            @if($cartItemCount > 0)
-                <p class="absolute -top-1.5 -right-1 bg-accent2 text-white text-xs rounded-full px-2 py-1">
-                    {{ $cartItemCount }}
-                </p>
-            @endif
-        </x-nav-link>
       @endauth
     </div>
   </nav>

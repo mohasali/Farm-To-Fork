@@ -2,7 +2,7 @@
 <x-layout title="Home">
   <section class="relative w-full min-h-[calc(100vh-200px)] bg-cover bg-center bg-fixed" style="background-image: url('images/bg1.jpg');">
     <!-- Egg hunt banner -->
-    <div class="relative z-10 flex flex-col pt-16 text-center">
+    <div class="relative z-1 flex flex-col pt-16 text-center">
       <h1 class="font-bold text-2xl text-primary">Egg Hunt is now LIVE</h1> 
       <p>5 eggs have been scattered across the website<br></p>
       <p>Find them all to win a prize!</p>

@@ -61,7 +61,7 @@
                 <span>Filters</span>
             </button>
             
-            <div class="absolute mt-2 -translate-x-full opacity-0 bg-white border border-gray-200 shadow-md rounded-lg w-64 z-10 transition-all duration-300 ease-in-out" id="filter-menu">
+            <div class="absolute mt-2 -translate-x-full opacity-0 bg-white border border-gray-200 shadow-md rounded-lg w-64 transition-all duration-300 ease-in-out" id="filter-menu">
                 <form method="GET" action="{{ url()->current() }}" class="p-4 space-y-3">
                     @if($type)
                         <input hidden value="{{ $type }}" name="type">
@@ -119,13 +119,13 @@
                             
                             <!-- Dynamic Pricing Label -->
                             @if($box->type == 'Dynamic Pricing')
-                            <div class="absolute top-2 right-2 bg-green-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                            <div class="absolute top-2 right-2 bg-green-500 text-white text-sm py-1 px-2 rounded-full z-1">
                                 Dynamically Priced
                             </div>
                             @endif
                             <!-- Low stock indicator -->
                             @if ($box->stock < 5)
-                            <div class="absolute top-2 right-2 bg-red-500 text-white text-sm py-1 px-2 rounded-full z-10">
+                            <div class="absolute top-2 right-2 bg-red-500 text-white text-sm py-1 px-2 rounded-full z-1">
                                 Only {{ $box->stock }} left
                             </div>
                             @endif
@@ -213,7 +213,7 @@
                 // Toggle
                 if (filterMenu.classList.contains('opacity-0')) {
                     filterMenu.classList.remove('opacity-0', '-translate-x-full');
-                    filterMenu.classList.add('opacity-100', 'translate-x-0');
+                    filterMenu.classList.add('opacity-100', 'translate-x-0', 'z-20');
                 } else {
                     filterMenu.classList.remove('opacity-100', 'translate-x-0');
                     filterMenu.classList.add('opacity-0', '-translate-x-full');
