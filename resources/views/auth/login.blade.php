@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Login">
     <main class="w-full">
         <section class="container mx-auto px-4 py-32">
             <div class="max-w-[600px] mx-auto">

@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Review">
     <div class="min-h-[calc(100vh-200px)] bg-gray-50">
         <!-- Image background with parallax!!!!-->
         <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/SiteReview.jpeg');">

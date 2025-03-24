@@ -1,4 +1,4 @@
-<x-layout>
+ <x-layout title="Box | {{ $box->title }}">
     @if (session('message'))
         <div class="max-w-4xl mx-auto my-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 shadow-md rounded-lg flex items-center">
             <!-- Success -->
@@ -8,7 +8,7 @@
         </div>
     @endif
     
-    <div class="min-h-[calc(100vh-200px)] bg-gray-50">
+    <div class="min-h-[calc(100vh-200px)]">
         <!-- Image background -->
         <div class="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
             <div class="absolute inset-0 bg-black/50 z-10"></div>

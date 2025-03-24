@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="About Us">
     <main class="w-full bg-gray-50">
         <!-- Image background with parallax!!!!-->
         <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/Aboutus.jpg');">

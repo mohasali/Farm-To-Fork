@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Recipes">
     <!-- Image background with parallax!!!!-->
     <section class="relative w-full h-96 md:h-[500px] bg-cover bg-center bg-fixed" style="background-image: url('images/bg1.jpeg');">
             <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center">

@@ -1,5 +1,5 @@
 <script src="{{ asset('js/slides.js') }}"></script>
-<x-layout>
+<x-layout title="Home">
   <section class="relative w-full min-h-[calc(100vh-200px)] bg-cover bg-center bg-fixed" style="background-image: url('images/bg1.jpg');">
     <!-- Egg hunt banner -->
     <div class="relative z-10 flex flex-col pt-16 text-center">

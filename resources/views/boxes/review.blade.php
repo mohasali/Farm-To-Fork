@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Review Box">
     <div class="min-h-[calc(100vh-200px)] bg-gray-50">
         <!-- Image background header -->
         <div class="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">

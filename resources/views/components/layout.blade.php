@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>{{ $title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -114,6 +114,24 @@
   </nav>
 
   <main>
+    <style>  
+      .emoji {
+        position: fixed;
+        font-size: 2rem;
+        color: rgb(73, 73, 73);
+        filter: grayscale(100%);
+        opacity: 0.13;
+        user-select: none;
+        pointer-events: none;
+        transition: filter 350ms ease, opacity 350ms ease;
+        animation: moveDiagonal 100s linear infinite;
+      }
+  
+      @keyframes moveDiagonal {
+        0% { transform: translate(-100%, -100%); }
+        100% { transform: translate(100vw, 100vh); }
+      }
+    </style>
     {{ $slot }}
   </main>
   <footer class="mt-auto bg-primary w-full p-6 text-white">
@@ -172,4 +190,79 @@
   </footer>
   
 </body>
+
+<script>
+const emojis = [
+  '🥕', '🍈', '🍑', '🍅', '🍄', '🥑', '🥔', '🍎', '🍊', '🍉', '🍇', '🍓', '🫐', '🍒', 
+  '🍍', '🥭', '🥝', '🍐', '🍏', '🍆', '🥬', '🥦', '🌽', '🌶️', '🫑', '🫛', '🫒', '🥦',
+  '🍆', '🥬', '🌽', '🌶️', '🥑', '🥩', '🍗', '🍖', '🥓', '🍤', '🐟', '🦐', '🦑', '🦀',
+   '🐙', '🥩', '🥓', '🍗', '🍖'
+];
+
+
+  function spawnEmojis(v) {
+    const numberOfEmojis = 20;
+    const emojiRow = document.createElement('div');
+    emojiRow.style.position = 'absolute';
+    emojiRow.style.top = v + 'vh';
+    emojiRow.style.left = '0';
+    emojiRow.style.zIndex ='-1';
+
+    for (let i = -numberOfEmojis; i < numberOfEmojis; i++) {
+      const emoji = document.createElement('div');
+      emoji.classList.add('emoji');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = `${(100 / numberOfEmojis) * i}vw`;
+
+      emojiRow.appendChild(emoji);
+    }
+
+    document.body.appendChild(emojiRow);
+    setTimeout(() => emojiRow.remove(), 100000);
+  }
+
+  let emojiInterval;
+    
+  function setEmojis() {
+    for (let i = 0; i < 100; i += 10) {
+      spawnEmojis(i);
+    }
+    emojiInterval = setInterval(() => spawnEmojis(0), 10000);
+  }
+
+  function handleVisibilityChange() {
+    if (document.hidden) {
+      clearInterval(emojiInterval);
+      document.querySelectorAll('.emoji').forEach(emoji => emoji.remove());
+    } else {
+      setEmojis();
+    }
+  }
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  setEmojis();
+
+  document.addEventListener('mousemove', (event) => {
+    document.querySelectorAll('.emoji').forEach(emoji => {
+      const rect = emoji.getBoundingClientRect();
+      const emojiX = rect.left + rect.width / 2;
+      const emojiY = rect.top + rect.height / 2;
+
+      const distance = Math.hypot(event.clientX - emojiX, event.clientY - emojiY);
+      const maxDistance = 100; // Max distance for the effect
+
+      if (distance < maxDistance) {
+        const intensity = 1 - (distance / maxDistance)*1.5; // Closer = stronger effect
+        emoji.style.filter = `grayscale(${(1 - intensity) * 100}%)`;
+        emoji.style.opacity = `${0.13 + intensity}`;
+      } else {
+        emoji.style.filter = 'grayscale(100%)';
+        emoji.style.opacity = '0.13';
+      }
+    });
+  });
+
+</script>
+
+
 </html>

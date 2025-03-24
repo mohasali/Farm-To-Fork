@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Register">
     <main class="w-full">
         <!-- Registration Form -->
         <section class="container mx-auto px-4 py-20">
