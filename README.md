@@ -36,7 +36,7 @@
 - Customers can manage personal information, orders, addresses, rewards, payments and contact preferences in the user dashboard!
 - The user dashboard includes personal information than can be updated, tracking the status of orders as well as returning boxes, addresses can be added, edited and removed for checkout ease of access, stamp your card daily to get a reward and check promo codes in the rewards section, payments can be added, edited and removed and contact preferences can be set.
 - Before checking out, users can modify their shopping habits in the cart section.
-- Checkout includes adding your address with ease because of the saved address feature, a display of what the user is buying (quantity and price) as well as a promo code input to help discount on items.
+- Checkout includes adding your address with ease because of the saved address feature as well as any saved payment method, a display of what the user is buying (quantity and price) as well as a promo code input to help discount on items.
 - When checking out, users are redirected to a thank you page - because we value YOU!
 - Admin dashboard includes user detail manage, order processing list, inventory management, adding new products, customers, statistical reports and enquiries
 - Admins can search and filter through users, check their personal order history and expand info which will display all personal details and addresses
