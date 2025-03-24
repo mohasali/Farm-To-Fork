@@ -47,7 +47,7 @@ class AdminController extends Controller
         }
 
         // Get users based off the query
-        $users = $usersQuery->get();
+        $users = $usersQuery->paginate(30);
 
         return view('admin.customers', compact('users'));
     }
