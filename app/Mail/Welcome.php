@@ -21,23 +21,6 @@ class Welcome extends Mailable
         //
     }
 
-    public function build(){
-        // images
-        return $this -> attach(public_path('images/instagram.png'),[
-                        'as' => 'instagram.png',
-                        'mime' => 'image/png',
-                    ])
-                    -> attach(public_path('/images/x.png'),[
-                        'as' => 'x.png',
-                        'mime' => 'image/png',
-                    ])
-                    -> attach(public_path('/images/facebook.png'), [
-                        'as' => 'facebook.png',
-                        'mime' => 'image/png',
-                    ]);
-
-    }
-
     /**
      * Get the message envelope.
      */

@@ -46,7 +46,7 @@
     display: none; 
 }
 
-.mobile-menu.active {
+.mobile-menu.enable {
     display: flex; 
 }
 

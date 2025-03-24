@@ -3,13 +3,7 @@
     <p class="text-sm text-gray-500 mb-6">Review past orders with their details below.</p>
     <div class="overflow-y-auto h-[428px] space-y-4">
     <section class="gap-4 max-w-4xl mx-auto text-center">
-        <form class="relative w-full md:w-80 flex" method="GET">
-            <input name="q" autocomplete="off" type="text" placeholder="Search for an order..." 
-                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ease-in-out">
-            <button type="submit" class="p-2 px-4 bg-primary text-white rounded hover:bg-accent1 transition">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form> 
+
     </section>
         @foreach ($orders as $order)
             <div class="bg-white border rounded-lg shadow-md p-4">

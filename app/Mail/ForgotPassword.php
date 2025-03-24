@@ -26,19 +26,6 @@ class ForgotPassword extends Mailable
         return $this->view('mail.forgot-password')
             ->with([
                 'token' => $this->token
-            ])
-            //images
-            -> attach(public_path('images/instagram.png'),[
-                'as' => 'instagram.png',
-                'mime' => 'image/png',
-            ])
-            -> attach(public_path('/images/x.png'),[
-                'as' => 'x.png',
-                'mime' => 'image/png',
-            ])
-            -> attach(public_path('/images/facebook.png'), [
-                'as' => 'facebook.png',
-                'mime' => 'image/png',
             ]);
     }
 
