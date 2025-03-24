@@ -45,7 +45,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 Route::post('/contact',function(){
-    Mail::to(env('MAIL_USERNAME'))->send(new Contact(request()));
+    Mail::to(env('MAIL_FROM_ADDRESS'))->send(new Contact(request()));
     return view('contact');
 } );
 
