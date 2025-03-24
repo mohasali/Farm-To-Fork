@@ -96,6 +96,6 @@ class BoxController extends Controller
             'box_id'=> $box->id,
             'user_id'=>Auth::user()->id,
         ]);
-        return redirect()->back()->with(['success'=> 'Review added succesfully.']);
+        return redirect()->route('boxes.show', $box)->with('success', 'Review added successfully.');
     }
 }

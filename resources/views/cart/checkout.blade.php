@@ -110,6 +110,7 @@
     </div>
 
 <script>
+    @if (!$addresses->isEmpty())
     const addressDropdown = document.getElementById('address-dropdown');
     addressDropdown.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
@@ -119,6 +120,7 @@
         document.getElementById('postcode').value = selectedOption.dataset.postcode || '';
         document.getElementById('country').value = selectedOption.dataset.country || '';
     });
+    @endif
     @if(!$payments->isEmpty())
     document.getElementById('payment-dropdown').addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];
