@@ -198,7 +198,7 @@
                             <div class="flex items-center space-x-2">
                                 <p class="w-12 text-sm">{{ $i }} star</p>
                                 <!-- Rating -->
-                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden" style="padding: 0">
                                     <div class="h-full bg-primary" style="width: {{ $reviews->count() > 0 ? round(($reviews->groupBy('rating')->map->count()->get($i, 0) / $reviews->count()) * 100, 2) : 0 }}%;"></div>
                                 </div>
                                 <!-- Percent -->

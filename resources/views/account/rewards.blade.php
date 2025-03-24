@@ -1,12 +1,5 @@
 <x-account-layout>
     <h1 class="text-2xl font-semibold">Your Rewards</h1>
-    <p class="text-sm text-gray-500 mb-4">Current Points: 000000</p> 
-    <!-- Member? -->
-    <div class="flex flex-col text-center rounded-lg p-12 pt-4 pb-6 bg-gray-100">
-        <h1 class="justify-center font-bold text-lg">Become a Member NOW!</h1>
-        <p>Click <a href="{{ route('account.subscription') }}"><u>HERE</u></a> to join</p>
-        <p class="text-sm">Become a member and get £5 off your first purchase.</p>
-    </div>
     <!-- Stamp system  --- Component for later | make it simple -->
     <div>
         <h1 class="text-1xl font-semibold pt-4">Daily Rewards</h1>

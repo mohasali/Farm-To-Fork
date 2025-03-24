@@ -99,5 +99,14 @@ class AccountController extends Controller
         ]);
     }
 
+    public function cancel(Order $order)
+    {
+        $order->status = 'Canceled';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order status updated successfully.');
+
+    }
+
     
 }

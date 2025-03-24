@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\EggHuntController;
+use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Middleware\IsAdmin;
@@ -44,10 +45,6 @@ Route::get('/review', function(){
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::post('/contact',function(){
-    Mail::to(env('MAIL_FROM_ADDRESS'))->send(new Contact(request()));
-    return view('contact');
-} );
 
 // Terms and Conditions
 Route::get('/tmc', function () {
@@ -130,6 +127,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/account/update-contact-preferences', [UserController::class, 'updateContactPreferences'])->name('account.update.contact.preferences');
     Route::match(['get', 'post'], '/account/orders/{order}/track', [AccountController::class, 'track'])->name('order.track');
     Route::match(['get', 'post'], '/account/orders/{order}/return', [AccountController::class, 'return'])->name('order.return');
+    Route::match(['get', 'post'], '/account/orders/{order}/cancel', [AccountController::class, 'cancel'])->name('order.cancel');
+
 });
 
 // Checkout
@@ -170,6 +169,10 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
 
 Route::post('/admin/inventory/{box}', [AdminController::class, 'editBox'])->name('admin.inventory.edit');
 Route::delete('/admin/inventory/{box}', [AdminController::class, 'deleteBox'])->name('admin.inventory.delete');
+
+Route::get('/admin/enquiries',[EnquiryController::class,'index'])->name('admin.enquiries');
+Route::post('/enquiries/{id}/toggle-seen', [EnquiryController::class, 'toggleSeen'])->name('enquiries.toggle-seen');
+Route::post('/contact', [EnquiryController::class, 'create']);
 
 // Update customer roles
 Route::put('/update-user-role/{id}', function(Request $request, $id) {

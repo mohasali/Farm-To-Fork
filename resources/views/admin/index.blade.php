@@ -13,5 +13,6 @@
         <x-admin-nav-link href="{{ route('admin.products') }}" :active="request()->routeIs('admin.products')" >Add New Product</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')" >Customers</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')" >Reports</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.enquiries') }}" :active="request()->routeIs('admin.enquirie')" >Enquiries</x-admin-nav-link>
     </section>
 </x-layout>
