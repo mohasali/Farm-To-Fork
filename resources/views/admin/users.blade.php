@@ -6,9 +6,9 @@
             <h1 class="font-medium text-3xl md:text-5xl text-secondary">Customer Detail Management</h1>
         </div>
     </section>
-    <!-- Filter User -->
-    <section class="gap-4 p-6 max-w-4xl mx-auto text-center">
-        <div class="bg-gray-50 p-4 font-medium text-lg rounded-lg">
+    <!-- Display Users -->
+    <section class="gap-4 p-6 max-w-4xl mx-auto overflow-y-auto bg-gray-100 mt-10">
+        <div class="bg-gray-100 p-4 font-medium text-lg rounded-lg">
             <!-- Search Bar -->
             <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-2">
                 <form class="relative w-full md:w-80 flex" method="GET">
@@ -20,9 +20,6 @@
                 </form> 
             </div>
         </div>
-    </section>
-    <!-- Display Users -->
-    <section class="gap-4 p-6 max-w-4xl mx-auto overflow-y-auto">
         <div class="max-h-[600px] overflow-y-auto space-y-4 p-2">
             <!-- User -->
             @foreach ($users as $user)

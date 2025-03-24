@@ -252,7 +252,7 @@ const emojis = [
       const maxDistance = 100; // Max distance for the effect
 
       if (distance < maxDistance) {
-        const intensity = 1 - (distance / maxDistance)*1.5; // Closer = stronger effect
+        const intensity = (1 - (distance / maxDistance) )*1.25; // Closer = stronger effect
         emoji.style.filter = `grayscale(${(1 - intensity) * 100}%)`;
         emoji.style.opacity = `${0.13 + intensity}`;
       } else {

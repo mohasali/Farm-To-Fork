@@ -98,7 +98,7 @@ class CheckoutController extends Controller
         session(['order_confirmed' => $order->id]);
 
         // Return the confirmation view
-        return redirect('checkout/confirmed');
+        return redirect()->route('checkout.confirmed');
     }
 
 
