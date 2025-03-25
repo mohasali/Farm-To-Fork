@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Admin | Customers">
     <section class="max-w-4xl mx-auto p-3 sm:p-4 md:p-6 mt-2 sm:mt-4 shadow-md min-h-[600px] mb-4 rounded-lg">
         <x-account-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')" class="text-sm sm:text-base">Back</x-account-nav-link>
         
@@ -6,7 +6,7 @@
         <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-4 bg-gray-50 p-3 sm:p-4 rounded-lg">
             <!-- User image -->
             <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
-                <img src="{{ $user->image ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
+                <img src="{{ $user->pfp ?? '/images/Account/default_chicken.png' }}" alt="{{ $user->name }}" class="w-full h-full object-cover">
             </div>
 
             <div class="flex-1">

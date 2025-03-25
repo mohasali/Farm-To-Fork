@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Tag;
+use App\Models\Review;
 use DB;
 
 class AdminController extends Controller
@@ -187,21 +188,85 @@ class AdminController extends Controller
             'price' => $attributes['price'],
             'type' => $attributes['type'],
             'description' => $attributes['description'],
-                ]);
+        ]);
         $box->save();
 
         $folderName = str_replace(' ', '_', $box->title);
         $dirPath = public_path('images/Boxes/' . $folderName);
-        mkdir($dirPath, 0777, true);
+
+        // Check if directory already exists
+        if (!is_dir($dirPath)) {
+            mkdir($dirPath, 0777, true);
+        }
+
+        // Check if cover image is uploaded
         if($request->hasFile('cover')){
             $request->file('cover')->move( $dirPath, time() . '.' . $request->cover->extension());
         }
-        
-        return redirect()->route('inventory.edit',$box->id);
+
+        // Update tags
+        $box->tags()->sync($attributes['tags']);
+
+        return redirect()->route('admin.inventory.edit', $box)->with('success', 'Product edited successfully!');;
     }
 
     public function deleteBox(Box $box){
         $box->delete();
         return redirect()->route('admin.inventory');
+    }
+
+    // Increase box stock function
+    public function addInventory(Box $box){
+        $box->increment('stock');
+        return back()->with('success', 'Stock increased successfully');
+    }
+
+    // Reports
+    public function reports(){
+        // Three r's x3 
+        $returnedOrders = Order::where('status', 'Returned')->count(); // Returned
+        $revenue = Order::where('status', 'Completed')->sum('total'); // Revenue
+        $returnRate = Order::count() > 0 ? round((Order::where('status', 'Returned')->count() / Order::count()) * 100, 2) : 0; // Returnrate
+
+        // Pie chart category sales
+        $categorySales = Box::selectRaw('type, count(*) as count')
+            ->groupBy('type')
+            ->pluck('count', 'type')
+            ->toArray();
+
+        // Box reviews
+        $boxReviews = DB::table('reviews')->count();
+
+        // Site reviews
+        $siteReviews = DB::table('site_reviews')->count();
+
+        $data = [
+            // Users
+            'users' => User::count(),
+            'admins' => User::where('isAdmin', true)->count(),
+
+            // Orders
+            'numberOfOrders' => Order::count(),
+            'avgOrderValue' => Order::whereNotNull('total')->avg('total') ?? 0,
+            'noReturnedOrders' => $returnedOrders,
+            'returnRate' => $returnRate,
+            'revenue' => $revenue,
+
+            // Enquiries
+            // 'enquiries' => ??
+
+            // Inventory
+            'inventoryValue' => Box::sum('price') ?? 0,
+            'inventoryItems' => Box::count(),
+
+            // Reviews
+            'boxReviews' => $boxReviews,
+            'avgBoxRating' => DB::table('reviews')->avg('rating') ?? 0,
+            'siteReviews' => $siteReviews,
+            'avgSiteRating' => DB::table('site_reviews')->avg('site_rating') ?? 0,
+            'categorySales' => $categorySales,
+        ];
+
+        return view('admin.reports', compact('data'));
     }
 }

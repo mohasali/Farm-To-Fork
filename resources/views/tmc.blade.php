@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Terms and Conditions">
     <section class="relative w-full bg-cover transform bg-center md:bg-top min-h-[280px]" style="background-image: url('images/bg1.jpg');">
     </section>
 
@@ -64,7 +64,7 @@
             <p>Upon termination, Your right to use the Service will cease immediately.</p>
             <!-- Limitedation of Liability -->
             <h4 class="text-black text-xl md:text-3xl font-bold mt-8">Limitedation of Liability</h4>
-            p>Not withstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
+            <p>Not withstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
             <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
             <p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>
             <!-- "AS IS" and "AS AVAILABLE" Disclaimer" -->
@@ -87,7 +87,6 @@
             <p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a &quot;terrorist supporting&quot; country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
             <!-- Severability and Waiver -->
             <h4 class="text-black text-xl md:text-3xl font-bold mt-8">Severability and Waiver</h4>
-            <h3>Severability</h3>
             <p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
             <!-- Waiver -->
             <h4 class="text-black text-xl md:text-3xl font-bold mt-8">Waiver</h4>

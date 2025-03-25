@@ -18,6 +18,7 @@ use App\Http\Controllers\RewardController;
 use App\Http\Controllers\SiteReviewController;
 use App\Models\SiteReview;
 use App\Models\User;
+use App\Mail\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,11 @@ Route::get('/review', function(){
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::post('/contact',function(){
+    Mail::to(env('MAIL_FROM_ADDRESS'))->send(new Contact(request()));
+    return view('contact');
+} );
+
 // Terms and Conditions
 Route::get('/tmc', function () {
     return view('tmc');
@@ -56,7 +62,7 @@ Route::get('/pnc', function () {
 Route::resource('boxes',BoxController::class);
 Route::controller(BoxController::class)->group(function() {
     Route::get('/boxes','index');
-    Route::get('/boxes/{box}','show');
+    Route::get('/boxes/{box}','show')->name('boxes.show');
     Route::get('/boxes/{box}/review','review')->middleware('auth');
     Route::post('/boxes/{box}/review','addReview')->middleware('auth');
 
@@ -142,8 +148,8 @@ Route::patch('/account/payments/{payment}', [PaymentController::class, 'update']
 Route::delete('/account/payments/{payment}', [PaymentController::class, 'delete'])->name('payment.delete');
 
 // Recipes
-Route::get('/recipes', [RecipeController::class, 'recipes']);
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show']);
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 
 // Admin
 Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(function(){
@@ -153,14 +159,17 @@ Route::middleware(IsAdmin::class)->controller(AdminController::class)->group(fun
     Route::get('/admin/orders', 'orders')->name('admin.orders');
     Route::get('/admin/inventory', 'inventory')->name('admin.inventory');
     Route::get('/admin/inventory/{box}', 'editInventory')->name('inventory.edit');
-
+    Route::get('/admin/inventory/{box}/add', 'addInventory')->name('inventory.add');
     Route::patch('/admin/orders','updateOrderStatus');
     Route::get('/admin/products', 'products')->name('admin.products');
     Route::post('/admin/products','addProduct');
-    Route::post('/admin/inventory/{box}', 'editBox');
-    Route::delete('/admin/inventory/{box}', 'deleteBox');
-
+    Route::post('/admin/inventory/{box}', 'editBox')->name('admin.inventory.edit');
+    Route::delete('/admin/inventory/{box}', 'deleteBox')->name('admin.inventory.delete');
+    Route::get('/admin/reports','reports')->name('admin.reports');
 });
+
+Route::post('/admin/inventory/{box}', [AdminController::class, 'editBox'])->name('admin.inventory.edit');
+Route::delete('/admin/inventory/{box}', [AdminController::class, 'deleteBox'])->name('admin.inventory.delete');
 
 // Update customer roles
 Route::put('/update-user-role/{id}', function(Request $request, $id) {

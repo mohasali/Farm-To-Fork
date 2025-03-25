@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Checkout">
     <div class="flex flex-wrap justify-between p-6 bg-gray-100 rounded-lg shadow-md text-black">
         <div class="w-full lg:w-[60%] mb-6 lg:mb-0 px-4">
             @if (session('message'))
@@ -72,9 +72,6 @@
                     
                     <x-form-input label="Expiry Date" name="exp" type="text" id="exp" maxlength="5" placeholder="MM/YY" required />
                     <x-form-error name="exp" />
-
-                    <x-form-input label="Promo Code" name="promo" type="text" id="promo" maxlength="8" placeholder="Promo Code" />
-                    <x-form-error name="promo" />
                     
                 <button type="submit" class="w-full bg-primary py-3 text-white mt-2 font-semibold rounded-md hover:bg-accent1 transition">
                     Pay £{{ number_format($total, 2) }}
@@ -100,15 +97,20 @@
                 <div class="absolute top-[91%] left-[95%]">
                     <x-egg :value="5"/>
                 </div>
-                <div class="flex justify-between items-center font-bold border-t border-gray-300 mt-4 pt-4">
-                    <span class="text-gray-700">Total:</span>
-                    <span class="text-gray-900">£{{ number_format($total, 2) }}</span>
+                <div class="items-center font-bold border-t border-gray-300 mt-4 pt-4">
+                    <x-form-input label="Promo Code" name="promo" type="text" id="promo" maxlength="8" placeholder="Promo Code" />
+                    <x-form-error name="promo" />
+                    <div class="flex justify-between mt-4">
+                        <span class="text-gray-700">Total:</span>
+                        <span class="text-gray-900">£{{ number_format($total, 2) }}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 <script>
+    @if (!$addresses->isEmpty())
     const addressDropdown = document.getElementById('address-dropdown');
     addressDropdown.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
@@ -118,6 +120,7 @@
         document.getElementById('postcode').value = selectedOption.dataset.postcode || '';
         document.getElementById('country').value = selectedOption.dataset.country || '';
     });
+    @endif
     @if(!$payments->isEmpty())
     document.getElementById('payment-dropdown').addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];

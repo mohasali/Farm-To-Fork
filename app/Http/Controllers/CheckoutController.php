@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\ItemOrder;
 use App\Models\PromoCode;
 use Illuminate\Validation\Rule;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -96,7 +98,7 @@ class CheckoutController extends Controller
         session(['order_confirmed' => $order->id]);
 
         // Return the confirmation view
-        return redirect('checkout/confirmed');
+        return redirect()->route('checkout.confirmed');
     }
 
 
@@ -109,6 +111,9 @@ class CheckoutController extends Controller
         }
         session()->forget('order_confirmed');
         $order = Order::findOrFail($orderId);
+
+        //order confirmation email
+        Mail::to(Auth::user()->email)->send(new OrderConfirmation());
 
         return view('cart.confirmed',['order'=>$order]);
     }

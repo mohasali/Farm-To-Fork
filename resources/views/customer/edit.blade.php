@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Edit Details">
     <section class="max-w-4xl mt-4 rounded-md mx-auto p-6 shadow-md">
         <x-account-nav-link href="{{ url()->previous() }}" :active="false">Back</x-account-nav-link>
         

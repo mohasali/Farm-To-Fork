@@ -14,11 +14,7 @@ class Tag extends Model
         return $this->belongsToMany(Box::class);
     }
 
-    /*
-    Future Use Case
-
     public function recipes(){
         return $this->belongsToMany(Recipe::class);
     }
-    */
 }

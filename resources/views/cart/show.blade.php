@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Cart">
     @if (session('message'))
     <div class="max-w-4xl mx-auto my-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 shadow-md rounded-lg flex items-center">
         <!-- Message Text -->

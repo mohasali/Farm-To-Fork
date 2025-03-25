@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Admin | Home">
     <!-- Welcome administrator -->
     <section class="relative w-full bg-center">
         <div class="mt-16 flex flex-col items-center justify-center text-center">
@@ -12,5 +12,6 @@
         <x-admin-nav-link href="{{ route('admin.inventory') }}" :active="request()->routeIs('admin.inventory')" >Inventory Management - Products</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.products') }}" :active="request()->routeIs('admin.products')" >Add New Product</x-admin-nav-link>
         <x-admin-nav-link href="{{ route('admin.customers') }}" :active="request()->routeIs('admin.customers')" >Customers</x-admin-nav-link>
+        <x-admin-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')" >Reports</x-admin-nav-link>
     </section>
 </x-layout>
