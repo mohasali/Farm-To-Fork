@@ -8,16 +8,46 @@
 - If you would like to view and use this website on our server go to [here](http://cs2team45.cs2410-web01pvm.aston.ac.uk/)
 
 - To run this locally you must have:
-	- An IDE
-	- PHP installed
-	- Node.js and composer installed
+- [Node.js](https://nodejs.org/) - Used for running JavaScript on the server and managing frontend dependencies.
+- [PHP](https://www.php.net/) - Used for the backend of the application.
+- [Composer](https://getcomposer.org/) - Dependency manager for PHP, used to install and manage libraries.
+- Choose between [PostgreSQL](https://www.postgresql.org/) or [MySQL](https://www.mysql.com/) - Used for the database management system.
+  
+	### Steps
 
-	- In the terminal run `npm install`, `composer install`
-	- Copy the info in .env-example into a new file called .env
-	- In the terminal, run `php artisan key:generate`
-	- Run `php artisan migrate:fresh --seed` to import the database and seed the website.
-	- And then `php artisan db:seed` to add products to the database
-	- Finally, `npm run dev` to run the site
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/rederick29/team-project
+    cd team-project
+    ```
+
+2. Install dependencies:
+
+    ```bash
+    npm install
+    composer install
+    ```
+
+3. Set up environment file and generate `APP_KEY`:
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. Build assets and start the application:
+
+    ```bash
+    # Open the first terminal and type:
+    npm run dev    # Runs the debug server for the website
+
+    # Open the second terminal and type:
+    php artisan migrate
+    php artisan db:seed
+    php artisan storage:link
+    php artisan serve
+    ```
 
 ## Features
 - [LIVE] 2025 Egg Hunt - 10% discount!
