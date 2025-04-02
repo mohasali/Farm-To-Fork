@@ -18,7 +18,7 @@
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/rederick29/team-project
+    git clone https://github.com/mohasali/Farm-To-Fork.git
     cd team-project
     ```
 
