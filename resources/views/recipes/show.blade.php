@@ -1,5 +1,5 @@
 <x-layout title="Recipes | {{ $recipe->title }}">
-    <div class="min-h-[calc(100vh-200px)] bg-gray-50">
+    <div class="min-h-[calc(100vh-200px)]">
         <!-- Image background header -->
         <div class="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
             <div class="absolute inset-0 bg-black/50 z-10"></div>

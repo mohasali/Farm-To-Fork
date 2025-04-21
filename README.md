@@ -1,70 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<img src="public/images/Farmtofork.png" alt="Farm to Fork" width="250" height="250"/>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Farm to Fork
+<p>Feeding mouths, est 2024. Based in the West Midlands</p>
+<p>Team 45</p>
 
-## About Laravel
+## How to use
+- If you would like to view and use this website on our server go to [here](http://cs2team45.cs2410-web01pvm.aston.ac.uk/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- To run this locally you must have:
+- [Node.js](https://nodejs.org/) - Used for running JavaScript on the server and managing frontend dependencies.
+- [PHP](https://www.php.net/) - Used for the backend of the application.
+- [Composer](https://getcomposer.org/) - Dependency manager for PHP, used to install and manage libraries.
+- Choose between [PostgreSQL](https://www.postgresql.org/) or [MySQL](https://www.mysql.com/) - Used for the database management system.
+  
+	### Steps
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    ```bash
+    git clone https://github.com/Hamza2702/Farm-To-Fork.git
+    cd team-project
+    ```
 
-## Learning Laravel
+2. Install dependencies:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    ```bash
+    npm install
+    composer install
+    ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. Set up environment file and generate `APP_KEY`:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-## Laravel Sponsors
+4. Build assets and start the application:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    # Open the first terminal and type:
+    npm run dev    # Runs the debug server for the website
 
-### Premium Partners
+    # Open the second terminal and type:
+    php artisan migrate
+    php artisan db:seed
+    php artisan storage:link
+    php artisan serve
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Features
+- [LIVE] 2025 Egg Hunt - 10% discount!
+- Review the website - let us know what you think!
+- Google embed of Farms To Fork Ltd, West Midlands, UK
+- About us - Learn about our morals and commitment to sustainable food systems
+- Browse our selection of fresh ingredients packed into boxes!
+- Filter and find your preference and perfect box within a selected price range and category!
+- Grab and learn about your favourite box with their average rating, stock amount, tags, nutritional information, an array of product images and a magnifying glass!
+- Give individual boxes a review - give insight and your thoughts to other customers!
+- With our all new recipe section, cook up a healthy meal in no time!
+- Filter through recipes depending on their tags.
+- Recipes are displayed in a visually-pleasing manner, showing their time to cook, servings amount and average rating.
+- Each recipe includes their description, required ingredients and preparation steps as well as a magnifying glass to stare at these delicious recipes.
+- Got a query? Contact us! Any detail about our product or site is valuable to us!
+- Customers can manage personal information, orders, addresses, rewards, payments and contact preferences in the user dashboard!
+- The user dashboard includes personal information than can be updated, tracking the status of orders as well as returning boxes, addresses can be added, edited and removed for checkout ease of access, stamp your card daily to get a reward and check promo codes in the rewards section, payments can be added, edited and removed and contact preferences can be set.
+- Before checking out, users can modify their shopping habits in the cart section.
+- Checkout includes adding your address with ease because of the saved address feature as well as any saved payment method, a display of what the user is buying (quantity and price) as well as a promo code input to help discount on items.
+- When checking out, users are redirected to a thank you page - because we value YOU!
+- Admin dashboard includes user detail manage, order processing list, inventory management, adding new products, customers, statistical reports and enquiries
+- Admins can search and filter through users, check their personal order history and expand info which will display all personal details and addresses
+- Moreover, administrators can filter and search orders as well as process them which will advance orders to their next status stage
+- In the inventory management section, every item is displayed with their image, title, description, price, tags, type and stock. A low and out of stock indicator is displayed at the top of the screen if stocks are ever short!
+- For ease of use, administrators can increase the stock with a click of a button as well as edit an on-shelf product, changing their image, title, price, tags, type, stock, description or even deleting it!
+- Adding new products couldn't have been easier - admins can upload and image and get a product on shelf through the dashboard!
+- Every customer will be displayed on the admin dashboard, admins can filter through administrators and users and change their roles
+- The reports dashboard help administrators monitor the site and see any outgoing values that will aid in creating a better experience for the customer. This includes the total of users, orders, average order value, returned orders, return rate, total revenue, total inventory value and items, total enquiries, total product reviews and average rating as well as the total site reviews and average site rating. A pie chart is produced, displaying the variety of products from Farm to Forks
+- Enquiries is a newly added feature. Administrators can filter through seen/unseen enquiries from the contact us form. Each enquiry displays their name, email, phone number, query and date. Admins can mark an enquiry as seen
 
-## Contributing
+## Pages available
+Pages include but aren't limited to -
+- Home
+- Site review
+- About us
+- Boxes
+- Individual boxes
+- Boxes review
+- Recipes
+- Individual recipes
+- Contact us
+- Cart
+- Checkout
+- Checkout confirmation
+- Account -
+- Personal information
+- Orders
+- Addresses
+- Rewards
+- Payments
+- Contact Preferences
+- Admin dashboard -
+- User detail management
+- Order Processing List
+- Inventory Management
+- Add New Product
+- Customers
+- Individual customers
+- Reports
+- Enquiry
+- Any editable form will include a new page
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Meet the team
+- Peace
+- Aarif
+- Hafsa
+- Salim
+- Hamza
+- Naomi
+- Krishna
+- Aisha
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-:)
-
-:3
+:) :3

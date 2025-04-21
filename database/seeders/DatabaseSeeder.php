@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\Box;
+use App\Models\Enquiry;
 use App\Models\Tag;
 use App\Models\User;
 use App\Models\Order;
@@ -77,5 +78,7 @@ class DatabaseSeeder extends Seeder
 
         //Review Seeder
         $this->call(ReviewSeeder::class);
+
+        $this->call(EnquirySeeder::class);
     }
 }

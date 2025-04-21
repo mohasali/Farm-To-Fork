@@ -76,6 +76,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="container mx-auto px-4 py-6">
+                    {{$users->links()}}
+                </div>
             @endif
         </div>
     </section>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\BoxType;
 use App\Models\Box;
+use App\Models\Enquiry;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
@@ -46,7 +47,7 @@ class AdminController extends Controller
         }
 
         // Get users based off the query
-        $users = $usersQuery->get();
+        $users = $usersQuery->paginate(30);
 
         return view('admin.customers', compact('users'));
     }
@@ -253,7 +254,7 @@ class AdminController extends Controller
             'revenue' => $revenue,
 
             // Enquiries
-            // 'enquiries' => ??
+             'enquiries' => Enquiry::count(),
 
             // Inventory
             'inventoryValue' => Box::sum('price') ?? 0,

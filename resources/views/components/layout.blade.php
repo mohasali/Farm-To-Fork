@@ -158,8 +158,17 @@
           <li><a href="/about" class="hover:underline">About Us</a></li>
           <li><a href="/boxes" class="hover:underline">Boxes</a></li>
           <li><a href="/recipes" class="hover:underline">Recipes</a></li>
-          <li><a href="account.html" class="hover:underline">Login</a></li>
-          <li><a href="account.html" class="hover:underline">Register</a></li>
+          @guest
+          <li><a href="/login" class="hover:underline">Login</a></li>
+          <li><a href="/register" class="hover:underline">Register</a></li>
+          @endguest
+          @auth
+          <li><a href="/account/user" class="hover:underline">Manage Account</a></li>
+          <form method="POST" action="/logout">
+            @csrf
+            <li><button class="hover:underline">Log Out</button></li>
+          </form>          
+          @endauth
         </ul>
       </div>
       
@@ -215,7 +224,8 @@ const emojis = [
 
 
   function spawnEmojis(v) {
-    const numberOfEmojis = 20;
+    const numberOfEmojis = screen.width/(32+screen.width/20);
+    
     const emojiRow = document.createElement('div');
     emojiRow.style.position = 'absolute';
     emojiRow.style.top = v + 'vh';

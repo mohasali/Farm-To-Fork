@@ -40,8 +40,9 @@
         <!-- User -->
         <div>
             <p class="text-secondary font-medium">User</p>
-            <a href="/customer/{{ $order->user->id }}" class="block mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm">
-                {{ $order->user->email }}
+            <a href="/customer/{{ $order->user->id }}">
+                <input type="text" value="{{ $order->user->email }}" 
+                   class="w-full mt-1 px-3 py-2 bg-gray-200 rounded-md text-sm" disabled>
             </a>
         </div>
         

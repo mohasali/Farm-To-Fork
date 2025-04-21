@@ -1,4 +1,51 @@
-star_rating,title,description,review_date,upvotes,site_rating,site_title,site_description
-5,So Fresh!,First time buying this box and didn't know what to expect - I was plesantly surprised! It had everything I needed for a week of healthy meals!,01/02/2025,5,4,Amazing website!,Lovely site design will use again
-4,Impulse Purchase,Bought this box on impulse and found myself becoming buying this box on the regular! It's too convenient not to!,29/01/2025,2,5,I have never used a better website for my food shopping in my life!!!,So quick and easy - thank you Farm to Fork for providing such a great service!!
-5,Farm to Fork NEVER Disappoints!!!,I have been a repeat customer for many months now and found myself buying this box to change up the normal order I've routinely bought several times and I have to say this is their best box yet!!!,05/01/2025,20,4,Great Service,They make the process of food shopping so much easier!
+star_rating,title,description,review_date,upvotes,box_id,site_rating,site_title,site_description
+5,So Fresh!,First time buying this box and didn't know what to expect - I was pleasantly surprised! It had everything I needed for a week of healthy meals!,01/02/2025,5,1,4,Amazing website!,Lovely site design will use again
+4,Impulse Purchase,Bought this box on impulse and found myself buying this box on the regular! It's too convenient not to!,29/01/2025,2,1,5,Superb!,Best shopping experience ever!
+5,Farm to Fork NEVER Disappoints!!!,I have been a repeat customer for many months now and found myself buying this box to change up the normal order I've routinely bought several times and I have to say this is their best box yet!!!,05/01/2025,20,2,4,Great Service,They make the process of food shopping so much easier!
+3,Decent but Could Improve,The ingredients were fresh but I feel like the portion sizes were a bit smaller than expected.,10/02/2025,3,2,3,Okay experience, Decent site but a bit slow to load.
+4,Great Value!,Loved the variety of ingredients! Made meal planning a breeze.,12/02/2025,8,3,4,Easy and Convenient,Ordering process was seamless and easy!
+2,Not What I Expected,I was excited to try this box but unfortunately some of the produce was not as fresh as I hoped.,08/02/2025,1,3,2,Could be better,Delivery took longer than expected.
+5,Amazing Box!,Everything in this box was super fresh and well-packaged.,15/02/2025,15,4,5,Fantastic!,Quick delivery and excellent service!
+3,Just Okay,It was an okay purchase, but nothing special.,17/02/2025,4,4,3,Decent Website was easy to use but could have more product details.
+4,Good for the Price,The box had a great selection and was well worth the money!,20/02/2025,7,5,4,User-Friendly,The website makes it easy to find what you need.
+5,Would Buy Again,The freshness and quality were outstanding. Will order again soon!,22/02/2025,10,5,5,Top Notch!,Best food shopping experience ever!
+5,Exceeded Expectations,Every ingredient was high-quality and I got more than expected!,25/02/2025,12,6,5,Amazing, Loved the entire experience!
+2,Disappointed,Some of the ingredients were missing which was frustrating.,27/02/2025,1,6,2,Not Great,Checkout process was confusing.
+4,Nice Surprise,Wasn't expecting much but this was a great buy!,01/03/2025,6,7,4,Pretty Good,Simple design works well.
+3,Average,The quality was fine but I’ve had better.,03/03/2025,3,7,3,Could Improve,Navigation was a bit tricky.
+5,Fantastic Box!,Everything was fresh and delicious.,05/03/2025,11,8,5,Perfect!,Super intuitive site.
+4,Convenient and Healthy,Made meal prep easier than ever!,07/03/2025,5,8,4,Effortless Shopping,Would definitely recommend!
+5,My Go-To Box,This is my favorite purchase so far!,09/03/2025,9,9,5,Loved It!,Best online grocery shopping experience.
+2,Could Have Been Better,Some ingredients were not as fresh as expected.,11/03/2025,2,9,2,Not Impressed,Some pages were slow to load.
+4,Great Selection,Wide variety of ingredients loved it!,13/03/2025,6,10,4,Really Useful,Simple and effective website.
+3,Expected More,It was okay but not as great as I had hoped.,15/03/2025,4,10,3,Just Okay,Could have better search options.
+5,Highly Recommend!,Best box I have ordered yet!,17/03/2025,13,11,5,Superb!,Smooth checkout process.
+3,Not Bad,The ingredients were decent but not amazing.,19/03/2025,3,11,3,Adequate,Could use more product descriptions.
+4,Very Useful,The selection in this box made meal planning a breeze!,21/03/2025,7,12,4,Pretty Good,Fast and efficient service.
+2,Not What I Expected,Some items arrived in poor condition.,23/03/2025,1,12,2,Needs Improvement,Website was a bit laggy.
+5,Perfect for Meal Prep,This box had everything I needed for my weekly meal prep.,25/03/2025,10,13,5,Amazing!,Everything was so easy to find!
+3,Okay but Not Great,Quality was fine but I’ve had better.,27/03/2025,4,13,3,Average,Could use a fresher design.
+4,Pretty Good,Fresh ingredients and fast delivery!,29/03/2025,6,14,4,Good Website,Works well but could improve UI.
+2,Could Be Better,Some items weren't as fresh as I expected.,31/03/2025,2,14,2,Needs Improvement,Search function was confusing.
+5,Loved It!,Best grocery box I’ve bought so far!,02/04/2025,15,15,5,Fantastic!,Great design and easy checkout.
+3,Just Okay,It was fine but nothing too special.,04/04/2025,3,15,3,Average,Could have more filtering options.
+4,Great Buy,Will definitely buy this again!,06/04/2025,8,16,4,Useful,Website layout is clean and functional.
+2,Not Happy,Some of the vegetables were not fresh.,08/04/2025,1,16,2,Could Improve,Delivery was slow.
+5,Excellent Purchase!,Loved every part of this box!,10/04/2025,12,17,5,Superb!,Very easy to navigate.
+3,Decent but Not Perfect,It was okay but some improvements needed.,12/04/2025,4,17,3,Alright,Could be more detailed.
+4,Pretty Good,Everything was fresh and well-packed.,14/04/2025,7,18,4,Good Service,Simple and intuitive UI.
+2,Lacking Freshness,Some ingredients were near expiry.,16/04/2025,2,18,2,Disappointing,Could use better filtering options.
+5,Beyond Expectations!,This box was way better than I imagined!,18/04/2025,14,19,5,Best Experience!,Super smooth checkout.
+3,Average,Nothing too special about it.,20/04/2025,3,19,3,Okay,Could use some minor improvements.
+4,Very Convenient,Great for quick meals!,22/04/2025,9,20,4,Easy Shopping,Website was smooth and easy to use.
+2,Not the Best,Delivery took longer than expected.,24/04/2025,1,20,2,Needs Improvement,Slow response time on pages.
+4,Good Choice,This box had a great mix of fresh produce.,26/04/2025,7,21,4,Smooth Process,Checkout was a breeze!
+5,Best Box Yet!,I will be a repeat customer for sure!,28/04/2025,12,21,5,Perfect!,So easy and enjoyable to use!
+5,Fantastic Box!,Everything was perfect fresh and delicious.,30/04/2025,15,22,5,Amazing Service!,Best shopping experience!
+3,Not Bad,Decent but expected more variety.,02/05/2025,3,22,3,Okay,Could use more product details.
+4,Very Happy!,Loved the selection and quality!,04/05/2025,7,23,4,Good Design,Website is simple and effective.
+2,Disappointed,Some ingredients were missing.,06/05/2025,1,23,2,Could Be Better,Site navigation was confusing.
+5,Super Fresh!,Best box I’ve ever bought!,08/05/2025,13,24,5,Perfect!,Smooth experience overall.
+3,Adequate,It was okay but nothing amazing.,10/05/2025,4,24,3,Average,Could improve checkout process.
+4,Convenient and Reliable,Great box for meal prep!,12/05/2025,8,25,4,Very Good,Easy to use and order.
+2,Could Improve,Some items were not as fresh.,14/05/2025,2,25,2,Needs Work,Filtering options are lacking.
